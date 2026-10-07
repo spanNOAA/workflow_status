@@ -52,7 +52,7 @@ ALLOWED_SCRATCH_PREFIXES = (
 MAX_TOTAL_EXPERIMENTS = 60
 MAX_USER_EXPERIMENTS = 3
 MAX_CONCURRENT_WORKERS = 20
-ADMIN_USERS = ("spannoaa", "guoqing-noaa", "sijie-pan", "sijie.pan")
+ADMIN_USERS = ("spannoaa", "guoqing-noaa")
 
 
 def validate_safe_expdir(expdir_str: str) -> Path:

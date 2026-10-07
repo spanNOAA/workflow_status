@@ -412,7 +412,7 @@
         })();
 
         // Admin whitelist (GitHub usernames with elevated management privileges)
-        const ADMIN_USERS = ['spanNOAA', 'guoqing-noaa', 'spannooa', 'sijie-pan', 'sijie.pan'];
+        const ADMIN_USERS = ['spanNOAA', 'guoqing-noaa'];
 
         function checkIsAdmin(user = '') {
             const u = (user || (currentAuthUser ? currentAuthUser.username : '') || '').toLowerCase().trim();
