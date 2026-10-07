@@ -242,6 +242,25 @@
                     <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">🔒 Must reside on an approved scratch filesystem (/scratch, /gpfs, /work). Member runs sharing a common suite directory (e.g., .../&lt;suite&gt;/exp/...) count as 1 suite towards the 3-suite quota.</p>
                 </div>
                 <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Workflow Mode</label>
+                    <div class="grid grid-cols-2 gap-3 p-1.5 bg-gray-50 dark:bg-gray-900/60 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <label class="flex items-start gap-2 p-2 rounded-md cursor-pointer transition-colors border border-emerald-500/50 bg-emerald-50/50 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200" id="label-mode-retro">
+                            <input type="radio" name="add-mode" id="mode-retro" value="retrospective" checked class="mt-0.5 text-emerald-600 focus:ring-emerald-500">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-xs text-emerald-900 dark:text-emerald-100">Retrospective (Default)</span>
+                                <span class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Monitors all cycles. Auto-pruned 3 days after completion.</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start gap-2 p-2 rounded-md cursor-pointer transition-colors border border-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300" id="label-mode-realtime">
+                            <input type="radio" name="add-mode" id="mode-realtime" value="realtime" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-xs text-gray-900 dark:text-gray-100">Realtime</span>
+                                <span class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Rolling 3-day lookback window for live operations.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Alert Email Notification (Optional)</label>
                     <input type="email" id="add-email" pattern="^[a-zA-Z0-9._%+-]+@noaa\.gov$" placeholder="" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
                     <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Must strictly end with @noaa.gov. Leave completely blank if email alerts are not required.</p>
@@ -311,6 +330,7 @@
                     <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2.5">
                         <span class="exp-name">experiment_name</span>
                         <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800 exp-cluster">cluster</span>
+                        <span class="exp-mode-tag px-2 py-0.5 rounded text-xs font-mono font-semibold"></span>
                         <span class="exp-owner-tag hidden px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"></span>
                         <span class="exp-suite-tag hidden px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800"></span>
                     </h2>
@@ -411,30 +431,6 @@
                 return owner || 'spanNOAA';
             })()
         };
-
-        const HIDDEN_EXPS_KEY = 'wf_hidden_experiments_v1';
-        function getHiddenExperiments() {
-            try {
-                return JSON.parse(localStorage.getItem(HIDDEN_EXPS_KEY) || '[]');
-            } catch (e) {
-                return [];
-            }
-        }
-        function markExperimentHidden(key) {
-            try {
-                const list = getHiddenExperiments();
-                if (!list.includes(key)) {
-                    list.push(key);
-                    localStorage.setItem(HIDDEN_EXPS_KEY, JSON.stringify(list));
-                }
-            } catch (e) {}
-        }
-        function unhideAllExperiments() {
-            try {
-                localStorage.removeItem(HIDDEN_EXPS_KEY);
-            } catch (e) {}
-            loadData();
-        }
 
         // Default landing experiment is read from `default_exp` / `default: true` in `myexps.yml` (via <exp>.json).
         const DEFAULT_EXP = '';
@@ -617,7 +613,21 @@
             return defaultName || '';
         }
 
-        function createIssueWebUrl(cluster, name, action, expdir, email) {
+        function updateModeRadios() {
+            const labelRetro = document.getElementById('label-mode-retro');
+            const labelRealtime = document.getElementById('label-mode-realtime');
+            const retroRadio = document.getElementById('mode-retro');
+            if (!labelRetro || !labelRealtime || !retroRadio) return;
+            if (retroRadio.checked) {
+                labelRetro.className = 'flex items-start gap-2 p-2 rounded-md cursor-pointer transition-colors border border-emerald-500/50 bg-emerald-50/50 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200';
+                labelRealtime.className = 'flex items-start gap-2 p-2 rounded-md cursor-pointer transition-colors border border-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300';
+            } else {
+                labelRealtime.className = 'flex items-start gap-2 p-2 rounded-md cursor-pointer transition-colors border border-blue-500/50 bg-blue-50/50 dark:bg-blue-950/30 text-blue-900 dark:text-blue-200';
+                labelRetro.className = 'flex items-start gap-2 p-2 rounded-md cursor-pointer transition-colors border border-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300';
+            }
+        }
+
+        function createIssueWebUrl(cluster, name, action, expdir, email, workflowType = 'retrospective') {
             const title = `[exp-config] ${cluster}/${name}${action === 'delete' ? ' (delete)' : ''}`;
             const labels = ['exp-config', cluster].join(',');
             const payload = {
@@ -625,12 +635,18 @@
                 cluster: cluster,
                 name: name
             };
-            if (expdir) {
-                payload.expdir = expdir;
-                const suiteName = extractSuiteName(expdir);
-                if (suiteName) payload.suite = suiteName;
+            if (action === 'delete') {
+                // Zero-Token deletion instruction for HPC agent
+            } else {
+                if (expdir) {
+                    payload.expdir = expdir;
+                    const suiteName = extractSuiteName(expdir);
+                    if (suiteName) payload.suite = suiteName;
+                }
+                if (email) payload.email = email.toLowerCase().trim();
+                payload.workflow_type = workflowType;
+                payload.retro = (workflowType === 'retrospective');
             }
-            if (email) payload.email = email.toLowerCase().trim();
             const body = `### Automated Workflow Configuration Request\n**Action:** ${action}\n**Cluster:** ${cluster}\n**Experiment:** ${name}\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n`;
             return `https://github.com/${REPO}/issues/new?title=${encodeURIComponent(title)}&labels=${encodeURIComponent(labels)}&body=${encodeURIComponent(body)}`;
         }
@@ -639,6 +655,13 @@
             const addModal = document.getElementById('modal-add-exp');
             const editModal = document.getElementById('modal-edit-exp');
             const addBtn = document.getElementById('add-exp-btn');
+
+            const rRetro = document.getElementById('mode-retro');
+            const rRealtime = document.getElementById('mode-realtime');
+            if (rRetro && rRealtime) {
+                rRetro.addEventListener('change', updateModeRadios);
+                rRealtime.addEventListener('change', updateModeRadios);
+            }
 
             if (addBtn) {
                 addBtn.addEventListener('click', () => {
@@ -652,6 +675,10 @@
                     document.getElementById('add-expname').value = '';
                     document.getElementById('add-expdir').value = '';
                     document.getElementById('add-email').value = '';
+                    if (rRetro) {
+                        rRetro.checked = true;
+                        updateModeRadios();
+                    }
                     addModal.classList.remove('hidden');
                 });
             }
@@ -711,7 +738,11 @@
                         return;
                     }
 
-                    const url = createIssueWebUrl(cluster, expname, 'add', expdir, email);
+                    const modeRetro = document.getElementById('mode-retro');
+                    const workflowType = (modeRetro && modeRetro.checked) ? 'retrospective' : 'realtime';
+                    const isRetro = (workflowType === 'retrospective');
+
+                    const url = createIssueWebUrl(cluster, expname, 'add', expdir, email, workflowType);
                     window.open(url, '_blank', 'noopener,noreferrer');
 
                     // Optimistic update
@@ -723,6 +754,8 @@
                         owner: currentAuthUser.username,
                         suite: optSuite,
                         expdir: expdir,
+                        workflow_type: workflowType,
+                        retro: isRetro,
                         updated_at: new Date().toISOString(),
                         cycles: [],
                         summary: { total_tasks: 0, succeeded: 0, running: 0, queued: 0, submitting: 0, waiting: 0, expired: 0, dead: 0, other: 0 },
@@ -785,21 +818,18 @@
         }
 
         function confirmDeleteExperiment(key) {
-            if (!confirm(`Are you sure you want to remove experiment '${key}' from monitoring?`)) {
+            if (!confirm(`Are you sure you want to delete experiment '${key}'?\n\nThis will open a pre-filled GitHub issue under the Zero-Token Protocol to instruct the HPC monitoring agent to purge this experiment and burn after reading.`)) {
                 return;
             }
             const [cluster, expname] = key.split('/');
 
-            // Persistently hide from web dashboard
-            markExperimentHidden(key);
-
-            // Open GitHub issue tab to notify HPC agent
+            // Open GitHub issue tab to notify HPC agent under Zero-Token Protocol
             const url = createIssueWebUrl(cluster, expname, 'delete');
             window.open(url, '_blank', 'noopener,noreferrer');
 
             delete currentStatusData[key];
             if (selectedExpKey === key) {
-                const remaining = Object.keys(currentStatusData).filter(k => !getHiddenExperiments().includes(k));
+                const remaining = Object.keys(currentStatusData);
                 selectedExpKey = remaining.length > 0 ? remaining[0] : null;
                 if (selectedExpKey) {
                     history.replaceState(null, '', `#${encodeURIComponent(selectedExpKey)}`);
@@ -809,7 +839,7 @@
             }
             renderSidebar();
             renderSelectedExperiment();
-            alert(`Experiment '${key}' has been removed from view and a GitHub tab opened to notify the HPC monitoring agent.`);
+            alert(`A GitHub tab has been opened with the deletion request for '${key}'. Click "Submit new issue" on GitHub to instruct the HPC agent to purge the experiment.`);
         }
 
         // --- Timer Logic ---
@@ -946,9 +976,7 @@
                 }
             }
 
-            const hiddenSet = new Set(getHiddenExperiments());
             return Array.from(targetMap.values())
-                .filter(t => !hiddenSet.has(`${t.cluster}/${t.name}`))
                 .sort((a, b) => `${a.cluster}/${a.name}`.localeCompare(`${b.cluster}/${b.name}`));
         }
 
@@ -980,12 +1008,6 @@
                         console.error(`Failed to fetch data for ${key}`, e);
                     }
                 }));
-
-                // Filter out any locally hidden experiments
-                const hiddenList = getHiddenExperiments();
-                hiddenList.forEach(k => {
-                    delete statusData[k];
-                });
 
                 if (Object.keys(statusData).length === 0) {
                     currentStatusData = {};
@@ -1161,6 +1183,8 @@
                 btn.type = 'button';
                 btn.className = `w-full text-left px-3.5 py-2.5 rounded-lg border transition-all flex flex-col gap-1 ${colorClasses}`;
                 const ageStr = isNaN(health.diffMin) ? '--' : `${health.diffMin}m ago`;
+                const isRetro = data.retro !== false && (data.workflow_type !== 'realtime');
+                const modeBadge = `<span class="text-[9px] font-mono px-1 py-0.5 rounded ${isRetro ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/50 dark:text-cyan-300'}">${isRetro ? 'RETRO' : 'REALTIME'}</span>`;
 
                 btn.innerHTML = `
                     <div class="flex items-center justify-between gap-2 w-full">
@@ -1171,7 +1195,7 @@
                         ${badgeHtml}
                     </div>
                     <div class="flex items-center justify-between text-[11px] opacity-80 pl-4 font-mono">
-                        <span>${data.suite ? data.suite + ' · ' : ''}${ageStr}</span>
+                        <span class="flex items-center gap-1.5">${modeBadge} ${data.suite ? data.suite + ' · ' : ''}${ageStr}</span>
                         <span>${data.owner ? '@' + data.owner + ' · ' : ''}${sum.succeeded || 0} ok · ${sum.running || 0} run</span>
                     </div>
                 `;
@@ -1185,21 +1209,6 @@
 
                 listEl.appendChild(btn);
             });
-
-            const hiddenCount = getHiddenExperiments().length;
-            if (hiddenCount > 0) {
-                const restoreDiv = document.createElement('div');
-                restoreDiv.className = 'pt-3 pb-1 text-center border-t border-gray-200 dark:border-gray-700/60 mt-2';
-                restoreDiv.innerHTML = `
-                    <button type="button" id="btn-restore-hidden" class="text-[11px] text-blue-600 dark:text-blue-400 hover:underline">
-                        Restore ${hiddenCount} hidden experiment${hiddenCount > 1 ? 's' : ''}
-                    </button>
-                `;
-                listEl.appendChild(restoreDiv);
-                restoreDiv.querySelector('#btn-restore-hidden').addEventListener('click', () => {
-                    unhideAllExperiments();
-                });
-            }
         }
 
         // --- Selected Experiment Rendering ---
@@ -1230,6 +1239,21 @@
             // Header
             clone.querySelector('.exp-name').textContent = data.experiment || selectedExpKey;
             clone.querySelector('.exp-cluster').textContent = data.cluster || 'Unknown';
+
+            // Workflow mode badge
+            const modeTag = clone.querySelector('.exp-mode-tag');
+            if (modeTag) {
+                const isRetro = data.retro !== false && (data.workflow_type !== 'realtime');
+                if (isRetro) {
+                    modeTag.textContent = 'Retro';
+                    modeTag.className = 'exp-mode-tag px-2 py-0.5 rounded text-xs font-mono font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/40 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800';
+                    modeTag.title = 'Retrospective Workflow: Monitored for all cycles (auto-pruned 3 days after completion)';
+                } else {
+                    modeTag.textContent = 'Realtime';
+                    modeTag.className = 'exp-mode-tag px-2 py-0.5 rounded text-xs font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/40 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800';
+                    modeTag.title = 'Realtime Workflow: Monitored with rolling 3-day lookback window';
+                }
+            }
 
             // Permissions & Action Controls (RBAC: Only owner or admin can edit/delete)
             const isUserAdmin = checkIsAdmin(currentAuthUser ? currentAuthUser.username : '');
@@ -1331,6 +1355,14 @@
                         <div class="px-6 py-2.5 bg-orange-50 dark:bg-orange-900/20 border-b border-orange-100 dark:border-orange-900/30 flex items-start gap-2 text-sm text-orange-800 dark:text-orange-300">
                             <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
                             <div><strong>Hung Jobs:</strong> ${hungStr}</div>
+                        </div>`;
+                }
+                if (data.retro_completed_at) {
+                    const daysLeft = data.retro_days_remaining !== undefined ? `${data.retro_days_remaining}d` : 'soon';
+                    alertsContainer.innerHTML += `
+                        <div class="px-6 py-2.5 bg-indigo-50 dark:bg-indigo-950/40 border-b border-indigo-200 dark:border-indigo-800 flex items-start gap-2 text-sm text-indigo-900 dark:text-indigo-200">
+                            <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-indigo-600 dark:text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <div><strong>Retrospective Workflow Completed:</strong> All cycles done. Auto-pruning from monitoring queue in ${daysLeft}.</div>
                         </div>`;
                 }
             }

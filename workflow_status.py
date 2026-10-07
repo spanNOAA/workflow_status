@@ -27,6 +27,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import time
 import urllib.request
 from pathlib import Path
@@ -38,6 +39,7 @@ REPO_ROOT = Path(os.path.abspath(__file__)).parent
 CYCLE_RE = re.compile(r"^\d{12}$")
 NOAA_EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@noaa\.gov$", re.IGNORECASE)
 EMAIL_RE = NOAA_EMAIL_RE
+_DYNAMIC_EXP_LOCK = threading.Lock()
 
 ALLOWED_SCRATCH_PREFIXES = (
     "/scratch",
@@ -133,20 +135,21 @@ def load_dynamic_experiments(machine: str) -> List[Dict[str, Any]]:
 
 def save_dynamic_experiments(machine: str, experiments: List[Dict[str, Any]]) -> None:
     """Save dynamic experiments to Scheme A local secure state (chmod 600)."""
-    cfg_dir = Path.home() / ".config" / "workflow_status"
-    cfg_dir.mkdir(parents=True, exist_ok=True)
-    try:
-        cfg_dir.chmod(0o700)
-    except Exception:
-        pass
-    state_file = cfg_dir / f"{machine}_dynamic_exps.json"
-    tmp_file = state_file.with_suffix(".tmp")
-    tmp_file.write_text(json.dumps(experiments, indent=2) + "\n", encoding="utf-8")
-    try:
-        tmp_file.chmod(0o600)
-    except Exception:
-        pass
-    tmp_file.replace(state_file)
+    with _DYNAMIC_EXP_LOCK:
+        cfg_dir = Path.home() / ".config" / "workflow_status"
+        cfg_dir.mkdir(parents=True, exist_ok=True)
+        try:
+            cfg_dir.chmod(0o700)
+        except Exception:
+            pass
+        state_file = cfg_dir / f"{machine}_dynamic_exps.json"
+        tmp_file = state_file.with_suffix(".tmp")
+        tmp_file.write_text(json.dumps(experiments, indent=2) + "\n", encoding="utf-8")
+        try:
+            tmp_file.chmod(0o600)
+        except Exception:
+            pass
+        tmp_file.replace(state_file)
 
 
 ALLOWED_ORGS = ("noaa-gsl", "noaa-oar")
@@ -284,6 +287,7 @@ def close_issue(repo_slug: str, issue_num: int, token: str, comment: Optional[st
 def sync_pending_instructions(
     machine: str,
     allowed_orgs: Optional[List[str]] = None,
+    state_dir: Optional[Path] = None,
 ) -> None:
     """
     Fetch pending experiment configuration requests from the GitHub repository,
@@ -318,6 +322,7 @@ def sync_pending_instructions(
     logging.info("Found %d pending experiment configuration requests on GitHub (%s).", len(issues), repo_slug)
     current_exps = load_dynamic_experiments(machine)
     modified = False
+    target_state_dir = state_dir or (REPO_ROOT / ".state" / machine)
 
     for issue in issues:
         issue_num = issue.get("number")
@@ -354,12 +359,31 @@ def sync_pending_instructions(
 
         if action == "delete":
             # Verify caller owns the experiment or is an authorized admin
-            orig_len = len(current_exps)
-            current_exps = [e for e in current_exps if not (e.get("name") == exp_name and (e.get("owner") == author or is_repo_admin))]
-            if len(current_exps) < orig_len:
+            matching = [
+                e for e in current_exps
+                if e.get("name") == exp_name and (e.get("owner") == author or is_repo_admin)
+            ]
+            if matching:
+                current_exps = [
+                    e for e in current_exps
+                    if not (e.get("name") == exp_name and (e.get("owner") == author or is_repo_admin))
+                ]
                 modified = True
+                # Purge local status and state files
+                exp_status_file = target_state_dir / f"{exp_name}.json"
+                exp_state_file = target_state_dir / f"{exp_name}_{machine}_state.json"
+                try:
+                    if exp_status_file.is_file():
+                        exp_status_file.unlink()
+                    if exp_state_file.is_file():
+                        exp_state_file.unlink()
+                except Exception as exc:
+                    logging.warning("Error unlinking status/state files for %s: %s", exp_name, exc)
                 logging.info("Deleted experiment '%s' requested by @%s (Issue #%s)", exp_name, author, issue_num)
-            close_issue(repo_slug, issue_num, token, comment="Processed: Experiment removed from monitoring.")
+                close_issue(repo_slug, issue_num, token, comment="Processed: Experiment removed from monitoring and local state purged.")
+            else:
+                logging.warning("Delete request for '%s' by @%s rejected: Not found or unauthorized.", exp_name, author)
+                close_issue(repo_slug, issue_num, token, comment="Rejected: Experiment not found or unauthorized deletion request.")
 
         elif action == "add":
             expdir_str = str(payload.get("expdir", "")).strip()
@@ -390,12 +414,19 @@ def sync_pending_instructions(
                 continue
 
             suite_name = str(payload.get("suite", "")).strip() or extract_suite_name(str(safe_dir), default_name=exp_name)
+            workflow_type = str(payload.get("workflow_type", "")).strip().lower()
+            if not workflow_type:
+                workflow_type = "retrospective" if payload.get("retro", True) else "realtime"
+            is_retro = bool(workflow_type == "retrospective")
+
             new_entry: Dict[str, Any] = {
                 "name": exp_name,
                 "cluster": machine,
                 "expdir": str(safe_dir),
                 "owner": author,
                 "suite": suite_name,
+                "workflow_type": workflow_type,
+                "retro": is_retro,
             }
             if email_str:
                 if not NOAA_EMAIL_RE.match(email_str) or email_str.startswith("-"):
@@ -466,11 +497,20 @@ def run_rocoto_cmd(cmd: List[str], expdir: Path) -> str:
     return proc.stdout
 
 
-def parse_rocotostat(expdir: Path, xml: str, db: str, lookback: int = 6) -> List[Dict[str, Any]]:
+def parse_rocotostat(
+    expdir: Path,
+    xml: str,
+    db: str,
+    lookback: int = 0,
+    realtime_hours: Optional[float] = None,
+) -> List[Dict[str, Any]]:
     """
     1. Run `rocotostat -w <xml> -d <db> -s` to get all activated cycles & timestamps.
-    2. Exclude 'Inactive' future cycles and select the last `lookback` cycles (works for realtime & retro).
-    3. Run `rocotostat -w <xml> -d <db> -c <selected_cycles>` and parse tasks.
+    2. Exclude 'Inactive' future cycles.
+    3. Filter cycles:
+       - Retrospective: selects all cycles (lookback = 0, realtime_hours = None).
+       - Realtime: selects cycles within the past `realtime_hours` (e.g. 72.0 hours / 3 days).
+    4. Run `rocotostat -w <xml> -d <db> -c <selected_cycles>` and parse tasks.
     """
     summary_out = run_rocoto_cmd(["rocotostat", "-w", xml, "-d", db, "-s"], expdir)
     summary_map: Dict[str, Dict[str, Any]] = {}
@@ -506,7 +546,23 @@ def parse_rocotostat(expdir: Path, xml: str, db: str, lookback: int = 6) -> List
     if not cycle_order:
         return []
 
-    selected_cycles = cycle_order[-lookback:] if lookback > 0 else cycle_order
+    if realtime_hours and realtime_hours > 0:
+        now_utc = dt.datetime.now(dt.timezone.utc)
+        cutoff = now_utc - dt.timedelta(hours=realtime_hours)
+        filtered: List[str] = []
+        for cdate in cycle_order:
+            try:
+                cyc_dt = dt.datetime.strptime(cdate[:12], "%Y%m%d%H%M").replace(tzinfo=dt.timezone.utc)
+                if cyc_dt >= cutoff:
+                    filtered.append(cdate)
+            except Exception:
+                filtered.append(cdate)
+        selected_cycles = filtered if filtered else cycle_order[-72:]
+    elif lookback > 0:
+        selected_cycles = cycle_order[-lookback:]
+    else:
+        selected_cycles = cycle_order
+
     if not selected_cycles:
         return []
 
@@ -560,6 +616,8 @@ def build_status_dict(
     cycles: List[Dict[str, Any]],
     owner: Optional[str] = None,
     suite: Optional[str] = None,
+    workflow_type: str = "retrospective",
+    retro: bool = True,
 ) -> Dict[str, Any]:
     counts = {
         "total_cycles": len(cycles),
@@ -599,6 +657,8 @@ def build_status_dict(
     status_dict: Dict[str, Any] = {
         "experiment": experiment,
         "cluster": cluster,
+        "workflow_type": workflow_type,
+        "retro": retro,
         "updated_at": utc_now_iso(),
         "cycles": cycles,
         "summary": counts,
@@ -716,7 +776,9 @@ def check_dead_jobs(status: Dict[str, Any], state: Dict[str, Any]) -> Tuple[bool
 
 
 def is_retro_all_done(status: Dict[str, Any]) -> bool:
-    """Return True if this is a retro workflow where all cycles are Done."""
+    """Return True if this is a retro workflow where all cycles are Done and no tasks are active/dead."""
+    if not status.get("retro", True):
+        return False
     cycles = status.get("cycles", [])
     if not cycles:
         return False
@@ -725,13 +787,14 @@ def is_retro_all_done(status: Dict[str, Any]) -> bool:
     done_cycles = summary.get("done_cycles", 0)
     if total_cycles == 0 or done_cycles < total_cycles:
         return False
-    latest_cdate = max((c.get("cdate", "") for c in cycles), default="")
-    try:
-        cyc_dt = dt.datetime.strptime(latest_cdate[:12], "%Y%m%d%H%M").replace(tzinfo=dt.timezone.utc)
-        age_hours = (dt.datetime.now(dt.timezone.utc) - cyc_dt).total_seconds() / 3600.0
-        return age_hours > 48.0
-    except Exception:
+    active_cycles = summary.get("active_cycles", 0)
+    running = summary.get("running", 0)
+    queued = summary.get("queued", 0)
+    submitting = summary.get("submitting", 0)
+    dead = summary.get("dead", 0)
+    if active_cycles > 0 or running > 0 or queued > 0 or submitting > 0 or dead > 0:
         return False
+    return True
 
 
 def check_stall(
@@ -873,12 +936,9 @@ def git_push_status_branch(repo_root: Path, updated_files: List[Path], branch: s
     `origin <commit_sha>:refs/heads/<branch>`.
     Never modifies the working tree, index, or current branch (`main`).
     """
-    if not updated_files:
-        return True
-
     names = [f.name for f in updated_files]
     if dry_run:
-        logging.info("[DRY-RUN] Would push to branch '%s': %s", branch, ", ".join(names))
+        logging.info("[DRY-RUN] Would push to branch '%s': %s", branch, ", ".join(names) if names else "_index.json (empty)")
         return True
 
     existing_blobs: Dict[str, str] = {}
@@ -947,7 +1007,7 @@ def git_push_status_branch(repo_root: Path, updated_files: List[Path], branch: s
         timeout=30,
     )
     if push_proc.returncode == 0:
-        logging.info("Pushed %s to origin/%s", ", ".join(names), branch)
+        logging.info("Pushed %s to origin/%s", ", ".join(names) if names else "_index.json (empty)", branch)
         return True
 
     logging.error("Failed to push to origin/%s: %s", branch, push_proc.stderr.strip())
@@ -981,7 +1041,17 @@ def process_experiment(
         logging.warning("Experiment directory not accessible on %s: %s — skipping", cluster, expdir)
         return None
 
-    lookback = int(exp_cfg.get("lookback_cycles", 72))
+    is_retro = bool(
+        exp_cfg.get("workflow_type", "retrospective").lower() == "retrospective"
+        if "workflow_type" in exp_cfg
+        else exp_cfg.get("retro", True)
+    )
+    workflow_type = "retrospective" if is_retro else "realtime"
+
+    # Lookback: Retrospective monitors all cycles (lookback = 0); Realtime monitors past 3 days (realtime_hours = 72.0)
+    lookback = int(exp_cfg.get("lookback_cycles", 0 if is_retro else 72))
+    realtime_hours = None if is_retro else float(exp_cfg.get("realtime_hours", 72.0))
+
     recipients = parse_recipients(exp_cfg.get("recipients", []))
     subject_prefix = exp_cfg.get("subject_prefix", exp_name)
 
@@ -996,15 +1066,71 @@ def process_experiment(
     state = load_state(state_file if state_file.is_file() else legacy_state_file)
 
     # 1. Parse rocotostat
-    cycles = parse_rocotostat(expdir, xml, db, lookback)
+    cycles = parse_rocotostat(expdir, xml, db, lookback=lookback, realtime_hours=realtime_hours)
     owner = exp_cfg.get("owner")
     suite_name = exp_cfg.get("suite") or extract_suite_name(str(expdir), default_name=exp_name)
-    status = build_status_dict(exp_name, cluster, cycles, owner=owner, suite=suite_name)
+    status = build_status_dict(
+        exp_name,
+        cluster,
+        cycles,
+        owner=owner,
+        suite=suite_name,
+        workflow_type=workflow_type,
+        retro=is_retro,
+    )
     default_exp = str(exp_cfg.get("default_exp", "") or "").strip()
     if exp_cfg.get("default") or default_exp in (f"{cluster}/{exp_name}", exp_name):
         status["default"] = True
     if default_exp:
         status["default_exp"] = default_exp
+
+    # Check retro completion and 3-day retention auto-pruning
+    if is_retro and is_retro_all_done(status):
+        completed_at = state.get("retro_completed_at")
+        if not completed_at:
+            completed_at = utc_now_iso()
+            state["retro_completed_at"] = completed_at
+            save_state(state_file, state)
+            logging.info(
+                "Retro experiment '%s' on %s reached 100%% completion at %s. 3-day auto-prune timer started.",
+                exp_name, cluster, completed_at
+            )
+        else:
+            try:
+                comp_dt = dt.datetime.fromisoformat(completed_at.replace("Z", "+00:00"))
+                elapsed_sec = (dt.datetime.now(dt.timezone.utc) - comp_dt).total_seconds()
+                days_remaining = max(0.0, round(3.0 - (elapsed_sec / 86400.0), 1))
+                status["retro_completed_at"] = completed_at
+                status["retro_days_remaining"] = days_remaining
+
+                if elapsed_sec >= 3 * 86400:  # 3 days elapsed
+                    logging.info(
+                        "Retro experiment '%s' completed >= 3 days ago (%s). Auto-pruning from monitoring queue.",
+                        exp_name, completed_at
+                    )
+                    # Prune from dynamic experiments
+                    with _DYNAMIC_EXP_LOCK:
+                        dyn_exps = load_dynamic_experiments(cluster)
+                        new_dyn = [e for e in dyn_exps if e.get("name") != exp_name]
+                        if len(new_dyn) < len(dyn_exps):
+                            save_dynamic_experiments(cluster, new_dyn)
+
+                    # Unlink local status and state files
+                    try:
+                        if status_file.is_file():
+                            status_file.unlink()
+                        if state_file.is_file():
+                            state_file.unlink()
+                    except Exception as exc:
+                        logging.warning("Error unlinking files during auto-prune of %s: %s", exp_name, exc)
+
+                    return None
+            except Exception as exc:
+                logging.warning("Error evaluating retro_completed_at for %s: %s", exp_name, exc)
+    else:
+        if "retro_completed_at" in state and not is_retro_all_done(status):
+            state.pop("retro_completed_at", None)
+            save_state(state_file, state)
 
     # 2. Dead job check
     if dead_cfg.get("enabled", True):
@@ -1167,14 +1293,15 @@ def main() -> int:
     allowed_orgs = security_cfg.get("allowed_orgs", list(ALLOWED_ORGS))
 
     # Ingest pending experiment configuration requests from NOAA org members
-    sync_pending_instructions(machine, allowed_orgs)
+    sync_pending_instructions(machine, allowed_orgs, state_dir=state_dir)
 
     static_experiments = raw_cfg.get("experiments", [])
     dynamic_experiments = load_dynamic_experiments(machine)
 
     all_experiments = list(static_experiments) + list(dynamic_experiments)
     if not all_experiments:
-        logging.info("No experiments currently defined in %s or dynamic state. Waiting for configuration requests.", config_file)
+        logging.info("No experiments currently defined in %s or dynamic state. Updating status branch.", config_file)
+        git_push_status_branch(REPO_ROOT, [], status_branch, args.dry_run)
         return 0
 
     if len(all_experiments) > MAX_TOTAL_EXPERIMENTS:
@@ -1218,6 +1345,8 @@ def main() -> int:
     ok_count = len(updated_files)
     if ok_count > 0:
         git_push_status_branch(REPO_ROOT, sorted(updated_files), status_branch, args.dry_run)
+    else:
+        git_push_status_branch(REPO_ROOT, [], status_branch, args.dry_run)
 
     logging.info("=== Monitor run completed (%d/%d experiments succeeded) ===", ok_count, len(all_experiments))
     return 0 if ok_count > 0 else 1

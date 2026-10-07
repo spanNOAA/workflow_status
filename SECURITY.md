@@ -48,8 +48,9 @@ To operate within NOAA's protected HPC boundaries while leveraging GitHub Enterp
 ### 3.2. Access Control and Least Privilege (AC-3, AC-6)
 * **Local State Protection**:
   * Dynamic configurations on the HPC are stored in `~/.config/workflow_status/` with directory mode `0700` (`rwx------`) and file mode `0600` (`rw-------`). Other users on shared multi-tenant cluster filesystems cannot read or modify these files.
-* **Role-Based Access Control (RBAC)**:
-  * The web dashboard restricts experiment management actions (Edit and Delete) exclusively to the verified experiment owner (`@username`) or designated administrators (`ADMIN_USERS`). Non-owners cannot view or access management buttons.
+* **Role-Based Access Control (RBAC) and Zero-Token Deletion**:
+  * The web dashboard restricts experiment management actions (Edit and Delete) exclusively to the verified experiment owner (`@username`) or designated administrators (`ADMIN_USERS`).
+  * Deletions operate strictly via the **Zero-Token Protocol**: clicking Delete prepares a pre-filled GitHub issue (`action: delete`). The HPC agent verifies that the issue author matches the experiment owner or repository administrator, purges the experiment from dynamic configuration, removes local `.state/` status and tracking files, updates the status branch, and closes the issue ("burn after reading"). No client-side hiding or insecure local persistence is used.
 
 ### 3.3. Boundary Protection and Anti-Reconnaissance (SC-7, SC-28)
 * **Host Information Concealment**:
@@ -80,6 +81,9 @@ To operate within NOAA's protected HPC boundaries while leveraging GitHub Enterp
 * **Modulo Partitioning with Sequential Execution**:
   * If the total number of experiments exceeds 20, workloads are partitioned evenly across 20 worker threads using modulo distribution (`worker_batches[idx % 20]`).
   * Experiments assigned to each worker execute sequentially, ensuring peak memory consumption remains below 400 MB, well within Slurm memory allocations for `scrontab` jobs (`#SCRON --mem=8G`).
+* **Retrospective Lifecycle and 3-Day Auto-Pruning**:
+  * Workflows are configured as either **Retrospective** (historical batch runs, monitoring all activated cycles) or **Realtime** (operational runs, with rolling 3-day lookback).
+  * For Retrospective workflows, upon completion of all cycles (100% finished with zero active or dead tasks), a 3-day retention timer is initiated. After 3 days have elapsed post-completion, the HPC monitoring agent automatically prunes the workflow from the dynamic configuration queue and removes status artifacts, keeping cluster resources and the dashboard clean without manual intervention.
 
 ### 3.6. Privacy and Personally Identifiable Information (PII) Protection
 * **Exclusion of Personal Contact Information**:
