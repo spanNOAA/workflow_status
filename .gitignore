@@ -4,7 +4,6 @@ dynamic_exps*.json
 *.enc
 *.tmp
 .state/
-healthchecks_uuid.txt
 
 # Python
 __pycache__/

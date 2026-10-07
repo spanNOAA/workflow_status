@@ -11,10 +11,9 @@ A config-driven Python monitoring system for Rocoto-based HPC workflows with a G
 - **Hung job detection** — optionally checks one or more `RUNNING` task types (`fcst`, `jedivar`, etc.) for stale log files, with optional `cancel_and_reboot` auto-remediation.
 - **Zero-conflict per-HPC branches (`status-<MACHINE>`)** — each HPC pushes `<exp>.json` directly to its own dedicated branch `status-<MACHINE>` (`https://raw.githubusercontent.com/<owner>/<repo>/status-<machine>/<exp>.json`) without modifying the working tree or `main` branch.
 - **Enterprise NOAA Organization SAML SSO & Dynamic Configuration** — allows authenticated scientists in NOAA Organizations (e.g. `noaa-gsl`, `noaa-oar`) to securely add, blind-edit, and remove monitored experiments from the dashboard with strict path sandboxing (`/scratch`, `/gpfs`, `/work`) and user quota controls.
-- **Three-layer failure detection**:
-  1. **healthchecks.io heartbeat** — detects monitor or cluster/scrontab death within ~15 min.
-  2. **GitHub Actions watchdog** ([`.github/workflows/stale-check.yml`](.github/workflows/stale-check.yml)) — opens a GitHub Issue if any `<exp>.json` on any `status-*` branch goes $>30$ min stale.
-  3. **Dashboard UI** ([`docs/index.html`](docs/index.html)) — color-coded staleness indicator visible at a glance.
+- **Two-layer failure detection**:
+  1. **GitHub Actions watchdog** ([`.github/workflows/stale-check.yml`](.github/workflows/stale-check.yml)) — opens a GitHub Issue if any `<exp>.json` on any `status-*` branch goes $>30$ min stale.
+  2. **Dashboard UI** ([`docs/index.html`](docs/index.html)) — color-coded staleness indicator visible at a glance.
 
 ## Prerequisites
 
@@ -71,13 +70,6 @@ experiments:
   - name: rrfsdet_rt
     expdir: /gpfs/f7/arfs-gsl/world-shared/gge/rrfs2/OPSROOT/conus12km/exp/rrfsdet
     subject_prefix: rrfsv2x_rt
-```
-
-*(Optional)* For `healthchecks.io` dead-man's-switch monitoring, put your UUID in an untracked `healthchecks_uuid.txt` file at the repo root (git-ignored):
-
-```bash
-echo 'YOUR-UUID-HERE' > healthchecks_uuid.txt
-chmod 600 healthchecks_uuid.txt
 ```
 
 ### 3. Test (`--dry-run`)

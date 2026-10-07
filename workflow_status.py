@@ -14,7 +14,6 @@ Features:
   - Saves `<exp>.json` (with rolling 7-day `history`) in `.state/` and pushes directly
     to branch `status-<MACHINE>` (`https://raw.githubusercontent.com/<owner>/<repo>/status-<machine>/<exp>.json`)
     without modifying the working tree or `main` branch
-  - Pings healthchecks.io dead-man's-switch heartbeat if `healthchecks_uuid.txt` exists
 """
 
 import argparse
@@ -38,7 +37,6 @@ import yaml
 REPO_ROOT = Path(os.path.abspath(__file__)).parent
 CYCLE_RE = re.compile(r"^\d{12}$")
 EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
-HEARTBEAT_UUID_RE = re.compile(r"^[a-fA-F0-9\-]{8,64}$")
 
 ALLOWED_SCRATCH_PREFIXES = (
     "/scratch",
@@ -893,31 +891,6 @@ def git_push_status_branch(repo_root: Path, updated_files: List[Path], branch: s
     return False
 
 
-def find_heartbeat_uuid(repo_root: Path) -> Optional[str]:
-    """Read healthchecks.io UUID from untracked root file healthchecks_uuid.txt."""
-    p = repo_root / "healthchecks_uuid.txt"
-    if p.is_file():
-        val = p.read_text().strip()
-        if val and HEARTBEAT_UUID_RE.match(val):
-            return val
-    return None
-
-
-def ping_heartbeat(uuid_str: Optional[str], dry_run: bool) -> None:
-    if not uuid_str or dry_run:
-        return
-    cleaned_uuid = uuid_str.strip()
-    if not HEARTBEAT_UUID_RE.match(cleaned_uuid):
-        logging.warning("Invalid healthchecks UUID format. Skipping heartbeat ping.")
-        return
-    url = f"https://hc-ping.com/{cleaned_uuid}"
-    try:
-        urllib.request.urlopen(url, timeout=10).read()
-        logging.info("Sent heartbeat ping to healthchecks.io")
-    except Exception as exc:
-        logging.warning("Heartbeat ping failed: %s", exc)
-
-
 def process_experiment(
     exp_cfg: Dict[str, Any],
     state_dir: Path,
@@ -1180,12 +1153,7 @@ def main() -> int:
 
     ok_count = len(updated_files)
     if ok_count > 0:
-        # Run git push and healthchecks heartbeat concurrently
-        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as net_pool:
-            f_push = net_pool.submit(git_push_status_branch, REPO_ROOT, sorted(updated_files), status_branch, args.dry_run)
-            f_ping = net_pool.submit(ping_heartbeat, find_heartbeat_uuid(REPO_ROOT), args.dry_run)
-            f_push.result()
-            f_ping.result()
+        git_push_status_branch(REPO_ROOT, sorted(updated_files), status_branch, args.dry_run)
 
     logging.info("=== Monitor run completed (%d/%d experiments succeeded) ===", ok_count, len(all_experiments))
     return 0 if ok_count > 0 else 1

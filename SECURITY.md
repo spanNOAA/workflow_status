@@ -100,5 +100,6 @@ When deploying to a NOAA production environment:
 3. **Cluster Agent Setup**:
    * Ensure user SSH keys are registered on GitHub for automated Git pushing under `scrontab`.
    * If web-based dynamic configuration is utilized, store an SSO-authorized Personal Access Token in `~/.config/workflow_status/github_token.txt` with permissions `chmod 600`.
-4. **Third-Party Telemetry**:
-   * The optional `healthchecks.io` dead-man's switch is inactive by default (requires `healthchecks_uuid.txt`). If an explicit Authority to Operate (ATO) for `hc-ping.com` is not in place, rely on the built-in GitHub Actions watchdog (`.github/workflows/stale-check.yml`) for staleness alerting.
+4. **Zero Third-Party Commercial Telemetry**:
+   * All external calls to third-party commercial services (such as `hc-ping.com`) have been completely excised from the codebase to avoid unauthorized external connections or NIDS beaconing false positives.
+   * Staleness and dead-man's-switch monitoring is handled exclusively within the authorized GitHub enterprise boundary by the built-in GitHub Actions watchdog (`.github/workflows/stale-check.yml`), which opens a GitHub Issue within the repository if any monitored experiment exceeds 30 minutes of staleness.
