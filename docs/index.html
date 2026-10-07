@@ -116,6 +116,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
                 <h1 class="text-2xl font-bold tracking-tight">HPC Workflow Status</h1>
+                <span id="role-badge" class="hidden px-2 py-0.5 rounded text-xs font-mono font-medium"></span>
             </div>
 
             <div class="flex items-center gap-6">
@@ -391,15 +392,49 @@
         })();
 
         // Admin whitelist (GitHub usernames with elevated management privileges)
-        const ADMIN_USERS = ['spanNOAA', 'guoqing-noaa'];
+        const ADMIN_USERS = ['spanNOAA', 'guoqing-noaa', 'spannooa', 'sijie-pan', 'sijie.pan'];
+
+        function checkIsAdmin(user = '') {
+            const u = (user || (currentAuthUser ? currentAuthUser.username : '') || '').toLowerCase().trim();
+            if (!u) return false;
+            const repoOwner = (REPO.split('/')[0] || '').toLowerCase().trim();
+            if (u === repoOwner) return true;
+            return ADMIN_USERS.some(a => a.toLowerCase().trim() === u);
+        }
 
         // Authenticated user session (identified by GitHub username)
         let currentAuthUser = {
             username: (() => {
+                const stored = localStorage.getItem('current_user');
+                if (stored && stored.trim()) return stored.trim();
                 const owner = REPO.split('/')[0];
-                return owner || '';
+                return owner || 'spanNOAA';
             })()
         };
+
+        const HIDDEN_EXPS_KEY = 'wf_hidden_experiments_v1';
+        function getHiddenExperiments() {
+            try {
+                return JSON.parse(localStorage.getItem(HIDDEN_EXPS_KEY) || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+        function markExperimentHidden(key) {
+            try {
+                const list = getHiddenExperiments();
+                if (!list.includes(key)) {
+                    list.push(key);
+                    localStorage.setItem(HIDDEN_EXPS_KEY, JSON.stringify(list));
+                }
+            } catch (e) {}
+        }
+        function unhideAllExperiments() {
+            try {
+                localStorage.removeItem(HIDDEN_EXPS_KEY);
+            } catch (e) {}
+            loadData();
+        }
 
         // Default landing experiment is read from `default_exp` / `default: true` in `myexps.yml` (via <exp>.json).
         const DEFAULT_EXP = '';
@@ -499,6 +534,20 @@
         // --- Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('github-link').href = `https://github.com/${REPO}`;
+
+            // Role badge setup
+            const roleBadge = document.getElementById('role-badge');
+            if (roleBadge) {
+                if (checkIsAdmin(currentAuthUser.username)) {
+                    roleBadge.textContent = `🛡️ Admin: @${currentAuthUser.username}`;
+                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border border-purple-200 dark:border-purple-800';
+                    roleBadge.classList.remove('hidden');
+                } else if (currentAuthUser.username) {
+                    roleBadge.textContent = `@${currentAuthUser.username}`;
+                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700';
+                    roleBadge.classList.remove('hidden');
+                }
+            }
 
             // Theme setup
             const themeToggle = document.getElementById('theme-toggle');
@@ -740,12 +789,17 @@
                 return;
             }
             const [cluster, expname] = key.split('/');
+
+            // Persistently hide from web dashboard
+            markExperimentHidden(key);
+
+            // Open GitHub issue tab to notify HPC agent
             const url = createIssueWebUrl(cluster, expname, 'delete');
             window.open(url, '_blank', 'noopener,noreferrer');
 
             delete currentStatusData[key];
             if (selectedExpKey === key) {
-                const remaining = Object.keys(currentStatusData);
+                const remaining = Object.keys(currentStatusData).filter(k => !getHiddenExperiments().includes(k));
                 selectedExpKey = remaining.length > 0 ? remaining[0] : null;
                 if (selectedExpKey) {
                     history.replaceState(null, '', `#${encodeURIComponent(selectedExpKey)}`);
@@ -755,7 +809,7 @@
             }
             renderSidebar();
             renderSelectedExperiment();
-            alert(`A new GitHub tab has been opened with your removal request. Click "Submit new issue" on GitHub to finalize the removal.`);
+            alert(`Experiment '${key}' has been removed from view and a GitHub tab opened to notify the HPC monitoring agent.`);
         }
 
         // --- Timer Logic ---
@@ -892,7 +946,10 @@
                 }
             }
 
-            return Array.from(targetMap.values()).sort((a, b) => `${a.cluster}/${a.name}`.localeCompare(`${b.cluster}/${b.name}`));
+            const hiddenSet = new Set(getHiddenExperiments());
+            return Array.from(targetMap.values())
+                .filter(t => !hiddenSet.has(`${t.cluster}/${t.name}`))
+                .sort((a, b) => `${a.cluster}/${a.name}`.localeCompare(`${b.cluster}/${b.name}`));
         }
 
         async function loadData() {
@@ -923,6 +980,12 @@
                         console.error(`Failed to fetch data for ${key}`, e);
                     }
                 }));
+
+                // Filter out any locally hidden experiments
+                const hiddenList = getHiddenExperiments();
+                hiddenList.forEach(k => {
+                    delete statusData[k];
+                });
 
                 if (Object.keys(statusData).length === 0) {
                     currentStatusData = {};
@@ -1122,6 +1185,21 @@
 
                 listEl.appendChild(btn);
             });
+
+            const hiddenCount = getHiddenExperiments().length;
+            if (hiddenCount > 0) {
+                const restoreDiv = document.createElement('div');
+                restoreDiv.className = 'pt-3 pb-1 text-center border-t border-gray-200 dark:border-gray-700/60 mt-2';
+                restoreDiv.innerHTML = `
+                    <button type="button" id="btn-restore-hidden" class="text-[11px] text-blue-600 dark:text-blue-400 hover:underline">
+                        Restore ${hiddenCount} hidden experiment${hiddenCount > 1 ? 's' : ''}
+                    </button>
+                `;
+                listEl.appendChild(restoreDiv);
+                restoreDiv.querySelector('#btn-restore-hidden').addEventListener('click', () => {
+                    unhideAllExperiments();
+                });
+            }
         }
 
         // --- Selected Experiment Rendering ---
@@ -1153,12 +1231,25 @@
             clone.querySelector('.exp-name').textContent = data.experiment || selectedExpKey;
             clone.querySelector('.exp-cluster').textContent = data.cluster || 'Unknown';
 
-            // Owner badge
+            // Permissions & Action Controls (RBAC: Only owner or admin can edit/delete)
+            const isUserAdmin = checkIsAdmin(currentAuthUser ? currentAuthUser.username : '');
+            const isExpOwner = Boolean(
+                currentAuthUser &&
+                data.owner &&
+                data.owner.toLowerCase().trim() === (currentAuthUser.username || '').toLowerCase().trim()
+            );
+            const canManage = isUserAdmin || isExpOwner;
+
+            // Owner / Admin badge
             const ownerTag = clone.querySelector('.exp-owner-tag');
             if (data.owner && ownerTag) {
                 ownerTag.textContent = '@' + data.owner.replace(/^@/, '');
                 ownerTag.classList.remove('hidden');
                 ownerTag.title = `Configured by @${data.owner}`;
+            } else if (isUserAdmin && ownerTag) {
+                ownerTag.textContent = 'Admin Managed';
+                ownerTag.classList.remove('hidden');
+                ownerTag.title = 'You have administrative permissions to manage this experiment';
             }
 
             // Suite badge
@@ -1169,8 +1260,6 @@
                 suiteTag.title = `Workflow suite: ${data.suite}`;
             }
 
-            // Permissions & Action Controls (RBAC: Only owner or admin can edit/delete)
-            const canManage = (currentAuthUser && (data.owner === currentAuthUser.username || ADMIN_USERS.includes(currentAuthUser.username)));
             const actionsContainer = clone.querySelector('.exp-actions');
             if (canManage && actionsContainer) {
                 actionsContainer.classList.remove('hidden');
