@@ -418,17 +418,19 @@
             const u = (user || (currentAuthUser ? currentAuthUser.username : '') || '').toLowerCase().trim();
             if (!u) return false;
             const repoOwner = (REPO.split('/')[0] || '').toLowerCase().trim();
-            if (u === repoOwner) return true;
-            return ADMIN_USERS.some(a => a.toLowerCase().trim() === u);
+            const isAdminCandidate = (u === repoOwner || ADMIN_USERS.some(a => a.toLowerCase().trim() === u));
+            if (!isAdminCandidate) return false;
+            return Boolean(currentAuthUser && currentAuthUser.isAdminVerified && (currentAuthUser.username || '').toLowerCase().trim() === u);
         }
 
-        // Authenticated user session (identified by GitHub username)
+        // Authenticated user session (defaults strictly to empty Guest unless explicitly identified)
         let currentAuthUser = {
             username: (() => {
                 const stored = localStorage.getItem('current_user');
-                if (stored && stored.trim()) return stored.trim();
-                const owner = REPO.split('/')[0];
-                return owner || 'spanNOAA';
+                return (stored && stored.trim()) ? stored.trim() : '';
+            })(),
+            isAdminVerified: (() => {
+                return localStorage.getItem('admin_verified') === 'true';
             })()
         };
 
@@ -536,13 +538,82 @@
             if (roleBadge) {
                 if (checkIsAdmin(currentAuthUser.username)) {
                     roleBadge.textContent = `🛡️ Admin: @${currentAuthUser.username}`;
-                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border border-purple-200 dark:border-purple-800';
+                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border border-purple-200 dark:border-purple-800 cursor-pointer hover:opacity-80 transition-opacity';
+                    roleBadge.title = 'Administrator session. Click to switch account or log out.';
                     roleBadge.classList.remove('hidden');
                 } else if (currentAuthUser.username) {
                     roleBadge.textContent = `@${currentAuthUser.username}`;
-                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700';
+                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity';
+                    roleBadge.title = 'Identified user. Click to switch account or log out.';
+                    roleBadge.classList.remove('hidden');
+                } else {
+                    roleBadge.textContent = '👤 Guest (Click to identify)';
+                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-500 hover:text-gray-800 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity';
+                    roleBadge.title = 'Click to identify yourself with your GitHub username';
                     roleBadge.classList.remove('hidden');
                 }
+
+                roleBadge.addEventListener('click', async () => {
+                    const current = currentAuthUser.username || '';
+                    const promptMsg = current ?
+                        `Current user: @${current}\nEnter your GitHub username to switch accounts, or leave empty to log out (become Guest):` :
+                        'Enter your GitHub username to identify yourself in this browser (or leave empty for Guest mode):';
+                    const input = prompt(promptMsg, current);
+                    if (input === null) return;
+
+                    const clean = input.trim().replace(/^@/, '');
+                    if (!clean) {
+                        localStorage.removeItem('current_user');
+                        localStorage.removeItem('admin_verified');
+                        localStorage.removeItem('admin_token');
+                        alert('Logged out. You are now browsing as Guest.');
+                        location.reload();
+                        return;
+                    }
+
+                    const repoOwner = (REPO.split('/')[0] || '').toLowerCase().trim();
+                    const isAdminCandidate = (clean.toLowerCase() === repoOwner || ADMIN_USERS.some(a => a.toLowerCase().trim() === clean.toLowerCase()));
+
+                    if (isAdminCandidate) {
+                        const tokenInput = prompt(
+                            `@${clean} is an Administrator account.\nTo unlock Admin management on this client, enter your GitHub Personal Access Token (PAT with read:user scope):\n(Leave blank to browse as regular viewer without Admin rights)`
+                        );
+                        if (tokenInput && tokenInput.trim()) {
+                            const pat = tokenInput.trim();
+                            try {
+                                const resp = await fetch('https://api.github.com/user', {
+                                    headers: { 'Authorization': `Bearer ${pat}` }
+                                });
+                                if (resp.ok) {
+                                    const ghUser = await resp.json();
+                                    if (ghUser.login && ghUser.login.toLowerCase() === clean.toLowerCase()) {
+                                        localStorage.setItem('current_user', clean);
+                                        localStorage.setItem('admin_verified', 'true');
+                                        localStorage.setItem('admin_token', pat);
+                                        alert(`Admin authentication successful! Logged in as @${clean}.`);
+                                        location.reload();
+                                        return;
+                                    }
+                                }
+                                alert(`Token verification failed: Token does not belong to @${clean}. Logged in as viewer without Admin privileges.`);
+                            } catch (e) {
+                                alert('Network error during token verification. Logged in as viewer without Admin privileges.');
+                            }
+                        } else {
+                            alert(`No token provided. Logged in as viewer @${clean} without Admin privileges.`);
+                        }
+                        localStorage.setItem('current_user', clean);
+                        localStorage.removeItem('admin_verified');
+                        localStorage.removeItem('admin_token');
+                        location.reload();
+                    } else {
+                        localStorage.setItem('current_user', clean);
+                        localStorage.removeItem('admin_verified');
+                        localStorage.removeItem('admin_token');
+                        alert(`Session updated: Logged in as @${clean}.`);
+                        location.reload();
+                    }
+                });
             }
 
             // Theme setup
@@ -724,18 +795,20 @@
                     }
 
                     // Suite-aware quota check: maximum 3 suites per user
-                    const userSuites = new Set();
-                    Object.values(currentStatusData).forEach(item => {
-                        if (item && item.owner === currentAuthUser.username) {
-                            const sk = extractSuiteKey(item.expdir || '', item.suite || '');
-                            if (sk) userSuites.add(sk);
-                        }
-                    });
+                    if (currentAuthUser && currentAuthUser.username) {
+                        const userSuites = new Set();
+                        Object.values(currentStatusData).forEach(item => {
+                            if (item && item.owner === currentAuthUser.username) {
+                                const sk = extractSuiteKey(item.expdir || '', item.suite || '');
+                                if (sk) userSuites.add(sk);
+                            }
+                        });
 
-                    const newSuiteKey = extractSuiteKey(expdir);
-                    if (!userSuites.has(newSuiteKey) && userSuites.size >= 3) {
-                        alert(`Quota limit reached: You already have 3 monitored experiment suites under @${currentAuthUser.username}. Member runs sharing a common suite directory (e.g. .../<suite>/exp/...) count as a single suite.`);
-                        return;
+                        const newSuiteKey = extractSuiteKey(expdir);
+                        if (!userSuites.has(newSuiteKey) && userSuites.size >= 3) {
+                            alert(`Quota limit reached: You already have 3 monitored experiment suites under @${currentAuthUser.username}. Member runs sharing a common suite directory (e.g. .../<suite>/exp/...) count as a single suite.`);
+                            return;
+                        }
                     }
 
                     const modeRetro = document.getElementById('mode-retro');
