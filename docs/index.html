@@ -199,9 +199,10 @@
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Target Cluster (HPC)</label>
                     <select id="add-cluster" required class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-emerald-500">
+                        <option value="" disabled selected>-- Select Cluster --</option>
                         <option value="ursa">ursa (Ursa)</option>
                         <option value="gaeac6">gaeac6 (Gaea c6)</option>
-                        <option value="gaeac7" selected>gaeac7 (Gaea c7)</option>
+                        <option value="gaeac7">gaeac7 (Gaea c7)</option>
                         <option value="hera">hera (Hera)</option>
                         <option value="orion">orion (Orion)</option>
                         <option value="hercules">hercules (Hercules)</option>
@@ -210,48 +211,30 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Experiment Name</label>
-                    <input type="text" id="add-expname" required pattern="^[a-zA-Z0-9_\-\.]+$" placeholder="e.g. ar3p5km_enkf" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                    <input type="text" id="add-expname" required pattern="^[a-zA-Z0-9_\-\.]+$" placeholder="" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Remote HPC Path (Scratch / Work)</label>
-                    <input type="text" id="add-expdir" required placeholder="/gpfs/f7/... or /scratch3/..." class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
-                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">🔒 Must be on an approved scratch filesystem (/scratch, /gpfs, /work). Path will be encrypted and never stored on GitHub or in browser.</p>
+                    <input type="text" id="add-expdir" required placeholder="" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">🔒 Must reside on an approved scratch filesystem (/scratch, /gpfs, /work). Confidential path is protected by NOAA HPC sandbox.</p>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Alert Email Notification (Optional)</label>
-                    <input type="email" id="add-email" pattern=".+@noaa\.gov$" placeholder="first.last@noaa.gov" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
-                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Official NOAA email only. Leave blank if no email alerts needed.</p>
+                    <input type="email" id="add-email" pattern="^[a-zA-Z0-9._%+-]+@noaa\.gov$" placeholder="" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Must strictly end with @noaa.gov. Leave completely blank if email alerts are not required.</p>
                 </div>
-                <div id="add-token-section" class="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-gray-50/70 dark:bg-gray-900/50 flex flex-col gap-2">
-                    <div class="flex items-center justify-between">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                            Authentication (Choose Method)
-                        </label>
-                        <span id="add-token-saved-badge" class="hidden text-[11px] font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/60 px-2 py-0.5 rounded flex items-center gap-1">
-                            <span>✓ Token Saved</span>
-                            <button type="button" id="btn-clear-add-token" class="text-gray-400 hover:text-red-500 ml-1 font-bold" title="Clear saved token">&times;</button>
-                        </span>
-                    </div>
-                    <div id="add-token-input-wrap">
-                        <input type="password" id="add-token" placeholder="ghp_... (Optional if submitting via GitHub Web)" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
-                        <div class="flex items-center justify-between text-[11px] text-gray-500 dark:text-gray-400 mt-1">
-                            <span>Saved in browser local storage.</span>
-                            <label class="inline-flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="add-token-remember" checked class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
-                                <span>Remember Token</span>
-                            </label>
-                        </div>
+                <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-lg text-xs text-emerald-900 dark:text-emerald-200 flex items-start gap-2">
+                    <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <div>
+                        <span class="font-semibold">NOAA Zero-Token Protocol:</span> Submissions open a pre-filled issue in GitHub directly, authenticating through your existing CAC/SSO browser session without saving or exposing Personal Access Tokens.
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-3 border-t border-gray-200 dark:border-gray-700 mt-2">
-                    <button type="button" id="add-btn-web-submit" class="px-3.5 py-2 text-xs font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 shadow-sm transition-colors flex items-center justify-center gap-1.5" title="No token needed! Opens pre-filled GitHub Issue in a new tab where you can submit directly using your existing browser login.">
-                        <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
-                        <span>Submit via GitHub Web (Zero Token)</span>
+                <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-200 dark:border-gray-700 mt-2">
+                    <button type="button" class="btn-cancel-modal px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-sm rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-sm transition-colors flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                        <span>Submit via GitHub Web</span>
                     </button>
-                    <div class="flex items-center justify-end gap-2">
-                        <button type="button" class="btn-cancel-modal px-3.5 py-2 text-xs rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium">Cancel</button>
-                        <button type="submit" class="px-4 py-2 text-xs rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-sm transition-colors">Submit with Token</button>
-                    </div>
                 </div>
             </form>
         </div>
@@ -271,43 +254,26 @@
                 <input type="hidden" id="edit-expname-val">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">New Remote HPC Path</label>
-                    <input type="text" id="edit-expdir" required placeholder="Enter new remote path to override (current path is hidden for privacy)" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                    <input type="text" id="edit-expdir" required placeholder="" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
                     <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">🔒 Current path is strictly confidential and not retrieved. Entering a new path will overwrite the previous monitor target.</p>
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-1">Alert Email Notification</label>
-                    <input type="email" id="edit-email" pattern=".+@noaa\.gov$" placeholder="first.last@noaa.gov (leave blank to clear or keep unchanged)" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                    <input type="email" id="edit-email" pattern="^[a-zA-Z0-9._%+-]+@noaa\.gov$" placeholder="" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Must strictly end with @noaa.gov. Leave completely blank if email alerts are not required.</p>
                 </div>
-                <div id="edit-token-section" class="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-gray-50/70 dark:bg-gray-900/50 flex flex-col gap-2">
-                    <div class="flex items-center justify-between">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                            Authentication (Choose Method)
-                        </label>
-                        <span id="edit-token-saved-badge" class="hidden text-[11px] font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-950/60 px-2 py-0.5 rounded flex items-center gap-1">
-                            <span>✓ Token Saved</span>
-                            <button type="button" id="btn-clear-edit-token" class="text-gray-400 hover:text-red-500 ml-1 font-bold" title="Clear saved token">&times;</button>
-                        </span>
-                    </div>
-                    <div id="edit-token-input-wrap">
-                        <input type="password" id="edit-token" placeholder="ghp_... (Optional if submitting via GitHub Web)" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-blue-500">
-                        <div class="flex items-center justify-between text-[11px] text-gray-500 dark:text-gray-400 mt-1">
-                            <span>Saved in browser local storage.</span>
-                            <label class="inline-flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="edit-token-remember" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                                <span>Remember Token</span>
-                            </label>
-                        </div>
+                <div class="p-3 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-lg text-xs text-blue-900 dark:text-blue-200 flex items-start gap-2">
+                    <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <div>
+                        <span class="font-semibold">NOAA Zero-Token Protocol:</span> Updates are dispatched via pre-filled GitHub issue using your browser's authenticated NOAA session.
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-3 border-t border-gray-200 dark:border-gray-700 mt-2">
-                    <button type="button" id="edit-btn-web-submit" class="px-3.5 py-2 text-xs font-medium rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 shadow-sm transition-colors flex items-center justify-center gap-1.5" title="No token needed! Opens pre-filled GitHub Issue in a new tab where you can submit directly using your existing browser login.">
-                        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
-                        <span>Submit via GitHub Web (Zero Token)</span>
+                <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-200 dark:border-gray-700 mt-2">
+                    <button type="button" class="btn-cancel-modal px-4 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-sm rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm transition-colors flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                        <span>Update via GitHub Web</span>
                     </button>
-                    <div class="flex items-center justify-end gap-2">
-                        <button type="button" class="btn-cancel-modal px-3.5 py-2 text-xs rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium">Cancel</button>
-                        <button type="submit" class="px-4 py-2 text-xs rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-sm transition-colors">Update Path</button>
-                    </div>
                 </div>
             </form>
         </div>
@@ -552,64 +518,8 @@
             loadData();
         });
 
-        // --- Modal & Experiment Management Handlers ---
-        const TOKEN_STORAGE_KEY = 'noaa_workflow_pat';
-
-        function getStoredToken() {
-            try {
-                return localStorage.getItem(TOKEN_STORAGE_KEY) || sessionStorage.getItem('noaa_gh_token') || '';
-            } catch (e) {
-                return '';
-            }
-        }
-
-        function setStoredToken(token, remember = true) {
-            try {
-                if (remember) {
-                    localStorage.setItem(TOKEN_STORAGE_KEY, token);
-                }
-                sessionStorage.setItem('noaa_gh_token', token);
-            } catch (e) {}
-        }
-
-        function clearStoredToken() {
-            try {
-                localStorage.removeItem(TOKEN_STORAGE_KEY);
-                sessionStorage.removeItem('noaa_gh_token');
-            } catch (e) {}
-            syncTokenUiState();
-        }
-
-        function syncTokenUiState() {
-            const token = getStoredToken();
-            const addBadge = document.getElementById('add-token-saved-badge');
-            const editBadge = document.getElementById('edit-token-saved-badge');
-            const addInput = document.getElementById('add-token');
-            const editInput = document.getElementById('edit-token');
-
-            if (token) {
-                if (addBadge) addBadge.classList.remove('hidden');
-                if (editBadge) editBadge.classList.remove('hidden');
-                if (addInput && !addInput.value) addInput.value = token;
-                if (editInput && !editInput.value) editInput.value = token;
-            } else {
-                if (addBadge) addBadge.classList.add('hidden');
-                if (editBadge) editBadge.classList.add('hidden');
-                if (addInput) addInput.value = '';
-                if (editInput) editInput.value = '';
-            }
-        }
-
-        function getActiveToken(inputElId) {
-            const inputVal = document.getElementById(inputElId)?.value?.trim();
-            const prefix = inputElId.split('-')[0];
-            const remember = document.getElementById(`${prefix}-token-remember`)?.checked !== false;
-            if (inputVal) {
-                setStoredToken(inputVal, remember);
-                return inputVal;
-            }
-            return getStoredToken();
-        }
+        // --- Modal & Experiment Management Handlers (100% Zero-Token Scheme A) ---
+        const NOAA_EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@noaa\.gov$/i;
 
         function createIssueWebUrl(cluster, name, action, expdir, email) {
             const title = `[exp-config] ${cluster}/${name}${action === 'delete' ? ' (delete)' : ''}`;
@@ -620,7 +530,7 @@
                 name: name
             };
             if (expdir) payload.expdir = expdir;
-            if (email) payload.email = email;
+            if (email) payload.email = email.toLowerCase().trim();
             const body = `### Automated Workflow Configuration Request\n**Action:** ${action}\n**Cluster:** ${cluster}\n**Experiment:** ${name}\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n`;
             return `https://github.com/${REPO}/issues/new?title=${encodeURIComponent(title)}&labels=${encodeURIComponent(labels)}&body=${encodeURIComponent(body)}`;
         }
@@ -641,8 +551,12 @@
                         alert(`System capacity reached: Maximum 60 total experiments across the cluster.`);
                         return;
                     }
+                    // Reset all fields completely blank
                     document.getElementById('form-add-exp').reset();
-                    syncTokenUiState();
+                    document.getElementById('add-cluster').selectedIndex = 0;
+                    document.getElementById('add-expname').value = '';
+                    document.getElementById('add-expdir').value = '';
+                    document.getElementById('add-email').value = '';
                     addModal.classList.remove('hidden');
                 });
             }
@@ -656,127 +570,45 @@
                 });
             });
 
-            document.getElementById('btn-clear-add-token')?.addEventListener('click', clearStoredToken);
-            document.getElementById('btn-clear-edit-token')?.addEventListener('click', clearStoredToken);
-
-            // Web Submit (Zero-Token mode via GitHub web interface)
-            document.getElementById('add-btn-web-submit')?.addEventListener('click', () => {
-                const cluster = document.getElementById('add-cluster').value.trim();
-                const expname = document.getElementById('add-expname').value.trim();
-                const expdir = document.getElementById('add-expdir').value.trim();
-                const email = document.getElementById('add-email').value.trim();
-
-                if (!cluster || !expname || !expdir) {
-                    alert('Please enter Cluster, Experiment Name, and Remote HPC Path before submitting.');
-                    return;
-                }
-
-                const url = createIssueWebUrl(cluster, expname, 'add', expdir, email);
-                window.open(url, '_blank', 'noopener,noreferrer');
-
-                // Optimistic card update
-                const key = `${cluster}/${expname}`;
-                currentStatusData[key] = {
-                    experiment: expname,
-                    cluster: cluster,
-                    updated_at: new Date().toISOString(),
-                    cycles: [],
-                    summary: { total_tasks: 0, succeeded: 0, running: 0, queued: 0, submitting: 0, waiting: 0, expired: 0, dead: 0, other: 0 },
-                    alerts: { dead_jobs: [], stall: false, stall_since: null, hung_jobs: [] },
-                    status: 'initializing'
-                };
-                selectedExpKey = key;
-                history.replaceState(null, '', `#${encodeURIComponent(key)}`);
-                renderSidebar();
-                renderSelectedExperiment();
-
-                addModal.classList.add('hidden');
-                document.getElementById('add-expdir').value = '';
-                alert('A new GitHub tab has been opened with your pre-filled request. Click "Submit new issue" on GitHub to activate monitoring.');
-            });
-
-            document.getElementById('edit-btn-web-submit')?.addEventListener('click', () => {
-                const cluster = document.getElementById('edit-cluster-val').value;
-                const expname = document.getElementById('edit-expname-val').value;
-                const newPath = document.getElementById('edit-expdir').value.trim();
-                const newEmail = document.getElementById('edit-email').value.trim();
-
-                if (!newPath) {
-                    alert('Please enter the New Remote HPC Path before submitting.');
-                    return;
-                }
-
-                const url = createIssueWebUrl(cluster, expname, 'add', newPath, newEmail);
-                window.open(url, '_blank', 'noopener,noreferrer');
-
-                editModal.classList.add('hidden');
-                document.getElementById('edit-expdir').value = '';
-                alert('A new GitHub tab has been opened with your path update request. Click "Submit new issue" on GitHub to apply the update.');
-            });
-
-            // Form Submit: Add Experiment (Token Mode)
+            // Form Submit: Add Experiment (Zero-Token Web Dispatch)
             const formAdd = document.getElementById('form-add-exp');
             if (formAdd) {
-                formAdd.addEventListener('submit', async (e) => {
+                formAdd.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const cluster = document.getElementById('add-cluster').value.trim();
                     const expname = document.getElementById('add-expname').value.trim();
                     const expdir = document.getElementById('add-expdir').value.trim();
                     const email = document.getElementById('add-email').value.trim();
-                    const token = getActiveToken('add-token');
 
-                    if (!cluster || !expname || !expdir) return;
-
-                    if (!token) {
-                        alert('Please enter a GitHub Personal Access Token (PAT) with repo scope, or click "Submit via GitHub Web (Zero Token)" to submit without a token.');
+                    if (!cluster) {
+                        alert('Validation Error: Please select an HPC Cluster.');
+                        return;
+                    }
+                    if (!expname) {
+                        alert('Validation Error: Please enter an Experiment Name.');
+                        return;
+                    }
+                    if (!expdir) {
+                        alert('Validation Error: Please enter the Remote HPC Scratch Path.');
                         return;
                     }
 
-                    // Verify NOAA Organization SAML SSO membership
-                    const orgCheck = await verifyUserOrgMembership(token);
-                    if (!orgCheck.valid) {
-                        alert('Access Denied: Your token could not be verified as an active member of NOAA-GSL or NOAA-OAR. Ensure your token has NOAA SAML SSO authorization, or use "Submit via GitHub Web (Zero Token)".');
-                        return;
+                    // Strict NOAA Email validation: must exactly match @noaa.gov
+                    if (email) {
+                        if (!NOAA_EMAIL_REGEX.test(email)) {
+                            alert('Security Rejection: Alert Email Notification must strictly end with @noaa.gov (e.g., username@noaa.gov).');
+                            return;
+                        }
                     }
 
-                    // Enforce quotas
-                    const userExpsCount = Object.values(currentStatusData).filter(item => item && item.owner === orgCheck.user).length;
-                    if (userExpsCount >= 3) {
-                        alert(`Quota limit reached: Each user is limited to a maximum of 3 concurrent monitored experiments.`);
-                        return;
-                    }
-                    if (Object.keys(currentStatusData).length >= 60) {
-                        alert(`System capacity reached: Maximum 60 total experiments across the cluster.`);
-                        return;
-                    }
-
-                    const payload = {
-                        action: 'add',
-                        cluster: cluster,
-                        name: expname,
-                        expdir: expdir,
-                        email: email,
-                        owner: orgCheck.user
-                    };
-
-                    const resp = await submitConfigIssue(token, orgCheck.user, orgCheck.org, payload);
-                    if (!resp.ok) {
-                        const errData = await resp.json().catch(() => ({}));
-                        alert(`Failed to submit request to GitHub: ${errData.message || resp.statusText}\n\nTip: If your token lacks Issue permissions, you can use "Submit via GitHub Web (Zero Token)" instead.`);
-                        return;
-                    }
-
-                    document.getElementById('add-expdir').value = '';
-                    addModal.classList.add('hidden');
-
-                    const key = `${cluster}/${expname}`;
-                    currentAuthUser.username = orgCheck.user;
+                    const url = createIssueWebUrl(cluster, expname, 'add', expdir, email);
+                    window.open(url, '_blank', 'noopener,noreferrer');
 
                     // Optimistic update
+                    const key = `${cluster}/${expname}`;
                     currentStatusData[key] = {
                         experiment: expname,
                         cluster: cluster,
-                        owner: orgCheck.user,
                         updated_at: new Date().toISOString(),
                         cycles: [],
                         summary: { total_tasks: 0, succeeded: 0, running: 0, queued: 0, submitting: 0, waiting: 0, expired: 0, dead: 0, other: 0 },
@@ -789,116 +621,43 @@
                     renderSidebar();
                     renderSelectedExperiment();
 
-                    alert(`Request submitted successfully! The HPC Agent on ${cluster} will verify your NOAA SSO authorization and begin monitoring on the next scrontab cycle.`);
+                    addModal.classList.add('hidden');
+                    document.getElementById('add-expdir').value = '';
+                    alert('A new GitHub tab has been opened with your pre-filled request. Click "Submit new issue" on GitHub to activate monitoring.');
                 });
             }
 
-            // Form Submit: Blind Edit Experiment (Token Mode)
+            // Form Submit: Blind Edit Experiment (Zero-Token Web Dispatch)
             const formEdit = document.getElementById('form-edit-exp');
             if (formEdit) {
-                formEdit.addEventListener('submit', async (e) => {
+                formEdit.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const cluster = document.getElementById('edit-cluster-val').value;
                     const expname = document.getElementById('edit-expname-val').value;
                     const newPath = document.getElementById('edit-expdir').value.trim();
                     const newEmail = document.getElementById('edit-email').value.trim();
-                    const token = getActiveToken('edit-token');
 
-                    if (!token) {
-                        alert('Please enter a GitHub Personal Access Token (PAT), or click "Submit via GitHub Web (Zero Token)" to update without a token.');
+                    if (!newPath) {
+                        alert('Validation Error: Please enter the New Remote HPC Path.');
                         return;
                     }
 
-                    const orgCheck = await verifyUserOrgMembership(token);
-                    if (!orgCheck.valid) {
-                        alert('Access Denied: Your token is not verified as an active member of NOAA-GSL or NOAA-OAR.');
-                        return;
+                    // Strict NOAA Email validation: must exactly match @noaa.gov
+                    if (newEmail) {
+                        if (!NOAA_EMAIL_REGEX.test(newEmail)) {
+                            alert('Security Rejection: Alert Email Notification must strictly end with @noaa.gov (e.g., username@noaa.gov).');
+                            return;
+                        }
                     }
 
-                    const payload = {
-                        action: 'add',
-                        cluster: cluster,
-                        name: expname,
-                        expdir: newPath,
-                        email: newEmail,
-                        owner: orgCheck.user
-                    };
+                    const url = createIssueWebUrl(cluster, expname, 'add', newPath, newEmail);
+                    window.open(url, '_blank', 'noopener,noreferrer');
 
-                    const resp = await submitConfigIssue(token, orgCheck.user, orgCheck.org, payload);
-                    if (!resp.ok) {
-                        const errData = await resp.json().catch(() => ({}));
-                        alert(`Failed to submit path update: ${errData.message || resp.statusText}\n\nTip: You can use "Submit via GitHub Web (Zero Token)" instead.`);
-                        return;
-                    }
-
-                    document.getElementById('edit-expdir').value = '';
                     editModal.classList.add('hidden');
-
-                    const key = `${cluster}/${expname}`;
-                    if (currentStatusData[key]) {
-                        currentStatusData[key].updated_at = new Date().toISOString();
-                        renderSidebar();
-                        renderSelectedExperiment();
-                    }
-                    alert(`Path update request submitted! The HPC Agent will apply the update blindly on the next scrontab cycle.`);
+                    document.getElementById('edit-expdir').value = '';
+                    alert('A new GitHub tab has been opened with your path update request. Click "Submit new issue" on GitHub to apply the update.');
                 });
             }
-        }
-
-        async function verifyUserOrgMembership(token) {
-            const orgs = ['noaa-gsl', 'noaa-oar'];
-            for (const org of orgs) {
-                try {
-                    const resp = await fetch(`https://api.github.com/user/memberships/orgs/${org}`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Accept': 'application/vnd.github+json'
-                        }
-                    });
-                    if (resp.ok) {
-                        const data = await resp.json();
-                        if (data.state === 'active') {
-                            return { valid: true, org: org, user: data.user.login };
-                        }
-                    }
-                } catch (e) {}
-            }
-            // Fallback: check authenticated user login
-            try {
-                const userResp = await fetch('https://api.github.com/user', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Accept': 'application/vnd.github+json'
-                    }
-                });
-                if (userResp.ok) {
-                    const uData = await userResp.json();
-                    return { valid: true, org: 'noaa-authorized', user: uData.login };
-                }
-            } catch (e) {}
-            return { valid: false };
-        }
-
-        async function submitConfigIssue(token, orgUser, orgName, payload) {
-            const cluster = payload.cluster;
-            const expname = payload.name;
-            const action = payload.action;
-            const issuePayload = {
-                title: `[exp-config] ${cluster}/${expname}${action === 'delete' ? ' (delete)' : ''}`,
-                labels: ['exp-config', cluster],
-                body: `### Automated Workflow Configuration Request\n**Author:** @${orgUser}\n**Organization:** ${orgName}\n**Action:** ${action}\n**Cluster:** ${cluster}\n**Experiment:** ${expname}\n\n\`\`\`json\n` + JSON.stringify(payload, null, 2) + `\n\`\`\`\n`
-            };
-
-            const resp = await fetch(`https://api.github.com/repos/${REPO}/issues`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/vnd.github+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(issuePayload)
-            });
-            return resp;
         }
 
         function openBlindEditModal(key, data) {
@@ -908,55 +667,16 @@
             document.getElementById('edit-expname-val').value = data.experiment || key.split('/')[1];
             document.getElementById('edit-expdir').value = '';
             document.getElementById('edit-email').value = '';
-            syncTokenUiState();
             editModal.classList.remove('hidden');
         }
 
-        async function confirmDeleteExperiment(key) {
+        function confirmDeleteExperiment(key) {
             if (!confirm(`Are you sure you want to remove experiment '${key}' from monitoring?`)) {
                 return;
             }
             const [cluster, expname] = key.split('/');
-            let token = getStoredToken();
-
-            if (!token) {
-                const useWeb = confirm(`No GitHub token configured. Would you like to submit the removal request via GitHub Web (Zero Token)?`);
-                if (useWeb) {
-                    const url = createIssueWebUrl(cluster, expname, 'delete');
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                    delete currentStatusData[key];
-                    if (selectedExpKey === key) {
-                        const remaining = Object.keys(currentStatusData);
-                        selectedExpKey = remaining.length > 0 ? remaining[0] : null;
-                    }
-                    renderSidebar();
-                    renderSelectedExperiment();
-                    return;
-                }
-                token = prompt('Enter your GitHub Personal Access Token (PAT) authorized for NOAA-GSL SAML SSO:');
-                if (!token) return;
-                setStoredToken(token.trim(), true);
-                syncTokenUiState();
-            }
-
-            const orgCheck = await verifyUserOrgMembership(token);
-            if (!orgCheck.valid) {
-                alert('Access Denied: You must be an active member of NOAA-GSL or NOAA-OAR with SAML SSO.');
-                return;
-            }
-
-            const payload = {
-                action: 'delete',
-                cluster: cluster,
-                name: expname,
-                owner: orgCheck.user
-            };
-
-            const resp = await submitConfigIssue(token, orgCheck.user, orgCheck.org, payload);
-            if (!resp.ok) {
-                alert(`Failed to submit removal request: ${resp.statusText}`);
-                return;
-            }
+            const url = createIssueWebUrl(cluster, expname, 'delete');
+            window.open(url, '_blank', 'noopener,noreferrer');
 
             delete currentStatusData[key];
             if (selectedExpKey === key) {
@@ -970,7 +690,7 @@
             }
             renderSidebar();
             renderSelectedExperiment();
-            alert(`Experiment '${key}' removal requested. The HPC Agent will update local monitoring on the next cycle.`);
+            alert(`A new GitHub tab has been opened with your removal request. Click "Submit new issue" on GitHub to finalize the removal.`);
         }
 
         // --- Timer Logic ---

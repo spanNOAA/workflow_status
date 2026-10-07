@@ -36,7 +36,8 @@ import yaml
 
 REPO_ROOT = Path(os.path.abspath(__file__)).parent
 CYCLE_RE = re.compile(r"^\d{12}$")
-EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+NOAA_EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@noaa\.gov$", re.IGNORECASE)
+EMAIL_RE = NOAA_EMAIL_RE
 
 ALLOWED_SCRATCH_PREFIXES = (
     "/scratch",
@@ -344,8 +345,12 @@ def sync_pending_instructions(
                 "expdir": str(safe_dir),
                 "owner": author,
             }
-            if email_str and EMAIL_RE.match(email_str) and not email_str.startswith("-"):
-                new_entry["recipients"] = [email_str]
+            if email_str:
+                if not NOAA_EMAIL_RE.match(email_str) or email_str.startswith("-"):
+                    logging.warning("Rejecting invalid or non-noaa email '%s' for issue #%s", email_str, issue_num)
+                    close_issue(repo_slug, issue_num, token, comment="Rejected: Alert email must strictly match @noaa.gov.")
+                    continue
+                new_entry["recipients"] = [email_str.lower()]
 
             # Upsert entry
             current_exps = [e for e in current_exps if e.get("name") != exp_name]
@@ -590,10 +595,10 @@ def parse_recipients(raw_recip: Any) -> List[str]:
     clean: List[str] = []
     for r in raw_list:
         r = r.strip()
-        if r and not r.startswith("-") and EMAIL_RE.match(r):
-            clean.append(r)
+        if r and not r.startswith("-") and NOAA_EMAIL_RE.match(r):
+            clean.append(r.lower())
         elif r:
-            logging.warning("Ignoring invalid or suspicious recipient email: %s", r)
+            logging.warning("Ignoring invalid or non-noaa recipient email (must end in @noaa.gov): %s", r)
     return clean
 
 
