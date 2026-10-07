@@ -259,13 +259,31 @@ def verify_noaa_org_membership(
     return False
 
 
-def close_issue(repo_slug: str, issue_num: int, token: str, comment: Optional[str] = None) -> None:
-    """Close an issue on GitHub and optionally post a processing comment."""
+def purge_or_close_issue(
+    repo_slug: str,
+    issue_num: int,
+    token: str,
+    comment: Optional[str] = None,
+    purge_permanently: bool = True,
+) -> None:
+    """Close an issue on GitHub, or permanently delete it (burn after reading) to prevent path reconnaissance."""
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
         "User-Agent": "NOAA-HPC-Workflow-Agent",
     }
+    if purge_permanently:
+        # Attempt permanent physical deletion (requires admin/repo scope)
+        del_url = f"https://api.github.com/repos/{repo_slug}/issues/{issue_num}"
+        try:
+            del_req = urllib.request.Request(del_url, headers=headers, method="DELETE")
+            with urllib.request.urlopen(del_req, timeout=10) as resp:
+                if resp.status in (200, 204):
+                    logging.info("Security Burned: Issue #%s permanently deleted from GitHub.", issue_num)
+                    return
+        except Exception as exc:
+            logging.debug("Permanent issue deletion failed for #%s (%s), falling back to closing issue.", issue_num, exc)
+
     if comment:
         c_url = f"https://api.github.com/repos/{repo_slug}/issues/{issue_num}/comments"
         try:
@@ -282,6 +300,10 @@ def close_issue(repo_slug: str, issue_num: int, token: str, comment: Optional[st
         urllib.request.urlopen(req, timeout=10)
     except Exception as exc:
         logging.warning("Failed to close issue #%s: %s", issue_num, exc)
+
+
+def close_issue(repo_slug: str, issue_num: int, token: str, comment: Optional[str] = None) -> None:
+    purge_or_close_issue(repo_slug, issue_num, token, comment=comment, purge_permanently=True)
 
 
 def sync_pending_instructions(
