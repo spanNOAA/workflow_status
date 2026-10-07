@@ -30,7 +30,7 @@ import sys
 import time
 import urllib.request
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import yaml
 
@@ -64,6 +64,38 @@ def validate_safe_expdir(expdir_str: str) -> Path:
     return p
 
 
+def extract_suite_key(expdir_str: str, suite_override: Optional[str] = None) -> str:
+    """Extract canonical suite grouping key from experiment directory path.
+
+    For standard RRFS/UFS workflows structured as:
+      .../<suite_name>/exp/<member_name> or .../<suite_name>/exps/<member_name>
+    the suite grouping key is the normalized path up to <suite_name>.
+    Otherwise, if no /exp/ or /exps/ segment exists, the normalized expdir is returned.
+    """
+    if suite_override and str(suite_override).strip():
+        return f"suite:{str(suite_override).strip().lower()}"
+    if not expdir_str:
+        return ""
+    clean = os.path.normpath(str(expdir_str).strip().rstrip("/"))
+    m = re.search(r"^(.*)/(?:exp|exps)(?:/.*)?$", clean, re.IGNORECASE)
+    if m:
+        return m.group(1).rstrip("/").lower()
+    return clean.lower()
+
+
+def extract_suite_name(expdir_str: str, default_name: str = "") -> str:
+    """Extract display name of the suite (e.g. 'RRFSv2X.halfTerr')."""
+    if not expdir_str:
+        return default_name or ""
+    clean = os.path.normpath(str(expdir_str).strip().rstrip("/"))
+    m = re.search(r"^(.*)/(?:exp|exps)(?:/.*)?$", clean, re.IGNORECASE)
+    if m:
+        base = os.path.basename(m.group(1).rstrip("/"))
+        if base:
+            return base
+    return default_name or ""
+
+
 def load_dynamic_experiments(machine: str) -> List[Dict[str, Any]]:
     """Load dynamic experiments from Scheme A local secure state (~/.config/workflow_status/<machine>_dynamic_exps.json)."""
     cfg_dir = Path.home() / ".config" / "workflow_status"
@@ -74,17 +106,25 @@ def load_dynamic_experiments(machine: str) -> List[Dict[str, Any]]:
         data = json.loads(state_file.read_text(encoding="utf-8"))
         raw_list = data if isinstance(data, list) else (data.get("experiments", []) if isinstance(data, dict) else [])
 
-        # Enforce quota: maximum MAX_USER_EXPERIMENTS (3) per owner
-        user_counts: Dict[str, int] = {}
+        # Enforce quota: maximum MAX_USER_EXPERIMENTS (3) suites per owner
+        user_suites: Dict[str, Set[str]] = {}
         filtered_list: List[Dict[str, Any]] = []
         for exp in raw_list:
             owner = exp.get("owner", "unknown")
-            count = user_counts.get(owner, 0)
-            if count < MAX_USER_EXPERIMENTS:
-                user_counts[owner] = count + 1
+            expdir = exp.get("expdir", "")
+            suite_key = extract_suite_key(expdir, exp.get("suite"))
+            suites = user_suites.setdefault(owner, set())
+            if suite_key in suites:
+                # Member of an already-counted suite, allowed without consuming an additional slot
+                filtered_list.append(exp)
+            elif len(suites) < MAX_USER_EXPERIMENTS:
+                suites.add(suite_key)
                 filtered_list.append(exp)
             else:
-                logging.warning("User '%s' exceeded quota of %d experiments. Skipping '%s'.", owner, MAX_USER_EXPERIMENTS, exp.get("name"))
+                logging.warning(
+                    "User '%s' exceeded quota of %d experiment suites. Skipping '%s' (suite key '%s').",
+                    owner, MAX_USER_EXPERIMENTS, exp.get("name"), suite_key,
+                )
         return filtered_list
     except Exception as exc:
         logging.warning("Failed to read dynamic experiments from %s: %s", state_file, exc)
@@ -332,18 +372,30 @@ def sync_pending_instructions(
                 close_issue(repo_slug, issue_num, token, comment=f"Rejected: Path validation failed ({exc}).")
                 continue
 
-            # Enforce quota for this author
-            user_count = sum(1 for e in current_exps if e.get("owner") == author)
-            if user_count >= MAX_USER_EXPERIMENTS:
-                logging.warning("User '%s' quota exceeded for issue #%s", author, issue_num)
-                close_issue(repo_slug, issue_num, token, comment=f"Rejected: Quota exceeded (max {MAX_USER_EXPERIMENTS} experiments per user).")
+            # Enforce quota for this author based on distinct suites
+            new_suite_key = extract_suite_key(str(safe_dir), payload.get("suite"))
+            existing_user_suites = {
+                extract_suite_key(e.get("expdir", ""), e.get("suite"))
+                for e in current_exps
+                if e.get("owner") == author
+            }
+            if new_suite_key not in existing_user_suites and len(existing_user_suites) >= MAX_USER_EXPERIMENTS:
+                logging.warning("User '%s' suite quota exceeded for issue #%s", author, issue_num)
+                close_issue(
+                    repo_slug,
+                    issue_num,
+                    token,
+                    comment=f"Rejected: Quota exceeded (max {MAX_USER_EXPERIMENTS} experiment suites per user).",
+                )
                 continue
 
+            suite_name = str(payload.get("suite", "")).strip() or extract_suite_name(str(safe_dir), default_name=exp_name)
             new_entry: Dict[str, Any] = {
                 "name": exp_name,
                 "cluster": machine,
                 "expdir": str(safe_dir),
                 "owner": author,
+                "suite": suite_name,
             }
             if email_str:
                 if not NOAA_EMAIL_RE.match(email_str) or email_str.startswith("-"):
@@ -507,6 +559,7 @@ def build_status_dict(
     cluster: str,
     cycles: List[Dict[str, Any]],
     owner: Optional[str] = None,
+    suite: Optional[str] = None,
 ) -> Dict[str, Any]:
     counts = {
         "total_cycles": len(cycles),
@@ -558,6 +611,8 @@ def build_status_dict(
     }
     if owner:
         status_dict["owner"] = owner
+    if suite:
+        status_dict["suite"] = suite
     return status_dict
 
 
@@ -943,7 +998,8 @@ def process_experiment(
     # 1. Parse rocotostat
     cycles = parse_rocotostat(expdir, xml, db, lookback)
     owner = exp_cfg.get("owner")
-    status = build_status_dict(exp_name, cluster, cycles, owner=owner)
+    suite_name = exp_cfg.get("suite") or extract_suite_name(str(expdir), default_name=exp_name)
+    status = build_status_dict(exp_name, cluster, cycles, owner=owner, suite=suite_name)
     default_exp = str(exp_cfg.get("default_exp", "") or "").strip()
     if exp_cfg.get("default") or default_exp in (f"{cluster}/{exp_name}", exp_name):
         status["default"] = True

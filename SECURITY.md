@@ -25,7 +25,7 @@ To operate within NOAA's protected HPC boundaries while leveraging GitHub Enterp
 | **Boundary Protection & Anti-Reconnaissance** | SC-7, SC-8, SC-28 | Complete elimination of internal hostnames (`socket.gethostname()`); masking of internal node FQDNs; cluster-level abstraction only. | **COMPLIANT** |
 | **System & Information Integrity** | SI-3, SI-4, SI-10 | Strict list-parameterized subprocess execution (zero `shell=True`); email argument injection prevention. | **COMPLIANT** |
 | **Data Confidentiality & Path Sandboxing** | AC-4, MP-6, SC-28 | Strict filesystem whitelist (`ALLOWED_SCRATCH_PREFIXES`); symlink canonicalization; blind-edit web interface. | **COMPLIANT** |
-| **Resource Management & Denial of Service** | SC-5 | Hard quotas: 3 experiments per user, 60 total cluster experiments, 20 concurrent worker ceiling with sequential modulo batching. | **COMPLIANT** |
+| **Resource Management & Denial of Service** | SC-5 | Hard quotas: 3 experiment suites per user (member runs sharing a common suite directory count as 1 suite), 60 total cluster experiments, 20 concurrent worker ceiling. | **COMPLIANT** |
 | **Privacy & PII Protection** | Privacy Act / OMB M-17-12 | Zero personal email addresses, phone numbers, or employee names; GitHub username attribution only. | **COMPLIANT** |
 
 ---
@@ -74,7 +74,7 @@ To operate within NOAA's protected HPC boundaries while leveraging GitHub Enterp
 
 ### 3.5. Denial of Service and Resource Throttling (SC-5)
 * **Workload and Process Caps**:
-  * `MAX_USER_EXPERIMENTS = 3`: Prevents any single user from monopolizing monitoring capacity.
+  * `MAX_USER_EXPERIMENTS = 3`: Prevents any single user from monopolizing monitoring capacity. Workflows structured under the same parent suite directory (e.g., `.../<suite>/exp/...`) are automatically grouped and count as 1 suite towards this limit.
   * `MAX_TOTAL_EXPERIMENTS = 60`: Hard ceiling on the total number of monitored workflows per HPC cluster.
   * `MAX_CONCURRENT_WORKERS = 20`: Prevents fork storms on cluster login and cron nodes.
 * **Modulo Partitioning with Sequential Execution**:
