@@ -56,6 +56,7 @@
         .toggle-switch {
             position: relative;
             display: inline-block;
+            flex-shrink: 0;
             width: 44px;
             height: 24px;
         }
@@ -64,6 +65,9 @@
             width: 0;
             height: 0;
             position: absolute;
+            margin: 0;
+            padding: 0;
+            pointer-events: none;
         }
         .toggle-slider {
             position: absolute;
@@ -82,7 +86,7 @@
             height: 18px;
             width: 18px;
             left: 3px;
-            bottom: 3px;
+            top: 3px;
             background-color: #ffffff;
             transition: transform 0.25s ease;
             border-radius: 50%;
@@ -136,7 +140,7 @@
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
-                    <label class="toggle-switch align-middle select-none">
+                    <label class="toggle-switch flex-shrink-0 cursor-pointer align-middle select-none">
                         <input type="checkbox" name="toggle" id="theme-toggle" checked/>
                         <span class="toggle-slider"></span>
                     </label>
