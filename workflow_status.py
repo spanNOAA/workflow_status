@@ -26,7 +26,6 @@ import json
 import logging
 import os
 import re
-import socket
 import subprocess
 import sys
 import time
@@ -38,6 +37,324 @@ import yaml
 
 REPO_ROOT = Path(os.path.abspath(__file__)).parent
 CYCLE_RE = re.compile(r"^\d{12}$")
+EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+HEARTBEAT_UUID_RE = re.compile(r"^[a-fA-F0-9\-]{8,64}$")
+
+ALLOWED_SCRATCH_PREFIXES = (
+    "/scratch",
+    "/gpfs/f",
+    "/work/noaa",
+    "/glade/work",
+    "/glade/scratch",
+)
+
+MAX_TOTAL_EXPERIMENTS = 60
+MAX_USER_EXPERIMENTS = 3
+MAX_CONCURRENT_WORKERS = 20
+
+
+def validate_safe_expdir(expdir_str: str) -> Path:
+    """Ensure experiment directory is confined to authorized scratch/work filesystems (Sandbox Whitelist)."""
+    p = Path(expdir_str).expanduser().resolve()
+    resolved_str = str(p)
+    if not any(resolved_str.startswith(prefix) for prefix in ALLOWED_SCRATCH_PREFIXES):
+        raise ValueError(
+            f"Security Violation: Experiment directory '{expdir_str}' resolves to '{resolved_str}', "
+            f"which is outside authorized scratch/work filesystems: {ALLOWED_SCRATCH_PREFIXES}"
+        )
+    return p
+
+
+def load_dynamic_experiments(machine: str) -> List[Dict[str, Any]]:
+    """Load dynamic experiments from Scheme A local secure state (~/.config/workflow_status/<machine>_dynamic_exps.json)."""
+    cfg_dir = Path.home() / ".config" / "workflow_status"
+    state_file = cfg_dir / f"{machine}_dynamic_exps.json"
+    if not state_file.is_file():
+        return []
+    try:
+        data = json.loads(state_file.read_text(encoding="utf-8"))
+        raw_list = data if isinstance(data, list) else (data.get("experiments", []) if isinstance(data, dict) else [])
+
+        # Enforce quota: maximum MAX_USER_EXPERIMENTS (3) per owner
+        user_counts: Dict[str, int] = {}
+        filtered_list: List[Dict[str, Any]] = []
+        for exp in raw_list:
+            owner = exp.get("owner", "unknown")
+            count = user_counts.get(owner, 0)
+            if count < MAX_USER_EXPERIMENTS:
+                user_counts[owner] = count + 1
+                filtered_list.append(exp)
+            else:
+                logging.warning("User '%s' exceeded quota of %d experiments. Skipping '%s'.", owner, MAX_USER_EXPERIMENTS, exp.get("name"))
+        return filtered_list
+    except Exception as exc:
+        logging.warning("Failed to read dynamic experiments from %s: %s", state_file, exc)
+    return []
+
+
+def save_dynamic_experiments(machine: str, experiments: List[Dict[str, Any]]) -> None:
+    """Save dynamic experiments to Scheme A local secure state (chmod 600)."""
+    cfg_dir = Path.home() / ".config" / "workflow_status"
+    cfg_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        cfg_dir.chmod(0o700)
+    except Exception:
+        pass
+    state_file = cfg_dir / f"{machine}_dynamic_exps.json"
+    tmp_file = state_file.with_suffix(".tmp")
+    tmp_file.write_text(json.dumps(experiments, indent=2) + "\n", encoding="utf-8")
+    try:
+        tmp_file.chmod(0o600)
+    except Exception:
+        pass
+    tmp_file.replace(state_file)
+
+
+ALLOWED_ORGS = ("noaa-gsl", "noaa-oar")
+_MEMBER_CACHE: Dict[Tuple[str, str], Tuple[bool, float]] = {}
+CACHE_TTL_SEC = 3600
+
+
+def get_github_token() -> Optional[str]:
+    """Retrieve GitHub token from GITHUB_TOKEN environment variable or ~/.config/workflow_status/github_token.txt."""
+    env_token = os.environ.get("GITHUB_TOKEN")
+    if env_token and env_token.strip():
+        return env_token.strip()
+    token_file = Path.home() / ".config" / "workflow_status" / "github_token.txt"
+    if token_file.is_file():
+        try:
+            val = token_file.read_text(encoding="utf-8").strip()
+            if val:
+                return val
+        except Exception:
+            pass
+    return None
+
+
+def get_repo_slug() -> str:
+    """Determine repository owner/repo slug from git remote or default to noaa-gsl/workflow_status."""
+    try:
+        rem = subprocess.run(
+            ["git", "config", "--get", "remote.origin.url"],
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        if rem.returncode == 0 and rem.stdout:
+            raw = rem.stdout.strip()
+            m = re.search(r"github\.com[:/]([^/]+/[^/\.]+)", raw)
+            if m:
+                return m.group(1).rstrip(".git")
+    except Exception:
+        pass
+    return "noaa-gsl/workflow_status"
+
+
+def verify_noaa_org_membership(
+    username: str,
+    token: Optional[str] = None,
+    allowed_orgs: Optional[List[str]] = None,
+) -> bool:
+    """
+    Verify whether `username` is an active, verified member of an authorized NOAA GitHub Organization.
+    Ensures that commands originate exclusively from personnel authenticated via NOAA SAML SSO (CAC/PIV).
+    """
+    if not username:
+        return False
+    clean_user = username.strip().lstrip("@")
+    target_orgs = allowed_orgs or list(ALLOWED_ORGS)
+    now = time.time()
+
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "NOAA-HPC-Workflow-Agent",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+
+    for org in target_orgs:
+        cache_key = (org.lower(), clean_user.lower())
+        if cache_key in _MEMBER_CACHE:
+            is_valid, ts = _MEMBER_CACHE[cache_key]
+            if now - ts < CACHE_TTL_SEC:
+                if is_valid:
+                    return True
+                continue
+
+        # Check membership details
+        url = f"https://api.github.com/orgs/{org}/memberships/{clean_user}"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                if resp.status == 200:
+                    data = json.loads(resp.read().decode("utf-8"))
+                    if data.get("state") == "active":
+                        _MEMBER_CACHE[cache_key] = (True, now)
+                        logging.info("Security Verified: User '%s' is an active member of '%s'.", clean_user, org)
+                        return True
+        except urllib.error.HTTPError as err:
+            if err.code == 404:
+                _MEMBER_CACHE[cache_key] = (False, now)
+            elif err.code in (401, 403):
+                # Fallback to public member check if token lacks read:org scope
+                pub_url = f"https://api.github.com/orgs/{org}/members/{clean_user}"
+                pub_req = urllib.request.Request(pub_url, headers=headers)
+                try:
+                    with urllib.request.urlopen(pub_req, timeout=10) as pub_resp:
+                        if pub_resp.status in (200, 204):
+                            _MEMBER_CACHE[cache_key] = (True, now)
+                            logging.info("Security Verified: User '%s' is a public member of '%s'.", clean_user, org)
+                            return True
+                except Exception:
+                    pass
+            else:
+                logging.warning("GitHub API error checking org membership for %s on %s: %s", clean_user, org, err)
+        except Exception as exc:
+            logging.error("Network error during org membership verification: %s", exc)
+
+    logging.warning("SECURITY REJECTION: User '%s' is NOT verified as an active member of %s.", clean_user, target_orgs)
+    return False
+
+
+def close_issue(repo_slug: str, issue_num: int, token: str, comment: Optional[str] = None) -> None:
+    """Close an issue on GitHub and optionally post a processing comment."""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "NOAA-HPC-Workflow-Agent",
+    }
+    if comment:
+        c_url = f"https://api.github.com/repos/{repo_slug}/issues/{issue_num}/comments"
+        try:
+            c_payload = json.dumps({"body": comment}).encode("utf-8")
+            c_req = urllib.request.Request(c_url, headers=headers, data=c_payload, method="POST")
+            urllib.request.urlopen(c_req, timeout=10)
+        except Exception:
+            pass
+
+    url = f"https://api.github.com/repos/{repo_slug}/issues/{issue_num}"
+    try:
+        payload = json.dumps({"state": "closed"}).encode("utf-8")
+        req = urllib.request.Request(url, headers=headers, data=payload, method="PATCH")
+        urllib.request.urlopen(req, timeout=10)
+    except Exception as exc:
+        logging.warning("Failed to close issue #%s: %s", issue_num, exc)
+
+
+def sync_pending_instructions(
+    machine: str,
+    allowed_orgs: Optional[List[str]] = None,
+) -> None:
+    """
+    Fetch pending experiment configuration requests from the GitHub repository,
+    verify the author's NOAA Organization membership (SAML SSO), validate safe paths
+    and quotas, update the local secure dynamic state, and close processed issues.
+    """
+    token = get_github_token()
+    if not token:
+        return
+
+    repo_slug = get_repo_slug()
+    url = f"https://api.github.com/repos/{repo_slug}/issues?labels=exp-config,{machine}&state=open"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "NOAA-HPC-Workflow-Agent",
+    }
+
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            if resp.status != 200:
+                return
+            issues = json.loads(resp.read().decode("utf-8"))
+    except Exception as exc:
+        logging.debug("No pending instructions fetched from %s: %s", repo_slug, exc)
+        return
+
+    if not issues or not isinstance(issues, list):
+        return
+
+    logging.info("Found %d pending experiment configuration requests on GitHub (%s).", len(issues), repo_slug)
+    current_exps = load_dynamic_experiments(machine)
+    modified = False
+
+    for issue in issues:
+        issue_num = issue.get("number")
+        author = issue.get("user", {}).get("login", "")
+        if not author:
+            continue
+
+        # 1. Verify author membership in NOAA GSL / OAR organization
+        if not verify_noaa_org_membership(author, token, allowed_orgs):
+            logging.warning("Rejecting request #%s from non-org user '%s'", issue_num, author)
+            close_issue(repo_slug, issue_num, token, comment="Rejected: Author is not an active member of authorized NOAA organizations.")
+            continue
+
+        # 2. Parse payload from issue body
+        body_str = issue.get("body", "") or ""
+        try:
+            json_match = re.search(r"```json\s*(\{.*?\})\s*```", body_str, re.DOTALL)
+            raw_json = json_match.group(1) if json_match else body_str.strip()
+            payload = json.loads(raw_json)
+        except Exception as exc:
+            logging.warning("Failed to parse JSON body for issue #%s: %s", issue_num, exc)
+            close_issue(repo_slug, issue_num, token, comment=f"Rejected: Invalid payload format ({exc}).")
+            continue
+
+        action = str(payload.get("action", "add")).lower()
+        exp_name = str(payload.get("name", "")).strip()
+        exp_cluster = str(payload.get("cluster", machine)).strip()
+
+        if exp_cluster != machine or not exp_name:
+            continue
+
+        if action == "delete":
+            # Verify caller owns the experiment or is an authorized admin
+            orig_len = len(current_exps)
+            current_exps = [e for e in current_exps if not (e.get("name") == exp_name and (e.get("owner") == author or author in ("spanNOAA", "guoqing-noaa")))]
+            if len(current_exps) < orig_len:
+                modified = True
+                logging.info("Deleted experiment '%s' requested by @%s (Issue #%s)", exp_name, author, issue_num)
+            close_issue(repo_slug, issue_num, token, comment="Processed: Experiment removed from monitoring.")
+
+        elif action == "add":
+            expdir_str = str(payload.get("expdir", "")).strip()
+            email_str = str(payload.get("email", "")).strip()
+
+            try:
+                safe_dir = validate_safe_expdir(expdir_str)
+            except Exception as exc:
+                logging.error("Path validation failed for issue #%s: %s", issue_num, exc)
+                close_issue(repo_slug, issue_num, token, comment=f"Rejected: Path validation failed ({exc}).")
+                continue
+
+            # Enforce quota for this author
+            user_count = sum(1 for e in current_exps if e.get("owner") == author)
+            if user_count >= MAX_USER_EXPERIMENTS:
+                logging.warning("User '%s' quota exceeded for issue #%s", author, issue_num)
+                close_issue(repo_slug, issue_num, token, comment=f"Rejected: Quota exceeded (max {MAX_USER_EXPERIMENTS} experiments per user).")
+                continue
+
+            new_entry: Dict[str, Any] = {
+                "name": exp_name,
+                "cluster": machine,
+                "expdir": str(safe_dir),
+                "owner": author,
+            }
+            if email_str and EMAIL_RE.match(email_str) and not email_str.startswith("-"):
+                new_entry["recipients"] = [email_str]
+
+            # Upsert entry
+            current_exps = [e for e in current_exps if e.get("name") != exp_name]
+            current_exps.append(new_entry)
+            modified = True
+            logging.info("Added experiment '%s' requested by @%s (Issue #%s)", exp_name, author, issue_num)
+            close_issue(repo_slug, issue_num, token, comment="Processed: Experiment added to monitoring.")
+
+    if modified:
+        save_dynamic_experiments(machine, current_exps)
 
 
 def utc_now_iso() -> str:
@@ -179,7 +496,12 @@ def parse_rocotostat(expdir: Path, xml: str, db: str, lookback: int = 6) -> List
     return result
 
 
-def build_status_dict(experiment: str, cluster: str, cycles: List[Dict[str, Any]]) -> Dict[str, Any]:
+def build_status_dict(
+    experiment: str,
+    cluster: str,
+    cycles: List[Dict[str, Any]],
+    owner: Optional[str] = None,
+) -> Dict[str, Any]:
     counts = {
         "total_cycles": len(cycles),
         "active_cycles": sum(1 for c in cycles if c.get("cycle_state") == "Active"),
@@ -215,11 +537,10 @@ def build_status_dict(experiment: str, cluster: str, cycles: List[Dict[str, Any]
             else:
                 counts["other"] += 1
 
-    return {
+    status_dict: Dict[str, Any] = {
         "experiment": experiment,
         "cluster": cluster,
         "updated_at": utc_now_iso(),
-        "monitor_host": socket.gethostname(),
         "cycles": cycles,
         "summary": counts,
         "alerts": {
@@ -229,6 +550,9 @@ def build_status_dict(experiment: str, cluster: str, cycles: List[Dict[str, Any]
             "hung_jobs": [],
         },
     }
+    if owner:
+        status_dict["owner"] = owner
+    return status_dict
 
 
 def load_state(state_file: Path) -> Dict[str, Any]:
@@ -255,14 +579,21 @@ def save_state(state_file: Path, state: Dict[str, Any]) -> None:
 
 
 def parse_recipients(raw_recip: Any) -> List[str]:
+    raw_list: List[str] = []
     if isinstance(raw_recip, list):
-        out = []
         for item in raw_recip:
-            out.extend(re.split(r"[\s,]+", str(item).strip()))
-        return [r for r in out if r]
-    if isinstance(raw_recip, str):
-        return [r for r in re.split(r"[\s,]+", raw_recip.strip()) if r]
-    return []
+            raw_list.extend(re.split(r"[\s,]+", str(item).strip()))
+    elif isinstance(raw_recip, str):
+        raw_list = re.split(r"[\s,]+", raw_recip.strip())
+
+    clean: List[str] = []
+    for r in raw_list:
+        r = r.strip()
+        if r and not r.startswith("-") and EMAIL_RE.match(r):
+            clean.append(r)
+        elif r:
+            logging.warning("Ignoring invalid or suspicious recipient email: %s", r)
+    return clean
 
 
 def send_email(subject: str, body: str, recipients: List[str], dry_run: bool) -> None:
@@ -470,7 +801,7 @@ def write_status_json(status: Dict[str, Any], status_file: Path) -> None:
 
 
 def get_status_branch(cluster: Optional[str] = None) -> str:
-    machine = cluster or os.environ.get("MACHINE") or socket.gethostname()
+    machine = cluster or os.environ.get("MACHINE") or "unknown"
     return f"status-{machine}"
 
 
@@ -567,7 +898,7 @@ def find_heartbeat_uuid(repo_root: Path) -> Optional[str]:
     p = repo_root / "healthchecks_uuid.txt"
     if p.is_file():
         val = p.read_text().strip()
-        if val:
+        if val and HEARTBEAT_UUID_RE.match(val):
             return val
     return None
 
@@ -575,7 +906,11 @@ def find_heartbeat_uuid(repo_root: Path) -> Optional[str]:
 def ping_heartbeat(uuid_str: Optional[str], dry_run: bool) -> None:
     if not uuid_str or dry_run:
         return
-    url = f"https://hc-ping.com/{uuid_str.strip()}"
+    cleaned_uuid = uuid_str.strip()
+    if not HEARTBEAT_UUID_RE.match(cleaned_uuid):
+        logging.warning("Invalid healthchecks UUID format. Skipping heartbeat ping.")
+        return
+    url = f"https://hc-ping.com/{cleaned_uuid}"
     try:
         urllib.request.urlopen(url, timeout=10).read()
         logging.info("Sent heartbeat ping to healthchecks.io")
@@ -598,11 +933,16 @@ def process_experiment(
         logging.error("Missing required experiment fields (name, expdir): %s", exp_cfg)
         return None
 
-    expdir = Path(expdir_str)
+    try:
+        expdir = validate_safe_expdir(expdir_str)
+    except Exception as exc:
+        logging.error("Security validation failed for %s: %s", exp_name, exc)
+        return None
+
     logging.info("Processing experiment: %s on %s (%s)", exp_name, cluster, expdir)
 
     if not expdir.is_dir():
-        logging.warning("Experiment directory not accessible on %s: %s — skipping", socket.gethostname(), expdir)
+        logging.warning("Experiment directory not accessible on %s: %s — skipping", cluster, expdir)
         return None
 
     lookback = int(exp_cfg.get("lookback_cycles", 72))
@@ -621,7 +961,8 @@ def process_experiment(
 
     # 1. Parse rocotostat
     cycles = parse_rocotostat(expdir, xml, db, lookback)
-    status = build_status_dict(exp_name, cluster, cycles)
+    owner = exp_cfg.get("owner")
+    status = build_status_dict(exp_name, cluster, cycles, owner=owner)
     default_exp = str(exp_cfg.get("default_exp", "") or "").strip()
     if exp_cfg.get("default") or default_exp in (f"{cluster}/{exp_name}", exp_name):
         status["default"] = True
@@ -756,7 +1097,7 @@ def main() -> int:
         )
         return 1
 
-    machine = os.environ.get("MACHINE") or socket.gethostname()
+    machine = os.environ.get("MACHINE") or "unknown"
     state_dir = REPO_ROOT / ".state" / machine
     state_dir.mkdir(parents=True, exist_ok=True)
     log_file = state_dir / "monitor.log"
@@ -785,29 +1126,57 @@ def main() -> int:
 
     raw_cfg = yaml.safe_load(config_file.read_text()) or {}
     common_cfg = raw_cfg.get("common", {})
-    experiments = raw_cfg.get("experiments", [])
+    security_cfg = raw_cfg.get("security", {})
+    allowed_orgs = security_cfg.get("allowed_orgs", list(ALLOWED_ORGS))
 
-    if not experiments:
-        logging.error("No experiments defined under 'experiments:' in %s", config_file)
+    # Ingest pending experiment configuration requests from NOAA org members
+    sync_pending_instructions(machine, allowed_orgs)
+
+    static_experiments = raw_cfg.get("experiments", [])
+    dynamic_experiments = load_dynamic_experiments(machine)
+
+    all_experiments = list(static_experiments) + list(dynamic_experiments)
+    if not all_experiments:
+        logging.error("No experiments defined under 'experiments:' in %s or dynamic state", config_file)
         return 1
 
-    merged_list = [deep_merge(common_cfg, exp_item) for exp_item in experiments]
+    if len(all_experiments) > MAX_TOTAL_EXPERIMENTS:
+        logging.warning("Total experiments count (%d) exceeds limit of %d. Truncating to %d.", len(all_experiments), MAX_TOTAL_EXPERIMENTS, MAX_TOTAL_EXPERIMENTS)
+        all_experiments = all_experiments[:MAX_TOTAL_EXPERIMENTS]
+
+    merged_list = [deep_merge(common_cfg, exp_item) for exp_item in all_experiments]
     updated_files: List[Path] = []
 
-    # Process all experiments concurrently in parallel
-    with concurrent.futures.ThreadPoolExecutor(max_workers=len(merged_list)) as pool:
+    # Distribute experiments across at most MAX_CONCURRENT_WORKERS (20) workers.
+    # Experiments exceeding 20 are evenly partitioned across the 20 workers and run sequentially within each worker.
+    num_workers = min(max(len(merged_list), 1), MAX_CONCURRENT_WORKERS)
+    worker_batches: List[List[Dict[str, Any]]] = [[] for _ in range(num_workers)]
+    for idx, exp_item in enumerate(merged_list):
+        worker_batches[idx % num_workers].append(exp_item)
+
+    def process_worker_batch(batch_items: List[Dict[str, Any]]) -> List[Path]:
+        batch_results: List[Path] = []
+        for exp in batch_items:
+            try:
+                res = process_experiment(exp, state_dir, args.dry_run)
+                if res is not None:
+                    batch_results.append(res)
+            except Exception as exc:
+                logging.exception("Error processing %s: %s", exp.get("name", "unknown"), exc)
+        return batch_results
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as pool:
         future_map = {
-            pool.submit(process_experiment, m_exp, state_dir, args.dry_run): m_exp.get("name", "unknown")
-            for m_exp in merged_list
+            pool.submit(process_worker_batch, batch): i
+            for i, batch in enumerate(worker_batches) if batch
         }
         for fut in concurrent.futures.as_completed(future_map):
-            name = future_map[fut]
             try:
-                res = fut.result()
-                if res is not None:
-                    updated_files.append(res)
+                res_list = fut.result()
+                if res_list:
+                    updated_files.extend(res_list)
             except Exception as exc:
-                logging.exception("Error processing %s: %s", name, exc)
+                logging.exception("Worker batch failed: %s", exc)
 
     ok_count = len(updated_files)
     if ok_count > 0:
@@ -818,7 +1187,7 @@ def main() -> int:
             f_push.result()
             f_ping.result()
 
-    logging.info("=== Monitor run completed (%d/%d experiments succeeded) ===", ok_count, len(experiments))
+    logging.info("=== Monitor run completed (%d/%d experiments succeeded) ===", ok_count, len(all_experiments))
     return 0 if ok_count > 0 else 1
 
 

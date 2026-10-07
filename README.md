@@ -10,6 +10,7 @@ A config-driven Python monitoring system for Rocoto-based HPC workflows with a G
 - **Stall detection** — alerts when no jobs are running/queued/submitting beyond a configurable threshold.
 - **Hung job detection** — optionally checks one or more `RUNNING` task types (`fcst`, `jedivar`, etc.) for stale log files, with optional `cancel_and_reboot` auto-remediation.
 - **Zero-conflict per-HPC branches (`status-<MACHINE>`)** — each HPC pushes `<exp>.json` directly to its own dedicated branch `status-<MACHINE>` (`https://raw.githubusercontent.com/<owner>/<repo>/status-<machine>/<exp>.json`) without modifying the working tree or `main` branch.
+- **Enterprise NOAA Organization SAML SSO & Dynamic Configuration** — allows authenticated scientists in NOAA Organizations (e.g. `noaa-gsl`, `noaa-oar`) to securely add, blind-edit, and remove monitored experiments from the dashboard with strict path sandboxing (`/scratch`, `/gpfs`, `/work`) and user quota controls.
 - **Three-layer failure detection**:
   1. **healthchecks.io heartbeat** — detects monitor or cluster/scrontab death within ~15 min.
   2. **GitHub Actions watchdog** ([`.github/workflows/stale-check.yml`](.github/workflows/stale-check.yml)) — opens a GitHub Issue if any `<exp>.json` on any `status-*` branch goes $>30$ min stale.
@@ -20,6 +21,7 @@ A config-driven Python monitoring system for Rocoto-based HPC workflows with a G
 1. **Git SSH access** (`git@github.com:...`) configured on the HPC cluster (with an SSH key that does not prompt for an interactive passphrase when running under `scrontab`).
 2. **`pyDAmonitor` Conda environment** (`Miniforge3/envs/pyDAmonitor/bin/python3`), invoked directly by [`run.sh`](run.sh) without needing `conda activate`.
 3. **Rocoto** module on the target HPC cluster (automatically loaded by [`run.sh`](run.sh)).
+4. *(Optional for dynamic web config)* **GitHub Personal Access Token** authorized for NOAA SAML SSO saved in `~/.config/workflow_status/github_token.txt` (`chmod 600`) or exported as `GITHUB_TOKEN`.
 
 ## Supported HPC Systems (`MACHINE` values)
 
@@ -38,7 +40,7 @@ A config-driven Python monitoring system for Rocoto-based HPC workflows with a G
 ### 1. Clone the Repo via SSH on HPC
 
 ```bash
-git clone git@github.com:guoqing-noaa/workflow_status.git
+git clone git@github.com:noaa-gsl/workflow_status.git  # or your fork: git@github.com:spanNOAA/workflow_status.git
 cd workflow_status
 ```
 
