@@ -353,17 +353,17 @@ def sync_pending_instructions(
         if not author:
             continue
 
+        # 1. Mandatory Gate: Verify author membership in NOAA GSL / OAR organization via SAML SSO (Zero-Trust: No exemptions, even for admins)
+        if not verify_noaa_org_membership(author, token, allowed_orgs):
+            logging.warning("Rejecting request #%s from user '%s': SAML SSO verification failed for authorized NOAA organizations.", issue_num, author)
+            close_issue(repo_slug, issue_num, token, comment="Rejected: Author is not an active, SAML SSO authenticated member of authorized NOAA organizations.")
+            continue
+
         repo_owner = repo_slug.split("/")[0] if "/" in repo_slug else ""
         is_repo_admin = bool(
             (repo_owner and author.lower() == repo_owner.lower())
             or author.lower() in ADMIN_USERS
         )
-
-        # 1. Verify author membership in NOAA GSL / OAR organization (repo admin is implicitly authorized)
-        if not is_repo_admin and not verify_noaa_org_membership(author, token, allowed_orgs):
-            logging.warning("Rejecting request #%s from non-org user '%s'", issue_num, author)
-            close_issue(repo_slug, issue_num, token, comment="Rejected: Author is not an active member of authorized NOAA organizations.")
-            continue
 
         # 2. Parse payload from issue body
         body_str = issue.get("body", "") or ""
