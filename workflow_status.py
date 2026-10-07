@@ -52,6 +52,7 @@ ALLOWED_SCRATCH_PREFIXES = (
 MAX_TOTAL_EXPERIMENTS = 60
 MAX_USER_EXPERIMENTS = 3
 MAX_CONCURRENT_WORKERS = 20
+ADMIN_USERS = ("spannoaa", "guoqing-noaa", "sijie-pan", "sijie.pan")
 
 
 def validate_safe_expdir(expdir_str: str) -> Path:
@@ -353,7 +354,10 @@ def sync_pending_instructions(
             continue
 
         repo_owner = repo_slug.split("/")[0] if "/" in repo_slug else ""
-        is_repo_admin = bool(repo_owner and author.lower() == repo_owner.lower())
+        is_repo_admin = bool(
+            (repo_owner and author.lower() == repo_owner.lower())
+            or author.lower() in ADMIN_USERS
+        )
 
         # 1. Verify author membership in NOAA GSL / OAR organization (repo admin is implicitly authorized)
         if not is_repo_admin and not verify_noaa_org_membership(author, token, allowed_orgs):
