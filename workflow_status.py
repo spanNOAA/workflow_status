@@ -284,8 +284,11 @@ def sync_pending_instructions(
         if not author:
             continue
 
-        # 1. Verify author membership in NOAA GSL / OAR organization
-        if not verify_noaa_org_membership(author, token, allowed_orgs):
+        repo_owner = repo_slug.split("/")[0] if "/" in repo_slug else ""
+        is_repo_admin = bool(repo_owner and author.lower() == repo_owner.lower())
+
+        # 1. Verify author membership in NOAA GSL / OAR organization (repo admin is implicitly authorized)
+        if not is_repo_admin and not verify_noaa_org_membership(author, token, allowed_orgs):
             logging.warning("Rejecting request #%s from non-org user '%s'", issue_num, author)
             close_issue(repo_slug, issue_num, token, comment="Rejected: Author is not an active member of authorized NOAA organizations.")
             continue
@@ -311,7 +314,7 @@ def sync_pending_instructions(
         if action == "delete":
             # Verify caller owns the experiment or is an authorized admin
             orig_len = len(current_exps)
-            current_exps = [e for e in current_exps if not (e.get("name") == exp_name and (e.get("owner") == author or author in ("spanNOAA", "guoqing-noaa")))]
+            current_exps = [e for e in current_exps if not (e.get("name") == exp_name and (e.get("owner") == author or is_repo_admin))]
             if len(current_exps) < orig_len:
                 modified = True
                 logging.info("Deleted experiment '%s' requested by @%s (Issue #%s)", exp_name, author, issue_num)
@@ -1110,8 +1113,8 @@ def main() -> int:
 
     all_experiments = list(static_experiments) + list(dynamic_experiments)
     if not all_experiments:
-        logging.error("No experiments defined under 'experiments:' in %s or dynamic state", config_file)
-        return 1
+        logging.info("No experiments currently defined in %s or dynamic state. Waiting for configuration requests.", config_file)
+        return 0
 
     if len(all_experiments) > MAX_TOTAL_EXPERIMENTS:
         logging.warning("Total experiments count (%d) exceeds limit of %d. Truncating to %d.", len(all_experiments), MAX_TOTAL_EXPERIMENTS, MAX_TOTAL_EXPERIMENTS)

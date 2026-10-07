@@ -3,7 +3,6 @@
 # Shared defaults under `common:` apply to all experiments and can be overridden per experiment.
 
 common:
-  default_exp: ursa/rrfsv2x_det
   workflow_xml: rrfs.xml
   workflow_db: rrfs.db
   lookback_cycles: 72
@@ -28,11 +27,4 @@ security:
     - noaa-gsl
     - noaa-oar
 
-experiments:
-  - name: rrfsv2x_det
-    expdir: /scratch3/BMC/rtwrfruc/RRFSv2X/NCO_dirs/RRFSv2X/exp/rrfsdet
-    subject_prefix: rrfsv2x_det
-
-  - name: rrfsv2x_ens
-    expdir: /scratch3/BMC/rtwrfruc/RRFSv2X/NCO_dirs/RRFSv2X/exp/rrfsenkf
-    subject_prefix: rrfsv2x_ens
+experiments: []
