@@ -407,8 +407,13 @@ def sync_pending_instructions(
             continue
 
         title = (issue.get("title") or "").strip()
+        body_str = issue.get("body", "") or ""
         labels = [l.get("name", "").lower() for l in issue.get("labels", []) if isinstance(l, dict)]
-        is_exp_config = ("exp-config" in labels) or title.lower().startswith("[exp-config]")
+        is_exp_config = (
+            ("exp-config" in labels)
+            or title.lower().startswith("[exp-config]")
+            or ("automated workflow configuration request" in body_str.lower())
+        )
         if not is_exp_config:
             continue
 
@@ -419,7 +424,6 @@ def sync_pending_instructions(
         )
 
         # 2. Parse payload from issue body
-        body_str = issue.get("body", "") or ""
         try:
             json_match = re.search(r"```json\s*(\{.*?\})\s*```", body_str, re.DOTALL)
             raw_json = json_match.group(1) if json_match else body_str.strip()
