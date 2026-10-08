@@ -191,7 +191,7 @@
     <div class="flex-grow flex flex-col md:flex-row w-full min-h-0">
 
         <!-- Left Sidebar: <machine>/<exp> List -->
-        <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 bg-white dark:bg-gray-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 p-4 flex flex-col gap-3">
+        <aside class="w-full md:w-80 lg:w-[340px] flex-shrink-0 bg-white dark:bg-gray-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 p-3.5 flex flex-col gap-3">
             <div class="flex items-center justify-between px-1">
                 <div class="flex items-center gap-2">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Experiments</h2>
@@ -1630,24 +1630,54 @@
                     badgeHtml = `<span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200">STALE</span>`;
                 }
 
+                const [cluster, expname] = key.includes('/') ? key.split('/') : [data.cluster || '', key];
+
                 const btn = document.createElement('button');
                 btn.type = 'button';
-                btn.className = `w-full text-left px-3.5 py-2.5 rounded-lg border transition-all flex flex-col gap-1 ${colorClasses}`;
-                const ageStr = isNaN(health.diffMin) ? '--' : `${health.diffMin}m ago`;
+                btn.className = `w-full text-left p-3 rounded-xl border transition-all flex flex-col gap-2 ${colorClasses}`;
+
+                let ageStr = isNaN(health.diffMin) ? '--' : `${health.diffMin}m ago`;
+                if (data.retro_completed_at) {
+                    try {
+                        const compDt = new Date(data.retro_completed_at);
+                        const daysLeft = Math.max(0, 3 - Math.floor((new Date() - compDt) / (86400 * 1000)));
+                        ageStr = `${daysLeft}d left`;
+                    } catch (_) {}
+                }
+
                 const isRetro = data.retro !== false && (data.workflow_type !== 'realtime');
-                const modeBadge = `<span class="text-[9px] font-mono px-1 py-0.5 rounded ${isRetro ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/50 dark:text-cyan-300'}">${isRetro ? 'RETRO' : 'REALTIME'}</span>`;
+                const modeBadge = `<span class="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded ${isRetro ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/50' : 'bg-cyan-100 text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/50'}">${isRetro ? 'RETRO' : 'REALTIME'}</span>`;
+
+                const runningCount = Number(sum.running || 0);
+                const deadCount = Number(sum.dead || 0);
+                const runningBadge = runningCount > 0
+                    ? `<span class="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-semibold">${runningCount} run</span>`
+                    : `<span class="opacity-60">0 run</span>`;
+                const deadBadge = deadCount > 0
+                    ? `<span class="px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/60 text-red-700 dark:text-red-300 font-semibold">${deadCount} dead</span>`
+                    : '';
 
                 btn.innerHTML = `
-                    <div class="flex items-center justify-between gap-2 w-full">
-                        <div class="flex items-center gap-2 min-w-0">
+                    <div class="flex items-center justify-between gap-1.5 w-full">
+                        <div class="flex items-center gap-1.5 min-w-0">
                             <span class="w-2.5 h-2.5 rounded-full flex-shrink-0 ${dotClasses}"></span>
-                            <span class="font-mono text-xs font-bold truncate" title="${key}">${key}</span>
+                            <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-gray-200/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-300 font-semibold flex-shrink-0">${cluster}</span>
+                            <span class="font-mono text-xs font-bold text-gray-900 dark:text-gray-100 truncate" title="${expname}">${expname}</span>
                         </div>
-                        ${badgeHtml}
+                        <div class="flex-shrink-0">${badgeHtml}</div>
                     </div>
-                    <div class="flex items-center justify-between text-[11px] opacity-80 pl-4 font-mono">
-                        <span class="flex items-center gap-1.5">${modeBadge} ${data.suite ? data.suite + ' · ' : ''}${ageStr}</span>
-                        <span>${data.owner ? '@' + data.owner + ' · ' : ''}${sum.succeeded || 0} ok · ${sum.running || 0} run</span>
+                    <div class="flex items-center gap-1.5 text-[11px] font-mono text-gray-600 dark:text-gray-400 w-full pl-4">
+                        ${modeBadge}
+                        <span class="truncate opacity-85" title="${data.suite || ''}">${data.suite || 'default'}</span>
+                        <span class="ml-auto flex-shrink-0 text-[10px] opacity-60 font-sans">${ageStr}</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[11px] font-mono pt-1.5 border-t border-gray-200/60 dark:border-gray-700/50 text-gray-500 dark:text-gray-400 pl-4">
+                        <span class="truncate text-[10px] opacity-75">${data.owner ? '@' + data.owner : ''}</span>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <span class="text-emerald-700 dark:text-emerald-400 font-medium">${sum.succeeded || 0} ok</span>
+                            ${runningBadge}
+                            ${deadBadge}
+                        </div>
                     </div>
                 `;
 
