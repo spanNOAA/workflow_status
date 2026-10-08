@@ -1,29 +1,10 @@
-# config.yml — Example configuration template for workflow_status
-# Copy this file to `myexps.yml` (git-ignored) and make modifications there:
-# Shared defaults under `common:` apply to all experiments and can be overridden per experiment.
+# config.yml — Minimal configuration for workflow_status
+# Monitored experiments are dynamically managed from the web dashboard.
+# Workflow XML and database files (<stem>.xml / <stem>.db) are adaptively discovered.
+# Local static overrides can optionally be placed in myexps.yml (git-ignored).
 
 common:
-  workflow_xml: rrfs.xml
-  workflow_db: rrfs.db
   lookback_cycles: 72
   recipients: []  # Optional: add your @noaa.gov email(s) for dead/stall job alerts
-  checks:
-    dead_jobs:
-      enabled: true
-    stall:
-      enabled: true
-      threshold_sec: 3600
-    hung_jobs:
-      enabled: false
-      action: alert
-      tasks:
-        - name: fcst
-          log_pattern: "{workdir}/fcst_{cyc}/log.atmosphere.0000.out"
-          max_idle_sec: 1200
-
-security:
-  allowed_orgs:
-    - noaa-gsl
-    - noaa-oar
 
 experiments: []

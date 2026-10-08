@@ -4,7 +4,9 @@ A config-driven Python monitoring system for Rocoto-based HPC workflows with a G
 
 ## Features
 
-- **Untracked [`myexps.yml`](config.yml) user configuration** — copy the tracked template [`config.yml`](config.yml) to `myexps.yml` (git-ignored) so sensitive information (email addresses, local experiment paths) stays out of GitHub and `git pull` never conflicts.
+- **Adaptive workflow XML and DB discovery** — automatically discovers unique workflow files (`arps.xml`, `conus3km.xml`, `rrfs.xml`, etc.) and matching databases (`<stem>.db`) directly inside the experiment directory.
+- **Zero-template minimalist deployment** — starts with a clean zero-experiment [`config.yml`](config.yml). Monitored experiments can be dynamically added, edited, and removed from the web dashboard by authenticated scientists.
+- **Optional untracked [`myexps.yml`](config.yml) overrides** — local static experiments and personal alert recipients can be placed in `myexps.yml` (git-ignored) so local paths never leak into git and `git pull` stays conflict-free.
 - **Full `rocotostat` structured parsing** — uses `rocotostat -s` to discover all `Active` cycles + the last $N$ `Done` cycles (works identically for **realtime** and **retrospective** workflows), then parses full task state and cycle wall-clock duration.
 - **Dead job detection** — alerts on new `DEAD` jobs with MD5 deduplication (no repeated emails for the same failure).
 - **Stall detection** — alerts when no jobs are running/queued/submitting beyond a configurable threshold.
@@ -43,49 +45,42 @@ git clone git@github.com:noaa-gsl/workflow_status.git  # or your fork: git@githu
 cd workflow_status
 ```
 
-### 2. Copy `config.yml` to `myexps.yml` and Edit
+### 2. Configure GitHub Token for Dynamic Web Add/Edit (Recommended)
 
-Copy the example template [`config.yml`](config.yml) to `myexps.yml` (which is ignored by git so sensitive information stays local) and configure `common:` defaults and your `experiments:` list:
+To enable automatic ingestion of experiments requested through the web dashboard, store your GitHub PAT (with `repo` scope and NOAA SAML SSO authorization):
 
 ```bash
+mkdir -p ~/.config/workflow_status
+echo "ghp_yourTokenHere" > ~/.config/workflow_status/github_token.txt
+chmod 600 ~/.config/workflow_status/github_token.txt
+```
+
+### 3. Adaptive Discovery & Local Config
+
+By default, `config.yml` starts with `experiments: []`. All monitored experiments can be added directly via the web dashboard.
+- Workflow XML and database files (e.g. `arps.xml`/`arps.db`, `conus3km.xml`/`conus3km.db`, `rrfs.xml`/`rrfs.db`) are automatically detected in each experiment directory.
+- If you wish to configure local static experiments or personal alert emails without the dashboard, you can optionally copy `config.yml` to `myexps.yml` (git-ignored) and edit it:
+
+```bash
+# Optional: only if you prefer local static config files
 cp config.yml myexps.yml
 ```
 
-```yaml
-common:
-  default_exp: ursa/rrfsv2x_det
-  workflow_xml: rrfs.xml
-  workflow_db: rrfs.db
-  lookback_cycles: 72
-  recipients: []  # Optional: add your @noaa.gov email(s) for dead/stall job alerts
-  checks:
-    dead_jobs:
-      enabled: true
-    stall:
-      enabled: true
-      threshold_sec: 3600
+### 4. Test (`--dry-run`)
 
-experiments:
-  - name: rrfsdet_rt
-    expdir: /gpfs/f7/arfs-gsl/world-shared/gge/rrfs2/OPSROOT/conus12km/exp/rrfsdet
-    subject_prefix: rrfsv2x_rt
-```
-
-### 3. Test (`--dry-run`)
-
-By default, [`run.sh`](run.sh) reads `myexps.yml` in the repo root, or you can specify any custom `.yml` config file on the command line:
+Test execution using the cluster's identifier (`gaeac6`, `gaeac7`, `hera`, `ursa`, etc.):
 
 ```bash
-# Use default myexps.yml
+# Dry run with default config (myexps.yml if present, otherwise config.yml)
 MACHINE=gaeac7 ./run.sh --dry-run
-
-# Or specify a custom YAML config file
-MACHINE=gaeac7 ./run.sh custom_exps.yml --dry-run
 ```
 
-### 4. Add to `scrontab`
+### 5. Add to `scrontab`
 
-```
+Open your user scrontab (`scrontab -e`):
+
+```bash
+# Example for Gaea c7:
 #SCRON --partition=cron_c7
 #SCRON --account=arfs-gsl
 #SCRON --time=00:10:00
@@ -94,8 +89,14 @@ MACHINE=gaeac7 ./run.sh custom_exps.yml --dry-run
 #SCRON --job-name=workflow_status
 #SCRON --output=/dev/null
 */10 * * * * MACHINE=gaeac7 /path/to/workflow_status/run.sh
-# Or with a custom config file:
-# */10 * * * * MACHINE=gaeac7 /path/to/workflow_status/run.sh /path/to/custom_exps.yml
+
+# Example for Hera / Ursa:
+#SCRON --time=00:10:00
+#SCRON --mem=8G
+#SCRON --dependency=singleton
+#SCRON --job-name=workflow_status
+#SCRON --output=/dev/null
+*/10 * * * * MACHINE=hera /path/to/workflow_status/run.sh
 ```
 
 ## Repository Structure

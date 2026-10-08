@@ -1043,6 +1043,75 @@ def git_push_status_branch(repo_root: Path, updated_files: List[Path], branch: s
     return False
 
 
+def discover_workflow_files(
+    expdir: Path,
+    configured_xml: Optional[str] = None,
+    configured_db: Optional[str] = None,
+) -> Tuple[str, str]:
+    """
+    Adaptively resolve workflow XML and DB files.
+    Priority:
+    1. If configured_xml is provided, respect it. If configured_db is provided, respect it;
+       otherwise derive db from f"{Path(configured_xml).stem}.db".
+    2. Adaptive discovery: find *.xml files directly inside expdir (non-recursive, ignoring hidden files).
+       - If exactly 1 XML file is found (e.g. arps.xml, conus3km.xml, rrfs.xml):
+         stem = xml_candidate.stem
+         return xml_candidate.name, f"{stem}.db"
+       - If multiple XML files are found:
+         prefer one with an existing matching <stem>.db file in expdir;
+         otherwise fallback to rrfs.xml if present, or first candidate.
+    3. Fallback: "rrfs.xml", "rrfs.db".
+    """
+    if configured_xml and str(configured_xml).strip():
+        xml_name = str(configured_xml).strip()
+        db_name = (
+            str(configured_db).strip()
+            if (configured_db and str(configured_db).strip())
+            else f"{Path(xml_name).stem}.db"
+        )
+        return xml_name, db_name
+
+    try:
+        if expdir.is_dir():
+            xml_files = sorted(
+                [p for p in expdir.glob("*.xml") if p.is_file() and not p.name.startswith(".")]
+            )
+            if len(xml_files) == 1:
+                target = xml_files[0]
+                db_name = f"{target.stem}.db"
+                logging.info(
+                    "Auto-discovered unique workflow XML in %s: %s (database: %s)",
+                    expdir,
+                    target.name,
+                    db_name,
+                )
+                return target.name, db_name
+            elif len(xml_files) > 1:
+                # Check if any candidate has a matching <stem>.db in the directory
+                db_matched = [p for p in xml_files if (expdir / f"{p.stem}.db").is_file()]
+                if len(db_matched) == 1:
+                    target = db_matched[0]
+                    db_name = f"{target.stem}.db"
+                    logging.info(
+                        "Auto-discovered workflow XML with matching database in %s: %s (database: %s)",
+                        expdir,
+                        target.name,
+                        db_name,
+                    )
+                    return target.name, db_name
+                # Check for standard rrfs.xml
+                for p in xml_files:
+                    if p.name.lower() == "rrfs.xml":
+                        return p.name, f"{p.stem}.db"
+                # Fallback to first candidate
+                target = xml_files[0]
+                return target.name, f"{target.stem}.db"
+    except Exception as exc:
+        logging.warning("Error during adaptive XML discovery in %s: %s", expdir, exc)
+
+    return "rrfs.xml", "rrfs.db"
+
+
 def process_experiment(
     exp_cfg: Dict[str, Any],
     state_dir: Path,
@@ -1051,8 +1120,6 @@ def process_experiment(
     exp_name = exp_cfg.get("name")
     cluster = exp_cfg.get("cluster") or os.environ.get("MACHINE") or "unknown"
     expdir_str = exp_cfg.get("expdir")
-    xml = exp_cfg.get("workflow_xml", "rrfs.xml")
-    db = exp_cfg.get("workflow_db", "rrfs.db")
 
     if not exp_name or not expdir_str:
         logging.error("Missing required experiment fields (name, expdir): %s", exp_cfg)
@@ -1069,6 +1136,8 @@ def process_experiment(
     if not expdir.is_dir():
         logging.warning("Experiment directory not accessible on %s: %s — skipping", cluster, expdir)
         return None
+
+    xml, db = discover_workflow_files(expdir, exp_cfg.get("workflow_xml"), exp_cfg.get("workflow_db"))
 
     is_retro = bool(
         exp_cfg.get("workflow_type", "retrospective").lower() == "retrospective"
@@ -1277,14 +1346,18 @@ def main() -> int:
             else:
                 config_path = REPO_ROOT / config_path
     else:
-        config_path = REPO_ROOT / "myexps.yml"
+        if (REPO_ROOT / "myexps.yml").is_file():
+            config_path = REPO_ROOT / "myexps.yml"
+        elif (REPO_ROOT / "config.yml").is_file():
+            config_path = REPO_ROOT / "config.yml"
+        else:
+            config_path = REPO_ROOT / "myexps.yml"
 
     config_file = Path(os.path.abspath(config_path))
     if not config_file.is_file():
         print(
             f"ERROR: Config file not found: {config_file}\n"
-            f"Please specify a valid YAML file or create the default myexps.yml:\n"
-            f"  cp {REPO_ROOT / 'config.yml'} {REPO_ROOT / 'myexps.yml'}",
+            f"Please ensure either myexps.yml or config.yml exists at {REPO_ROOT}",
             file=sys.stderr,
         )
         return 1
