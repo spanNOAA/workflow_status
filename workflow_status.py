@@ -25,6 +25,7 @@ import json
 import logging
 import os
 import re
+import shutil
 import subprocess
 import sys
 import threading
@@ -589,6 +590,48 @@ def run_rocoto_cmd(cmd: List[str], expdir: Path) -> str:
     return proc.stdout
 
 
+def parse_time_to_seconds(time_str: str) -> float:
+    """Parse time string in D-HH:MM:SS, HH:MM:SS, or MM:SS to seconds."""
+    time_str = time_str.strip()
+    days = 0
+    if "-" in time_str:
+        d, time_str = time_str.split("-", 1)
+        try:
+            days = int(d)
+        except ValueError:
+            days = 0
+    subparts = time_str.split(":")
+    if len(subparts) == 3:
+        return days * 86400 + int(subparts[0]) * 3600 + int(subparts[1]) * 60 + float(subparts[2])
+    elif len(subparts) == 2:
+        return days * 86400 + int(subparts[0]) * 60 + float(subparts[1])
+    else:
+        return float(subparts[0])
+
+
+def detect_workflow_scheduler(expdir: Path, xml_name: str) -> str:
+    """
+    Detect the workflow scheduler matching Rocoto's root XML attribute.
+    Fallback to checking system CLI binaries (squeue, qstat).
+    """
+    xml_path = expdir / xml_name
+    if xml_path.is_file():
+        try:
+            with open(xml_path, "r", encoding="utf-8", errors="ignore") as f:
+                head_chunk = f.read(8192)
+            m = re.search(r'<workflow\b[^>]*\bscheduler=[\'"]([^\'"]+)[\'"]', head_chunk, re.IGNORECASE)
+            if m:
+                return m.group(1).strip().lower()
+        except Exception as exc:
+            logging.debug("Could not read scheduler from %s: %s", xml_path, exc)
+
+    if shutil.which("squeue"):
+        return "slurm"
+    if shutil.which("qstat"):
+        return "pbspro"
+    return "unknown"
+
+
 def query_slurm_running_durations(jobids: List[str]) -> Dict[str, float]:
     """Query live running durations in seconds directly from Slurm scheduler (squeue)."""
     if not jobids:
@@ -611,28 +654,65 @@ def query_slurm_running_durations(jobids: List[str]) -> Dict[str, float]:
                 parts = line.strip().split()
                 if len(parts) >= 2:
                     jid, time_str = parts[0], parts[1]
-                    days = 0
-                    if "-" in time_str:
-                        d, time_str = time_str.split("-", 1)
-                        try:
-                            days = int(d)
-                        except ValueError:
-                            days = 0
-                    subparts = time_str.split(":")
                     try:
-                        if len(subparts) == 3:
-                            sec = days * 86400 + int(subparts[0]) * 3600 + int(subparts[1]) * 60 + float(subparts[2])
-                        elif len(subparts) == 2:
-                            sec = days * 86400 + int(subparts[0]) * 60 + float(subparts[1])
-                        else:
-                            sec = float(subparts[0])
-                        res[jid] = round(sec, 1)
+                        res[jid] = round(parse_time_to_seconds(time_str), 1)
                     except ValueError:
                         pass
     except Exception as exc:
         logging.debug("Slurm live duration query skipped or unavailable: %s", exc)
 
     return res
+
+
+def query_pbspro_running_durations(jobids: List[str]) -> Dict[str, float]:
+    """Query live running durations in seconds directly from PBS Pro scheduler (qstat)."""
+    if not jobids:
+        return {}
+    clean_ids = [str(jid).strip() for jid in set(jobids) if str(jid).strip()]
+    if not clean_ids:
+        return {}
+
+    res: Dict[str, float] = {}
+    try:
+        proc = subprocess.run(
+            ["qstat", "-f"] + clean_ids,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=10,
+        )
+        if proc.returncode == 0 and proc.stdout:
+            out = proc.stdout.decode("utf-8", errors="replace")
+            current_jid = None
+            for raw_line in out.splitlines():
+                line = raw_line.strip()
+                if line.startswith("Job Id:"):
+                    jid_part = line.split(":", 1)[1].strip()
+                    current_jid = jid_part.split(".")[0].strip()
+                elif current_jid and "resources_used.walltime" in line:
+                    parts = line.split("=", 1)
+                    if len(parts) == 2:
+                        try:
+                            res[current_jid] = round(parse_time_to_seconds(parts[1]), 1)
+                        except Exception:
+                            pass
+    except Exception as exc:
+        logging.debug("PBS Pro live duration query skipped or unavailable: %s", exc)
+
+    return res
+
+
+def query_running_durations(expdir: Path, xml_name: str, jobids: List[str]) -> Dict[str, float]:
+    """Dispatch running duration query to the detected scheduler."""
+    scheduler = detect_workflow_scheduler(expdir, xml_name)
+    if scheduler == "slurm":
+        return query_slurm_running_durations(jobids)
+    elif scheduler in ("pbspro", "pbs", "torque"):
+        return query_pbspro_running_durations(jobids)
+    elif shutil.which("squeue"):
+        return query_slurm_running_durations(jobids)
+    elif shutil.which("qstat"):
+        return query_pbspro_running_durations(jobids)
+    return {}
 
 
 def parse_rocotostat(
@@ -732,13 +812,13 @@ def parse_rocotostat(
         }
         cycles_tasks.setdefault(cdate, []).append(task_obj)
 
-    # Enrich running tasks with live elapsed running duration from Slurm
+    # Enrich running tasks with live elapsed running duration from scheduler
     running_jobids = [
         str(t["jobid"]) for task_list in cycles_tasks.values() for t in task_list
         if t.get("state") == "RUNNING" and t.get("jobid")
     ]
     if running_jobids:
-        live_durations = query_slurm_running_durations(running_jobids)
+        live_durations = query_running_durations(expdir, xml, running_jobids)
         if live_durations:
             for task_list in cycles_tasks.values():
                 for t in task_list:
