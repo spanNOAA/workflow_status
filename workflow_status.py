@@ -370,10 +370,11 @@ def sync_pending_instructions(
     """
     token = get_github_token()
     if not token:
+        logging.warning("No GitHub token configured (GITHUB_TOKEN or ~/.config/workflow_status/github_token.txt). Skipping issue sync.")
         return
 
     repo_slug = get_repo_slug()
-    url = f"https://api.github.com/repos/{repo_slug}/issues?labels=exp-config,{machine}&state=open"
+    url = f"https://api.github.com/repos/{repo_slug}/issues?state=open&per_page=50"
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
@@ -393,7 +394,7 @@ def sync_pending_instructions(
     if not issues or not isinstance(issues, list):
         return
 
-    logging.info("Found %d pending experiment configuration requests on GitHub (%s).", len(issues), repo_slug)
+    logging.info("Found %d open issue(s) on GitHub (%s).", len(issues), repo_slug)
     current_exps = load_dynamic_experiments(machine)
     processed_issues = load_processed_issues(machine)
     modified = False
@@ -403,6 +404,12 @@ def sync_pending_instructions(
         issue_num = issue.get("number")
         author = issue.get("user", {}).get("login", "")
         if not author or not issue_num or issue_num in processed_issues:
+            continue
+
+        title = (issue.get("title") or "").strip()
+        labels = [l.get("name", "").lower() for l in issue.get("labels", []) if isinstance(l, dict)]
+        is_exp_config = ("exp-config" in labels) or title.lower().startswith("[exp-config]")
+        if not is_exp_config:
             continue
 
         repo_owner = repo_slug.split("/")[0] if "/" in repo_slug else ""
