@@ -153,6 +153,30 @@ def save_dynamic_experiments(machine: str, experiments: List[Dict[str, Any]]) ->
         tmp_file.replace(state_file)
 
 
+def load_processed_issues(machine: str) -> Set[int]:
+    """Load previously processed issue IDs to avoid duplicate execution."""
+    state_file = Path.home() / ".config" / "workflow_status" / f"{machine}_processed_issues.json"
+    if state_file.is_file():
+        try:
+            data = json.loads(state_file.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                return set(data)
+        except Exception:
+            pass
+    return set()
+
+
+def save_processed_issues(machine: str, issue_ids: Set[int]) -> None:
+    """Save processed issue IDs to local configuration directory."""
+    try:
+        cfg_dir = Path.home() / ".config" / "workflow_status"
+        cfg_dir.mkdir(parents=True, exist_ok=True)
+        state_file = cfg_dir / f"{machine}_processed_issues.json"
+        state_file.write_text(json.dumps(sorted(list(issue_ids))) + "\n", encoding="utf-8")
+    except Exception as exc:
+        logging.debug("Could not save processed issues for %s: %s", machine, exc)
+
+
 ALLOWED_ORGS = ("noaa-gsl", "noaa-oar")
 _MEMBER_CACHE: Dict[Tuple[str, str], Tuple[bool, float]] = {}
 CACHE_TTL_SEC = 3600
@@ -344,14 +368,17 @@ def sync_pending_instructions(
 
     logging.info("Found %d pending experiment configuration requests on GitHub (%s).", len(issues), repo_slug)
     current_exps = load_dynamic_experiments(machine)
+    processed_issues = load_processed_issues(machine)
     modified = False
     target_state_dir = state_dir or (REPO_ROOT / ".state" / machine)
 
     for issue in issues:
         issue_num = issue.get("number")
         author = issue.get("user", {}).get("login", "")
-        if not author:
+        if not author or not issue_num or issue_num in processed_issues:
             continue
+
+        processed_issues.add(issue_num)
 
         # 1. Mandatory Gate: Verify author membership in NOAA GSL / OAR organization via SAML SSO (Zero-Trust: No exemptions, even for admins)
         if not verify_noaa_org_membership(author, token, allowed_orgs):
@@ -470,6 +497,8 @@ def sync_pending_instructions(
 
     if modified:
         save_dynamic_experiments(machine, current_exps)
+
+    save_processed_issues(machine, processed_issues)
 
 
 def utc_now_iso() -> str:
@@ -1047,20 +1076,23 @@ def discover_workflow_files(
     expdir: Path,
     configured_xml: Optional[str] = None,
     configured_db: Optional[str] = None,
-) -> Tuple[str, str]:
+    exp_name: Optional[str] = None,
+) -> Tuple[Path, str, str]:
     """
     Adaptively resolve workflow XML and DB files.
     Priority:
     1. If configured_xml is provided, respect it. If configured_db is provided, respect it;
        otherwise derive db from f"{Path(configured_xml).stem}.db".
-    2. Adaptive discovery: find *.xml files directly inside expdir (non-recursive, ignoring hidden files).
-       - If exactly 1 XML file is found (e.g. arps.xml, conus3km.xml, rrfs.xml):
+    2. Adaptive discovery:
+       a. Check *.xml files directly inside expdir (non-recursive, ignoring hidden files).
+       b. If no *.xml files in expdir, look 1 level deeper into subdirectories (e.g. expdir/*/stem.xml).
+       - If exactly 1 XML file is found:
          stem = xml_candidate.stem
-         return xml_candidate.name, f"{stem}.db"
+         return resolved_dir, xml_candidate.name, f"{stem}.db"
        - If multiple XML files are found:
-         prefer one with an existing matching <stem>.db file in expdir;
+         prefer one matching exp_name or with an existing matching <stem>.db file;
          otherwise fallback to rrfs.xml if present, or first candidate.
-    3. Fallback: "rrfs.xml", "rrfs.db".
+    3. Fallback: expdir, "rrfs.xml", "rrfs.db".
     """
     if configured_xml and str(configured_xml).strip():
         xml_name = str(configured_xml).strip()
@@ -1069,13 +1101,42 @@ def discover_workflow_files(
             if (configured_db and str(configured_db).strip())
             else f"{Path(xml_name).stem}.db"
         )
-        return xml_name, db_name
+        return expdir, xml_name, db_name
 
     try:
         if expdir.is_dir():
             xml_files = sorted(
                 [p for p in expdir.glob("*.xml") if p.is_file() and not p.name.startswith(".")]
             )
+            if not xml_files:
+                # Look 1 level deeper into subdirectories (e.g. exp/rrfsdet)
+                sub_xml_files = sorted(
+                    [p for p in expdir.glob("*/*.xml") if p.is_file() and not p.name.startswith(".")]
+                )
+                if sub_xml_files:
+                    if exp_name:
+                        name_matched = [
+                            p for p in sub_xml_files
+                            if p.parent.name.lower() in exp_name.lower() or exp_name.lower() in p.parent.name.lower()
+                        ]
+                        if name_matched:
+                            sub_xml_files = name_matched
+
+                    db_matched = [p for p in sub_xml_files if (p.parent / f"{p.stem}.db").is_file()]
+                    if db_matched:
+                        sub_xml_files = db_matched
+
+                    target = sub_xml_files[0]
+                    resolved_dir = target.parent
+                    db_name = f"{target.stem}.db"
+                    logging.info(
+                        "Auto-discovered workflow XML in sub-directory %s: %s (database: %s)",
+                        resolved_dir,
+                        target.name,
+                        db_name,
+                    )
+                    return resolved_dir, target.name, db_name
+
             if len(xml_files) == 1:
                 target = xml_files[0]
                 db_name = f"{target.stem}.db"
@@ -1085,7 +1146,7 @@ def discover_workflow_files(
                     target.name,
                     db_name,
                 )
-                return target.name, db_name
+                return expdir, target.name, db_name
             elif len(xml_files) > 1:
                 # Check if any candidate has a matching <stem>.db in the directory
                 db_matched = [p for p in xml_files if (expdir / f"{p.stem}.db").is_file()]
@@ -1098,18 +1159,18 @@ def discover_workflow_files(
                         target.name,
                         db_name,
                     )
-                    return target.name, db_name
+                    return expdir, target.name, db_name
                 # Check for standard rrfs.xml
                 for p in xml_files:
                     if p.name.lower() == "rrfs.xml":
-                        return p.name, f"{p.stem}.db"
+                        return expdir, p.name, f"{p.stem}.db"
                 # Fallback to first candidate
                 target = xml_files[0]
-                return target.name, f"{target.stem}.db"
+                return expdir, target.name, f"{target.stem}.db"
     except Exception as exc:
         logging.warning("Error during adaptive XML discovery in %s: %s", expdir, exc)
 
-    return "rrfs.xml", "rrfs.db"
+    return expdir, "rrfs.xml", "rrfs.db"
 
 
 def process_experiment(
@@ -1137,7 +1198,12 @@ def process_experiment(
         logging.warning("Experiment directory not accessible on %s: %s — skipping", cluster, expdir)
         return None
 
-    xml, db = discover_workflow_files(expdir, exp_cfg.get("workflow_xml"), exp_cfg.get("workflow_db"))
+    expdir, xml, db = discover_workflow_files(
+        expdir,
+        exp_cfg.get("workflow_xml"),
+        exp_cfg.get("workflow_db"),
+        exp_name=exp_name,
+    )
 
     is_retro = bool(
         exp_cfg.get("workflow_type", "retrospective").lower() == "retrospective"
