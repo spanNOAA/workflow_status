@@ -736,6 +736,9 @@ def parse_recipients(raw_recip: Any) -> List[str]:
     clean: List[str] = []
     for r in raw_list:
         r = r.strip()
+        if r.lower() in ("first.last@noaa.gov", "user@noaa.gov", "example@noaa.gov", "none@noaa.gov"):
+            logging.info("Ignoring placeholder recipient email: %s", r)
+            continue
         if r and not r.startswith("-") and NOAA_EMAIL_RE.match(r):
             clean.append(r.lower())
         elif r:

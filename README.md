@@ -57,8 +57,7 @@ common:
   workflow_xml: rrfs.xml
   workflow_db: rrfs.db
   lookback_cycles: 72
-  recipients:
-    - first.last@noaa.gov
+  recipients: []  # Optional: add your @noaa.gov email(s) for dead/stall job alerts
   checks:
     dead_jobs:
       enabled: true
