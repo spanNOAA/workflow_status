@@ -203,12 +203,15 @@
 
         <!-- Left Sidebar: <machine>/<exp> List -->
         <aside id="sidebar-container" class="w-full md:w-80 lg:w-[340px] flex-shrink-0 bg-white dark:bg-gray-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 p-3.5 flex flex-col gap-3 transition-all md:sticky md:top-[65px] md:self-start md:max-h-[calc(100vh-65px)]">
-            <div class="flex items-center justify-between px-1">
-                <div class="flex items-center gap-2">
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Experiments</h2>
-                    <span id="sidebar-count" class="text-xs font-mono px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">0</span>
+            <div class="flex items-center justify-between gap-1.5 px-1">
+                <div class="flex items-center gap-1.5 min-w-0 flex-1">
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 flex-shrink-0">Experiments</h2>
+                    <span id="sidebar-count" class="text-xs font-mono px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 flex-shrink-0">0</span>
+                    <select id="sidebar-owner-filter" class="text-[11px] font-sans py-0.5 px-1.5 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/80 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 truncate cursor-pointer hover:border-gray-300 dark:hover:border-gray-600 transition-colors min-w-0 max-w-[110px]" title="Filter experiments by owner">
+                        <option value="all">All</option>
+                    </select>
                 </div>
-                <div class="flex items-center gap-1.5">
+                <div class="flex items-center gap-1.5 flex-shrink-0">
                     <button id="add-exp-btn" type="button" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 py-1 rounded flex items-center gap-1 transition-colors shadow-sm font-medium" title="Configure New Experiment">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                         <span>Add</span>
@@ -723,6 +726,17 @@
 
             showDashboardView();
             initDashboard();
+            const keys = Object.keys(currentStatusData);
+            if (keys.length > 0) {
+                const myUser = currentAuthUser.username.replace(/^@/, '').trim().toLowerCase();
+                const myFirst = keys.find(k => (currentStatusData[k]?.owner || '').replace(/^@/, '').trim().toLowerCase() === myUser);
+                if (myFirst) {
+                    selectedExpKey = myFirst;
+                    history.replaceState(null, '', '#' + encodeURIComponent(selectedExpKey));
+                    renderSelectedExperiment();
+                }
+            }
+            renderSidebar();
         }
 
         // Default landing experiment is read from `default_exp` / `default: true` in `myexps.yml` (via <exp>.json).
@@ -735,6 +749,7 @@
         let isDemoMode = false;
         let currentStatusData = {};
         let selectedExpKey = null;
+        let selectedOwnerFilter = 'all';
 
         // --- Sample Fallback Data (Empty by default) ---
         const SAMPLE_STATUS = {};
@@ -893,6 +908,7 @@
             // Initialize Modal & Action Handlers
             initModalHandlers();
             initSidebarToggle();
+            initSidebarFilter();
 
             // Start timer & load data
             startTimer();
@@ -1543,6 +1559,131 @@
             }
         }
 
+        // --- Experiment Sorting & Filtering Helpers ---
+        function getExpSortName(key, data) {
+            if (data && data.experiment) return data.experiment;
+            if (key && key.includes('/')) return key.split('/')[1];
+            return key || '';
+        }
+
+        function sortExperimentKeys(keys) {
+            const myUser = (currentAuthUser && currentAuthUser.username ? currentAuthUser.username.replace(/^@/, '').trim().toLowerCase() : '');
+
+            return [...keys].sort((keyA, keyB) => {
+                const dataA = currentStatusData[keyA] || {};
+                const dataB = currentStatusData[keyB] || {};
+                const ownerA = (dataA.owner || '').replace(/^@/, '').trim().toLowerCase();
+                const ownerB = (dataB.owner || '').replace(/^@/, '').trim().toLowerCase();
+                const nameA = getExpSortName(keyA, dataA).toLowerCase();
+                const nameB = getExpSortName(keyB, dataB).toLowerCase();
+
+                // 1. If user is logged in, place user's own experiments at the very top (sorted by expname)
+                if (myUser) {
+                    const isMineA = (ownerA === myUser);
+                    const isMineB = (ownerB === myUser);
+                    if (isMineA && !isMineB) return -1;
+                    if (!isMineA && isMineB) return 1;
+                    if (isMineA && isMineB) {
+                        const nameCmp = nameA.localeCompare(nameB);
+                        if (nameCmp !== 0) return nameCmp;
+                        return keyA.localeCompare(keyB);
+                    }
+                }
+
+                // 2. Remaining experiments (or when not logged in): sort by owner first, then expname
+                if (ownerA !== ownerB) {
+                    if (!ownerA) return 1;
+                    if (!ownerB) return -1;
+                    const ownerCmp = ownerA.localeCompare(ownerB);
+                    if (ownerCmp !== 0) return ownerCmp;
+                }
+
+                const nameCmp = nameA.localeCompare(nameB);
+                if (nameCmp !== 0) return nameCmp;
+                return keyA.localeCompare(keyB);
+            });
+        }
+
+        function getFilteredExperimentKeys() {
+            const allKeys = Object.keys(currentStatusData);
+            const myUser = (currentAuthUser && currentAuthUser.username ? currentAuthUser.username.replace(/^@/, '').trim().toLowerCase() : '');
+
+            let filtered = allKeys;
+            if (selectedOwnerFilter === 'mine' && myUser) {
+                filtered = allKeys.filter(k => (currentStatusData[k]?.owner || '').replace(/^@/, '').trim().toLowerCase() === myUser);
+            } else if (selectedOwnerFilter.startsWith('owner:')) {
+                const targetOwner = selectedOwnerFilter.slice(6).toLowerCase();
+                filtered = allKeys.filter(k => (currentStatusData[k]?.owner || '').replace(/^@/, '').trim().toLowerCase() === targetOwner);
+            } else if (selectedOwnerFilter === 'unassigned') {
+                filtered = allKeys.filter(k => !(currentStatusData[k]?.owner || '').replace(/^@/, '').trim());
+            }
+
+            return sortExperimentKeys(filtered);
+        }
+
+        function updateSidebarOwnerFilterOptions(allKeys) {
+            const filterEl = document.getElementById('sidebar-owner-filter');
+            if (!filterEl) return;
+
+            const myUser = (currentAuthUser && currentAuthUser.username ? currentAuthUser.username.replace(/^@/, '').trim().toLowerCase() : '');
+            const distinctOwners = new Set();
+            let hasUnassigned = false;
+            allKeys.forEach(k => {
+                const o = (currentStatusData[k]?.owner || '').replace(/^@/, '').trim();
+                if (o) distinctOwners.add(o);
+                else hasUnassigned = true;
+            });
+            const sortedOwners = Array.from(distinctOwners).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+
+            const sig = `${myUser}|${sortedOwners.join(',')}|${hasUnassigned}`;
+            if (filterEl.dataset.sig !== sig) {
+                filterEl.dataset.sig = sig;
+                const prevVal = selectedOwnerFilter;
+
+                let html = `<option value="all">All</option>`;
+                if (myUser) {
+                    html += `<option value="mine">Mine (@${currentAuthUser.username.replace(/^@/, '')})</option>`;
+                }
+                sortedOwners.forEach(o => {
+                    if (myUser && o.toLowerCase() === myUser) return;
+                    html += `<option value="owner:${o}">@${o}</option>`;
+                });
+                if (hasUnassigned) {
+                    html += `<option value="unassigned">(None)</option>`;
+                }
+                filterEl.innerHTML = html;
+
+                const validValues = ['all'];
+                if (myUser) validValues.push('mine');
+                sortedOwners.forEach(o => validValues.push(`owner:${o}`));
+                if (hasUnassigned) validValues.push('unassigned');
+
+                if (validValues.includes(prevVal)) {
+                    selectedOwnerFilter = prevVal;
+                } else {
+                    selectedOwnerFilter = 'all';
+                }
+            }
+            filterEl.value = selectedOwnerFilter;
+        }
+
+        function initSidebarFilter() {
+            const filterEl = document.getElementById('sidebar-owner-filter');
+            if (!filterEl) return;
+            filterEl.addEventListener('change', (e) => {
+                selectedOwnerFilter = e.target.value;
+                const visibleKeys = getFilteredExperimentKeys();
+                if (visibleKeys.length > 0 && !visibleKeys.includes(selectedExpKey)) {
+                    selectedExpKey = visibleKeys[0];
+                    history.replaceState(null, '', '#' + encodeURIComponent(selectedExpKey));
+                    renderSelectedExperiment();
+                } else if (visibleKeys.length === 0) {
+                    renderSelectedExperiment();
+                }
+                renderSidebar();
+            });
+        }
+
         // --- Default / Active Selection Logic ---
         function chooseDefaultExperimentIfNeeded() {
             const keys = Object.keys(currentStatusData);
@@ -1579,8 +1720,9 @@
                     return;
                 }
             }
-            // 4. Fallback to the first entry
-            selectedExpKey = keys[0];
+            // 4. Fallback to the first sorted entry
+            const sorted = sortExperimentKeys(keys);
+            selectedExpKey = sorted[0];
         }
 
         function isRetroAllDone(data) {
@@ -1627,25 +1769,28 @@
             const listEl = document.getElementById('sidebar-list');
             const countEl = document.getElementById('sidebar-count');
             const collapsedCountEl = document.getElementById('collapsed-sidebar-count');
-            const keys = Object.keys(currentStatusData);
-            countEl.textContent = keys.length;
-            if (collapsedCountEl) collapsedCountEl.textContent = keys.length;
+            updateSidebarOwnerFilterOptions(Object.keys(currentStatusData));
+
+            const visibleKeys = getFilteredExperimentKeys();
+            countEl.textContent = visibleKeys.length;
+            if (collapsedCountEl) collapsedCountEl.textContent = visibleKeys.length;
             listEl.innerHTML = '';
 
-            if (keys.length === 0) {
+            if (visibleKeys.length === 0) {
+                const isFiltering = (selectedOwnerFilter !== 'all');
                 listEl.innerHTML = `
                     <div class="text-center py-8 px-3 text-gray-500 dark:text-gray-400">
                         <svg class="w-8 h-8 mx-auto mb-2 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
-                        <p class="text-xs font-medium">No experiments registered</p>
-                        <p class="text-[11px] mt-1 text-gray-400">Click &ldquo;+ Add&rdquo; above to register an experiment.</p>
+                        <p class="text-xs font-medium">${isFiltering ? 'No experiments match filter' : 'No experiments registered'}</p>
+                        <p class="text-[11px] mt-1 text-gray-400">${isFiltering ? 'Try switching the owner filter to "All".' : 'Click &ldquo;+ Add&rdquo; above to register an experiment.'}</p>
                     </div>
                 `;
                 return;
             }
 
-            keys.forEach(key => {
+            visibleKeys.forEach(key => {
                 const data = currentStatusData[key];
                 const isSelected = key === selectedExpKey;
                 const health = getExperimentHealth(data);
