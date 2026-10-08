@@ -1022,6 +1022,20 @@
         // --- Modal & Experiment Management Handlers (100% Zero-Token Scheme A) ---
         const NOAA_EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@noaa\.gov$/i;
 
+        function formatDurationSec(sec) {
+            if (sec === null || sec === undefined || isNaN(sec)) return '-';
+            sec = Number(sec);
+            if (sec < 60) return `${Math.round(sec)}s`;
+            if (sec < 3600) {
+                const m = Math.floor(sec / 60);
+                const s = Math.round(sec % 60);
+                return s > 0 ? `${m}m ${s}s` : `${m}m`;
+            }
+            const h = Math.floor(sec / 3600);
+            const m = Math.floor((sec % 3600) / 60);
+            return m > 0 ? `${h}h ${m}m` : `${h}h`;
+        }
+
         function extractSuiteKey(expdir, suiteName = '') {
             if (suiteName && String(suiteName).trim()) {
                 return `suite:${String(suiteName).trim().toLowerCase()}`;
@@ -2015,12 +2029,14 @@
                             cellDiv.innerHTML = '<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
                         }
 
+                        const isRun = (t.state || '').toUpperCase() === 'RUNNING';
+                        const durText = t.duration !== null && t.duration !== undefined ? (formatDurationSec(t.duration) + (isRun ? ' (running)' : '')) : 'N/A';
                         const tooltipHtml = `
                             <div class="font-bold text-sm mb-1">${t.name} <span class="font-mono font-normal opacity-80">(${cycleStr})</span></div>
                             <div class="space-y-0.5 font-mono text-[11px]">
                                 <div>State: <span class="font-semibold">${t.state}</span></div>
                                 <div>JobID: ${t.jobid || 'N/A'}</div>
-                                <div>Duration: ${t.duration !== null && t.duration !== undefined ? t.duration + 's' : 'N/A'}</div>
+                                <div>Duration: ${durText}</div>
                                 <div>Tries: ${t.tries !== null && t.tries !== undefined ? t.tries : 'N/A'}</div>
                             </div>
                         `;
@@ -2060,7 +2076,8 @@
                         const itemsHtml = tasksInCol.map(t => {
                             const st = (t.state || 'OTHER').toUpperCase();
                             const dotColor = STATE_DOT_COLORS[st] || STATE_DOT_COLORS['OTHER'];
-                            const durStr = t.duration !== null && t.duration !== undefined ? `${t.duration}s` : '-';
+                            const isTaskRun = st === 'RUNNING';
+                            const durStr = t.duration !== null && t.duration !== undefined ? (formatDurationSec(t.duration) + (isTaskRun ? ' run' : '')) : '-';
                             return `
                                 <div class="flex items-center justify-between gap-3 bg-gray-800/80 dark:bg-gray-900/70 px-2.5 py-1 rounded border border-gray-700/60 whitespace-nowrap">
                                     <div class="flex items-center gap-1.5 whitespace-nowrap">

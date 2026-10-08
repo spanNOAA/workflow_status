@@ -589,6 +589,52 @@ def run_rocoto_cmd(cmd: List[str], expdir: Path) -> str:
     return proc.stdout
 
 
+def query_slurm_running_durations(jobids: List[str]) -> Dict[str, float]:
+    """Query live running durations in seconds directly from Slurm scheduler (squeue)."""
+    if not jobids:
+        return {}
+    clean_ids = [str(jid).strip() for jid in set(jobids) if str(jid).strip() and str(jid).strip().isdigit()]
+    if not clean_ids:
+        return {}
+
+    res: Dict[str, float] = {}
+    try:
+        proc = subprocess.run(
+            ["squeue", "-h", "-j", ",".join(clean_ids), "-o", "%i %M"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=5,
+        )
+        if proc.returncode == 0 and proc.stdout:
+            out = proc.stdout.decode("utf-8", errors="replace")
+            for line in out.splitlines():
+                parts = line.strip().split()
+                if len(parts) >= 2:
+                    jid, time_str = parts[0], parts[1]
+                    days = 0
+                    if "-" in time_str:
+                        d, time_str = time_str.split("-", 1)
+                        try:
+                            days = int(d)
+                        except ValueError:
+                            days = 0
+                    subparts = time_str.split(":")
+                    try:
+                        if len(subparts) == 3:
+                            sec = days * 86400 + int(subparts[0]) * 3600 + int(subparts[1]) * 60 + float(subparts[2])
+                        elif len(subparts) == 2:
+                            sec = days * 86400 + int(subparts[0]) * 60 + float(subparts[1])
+                        else:
+                            sec = float(subparts[0])
+                        res[jid] = round(sec, 1)
+                    except ValueError:
+                        pass
+    except Exception as exc:
+        logging.debug("Slurm live duration query skipped or unavailable: %s", exc)
+
+    return res
+
+
 def parse_rocotostat(
     expdir: Path,
     xml: str,
@@ -685,6 +731,19 @@ def parse_rocotostat(
             "duration": None if duration == "-" else float(duration),
         }
         cycles_tasks.setdefault(cdate, []).append(task_obj)
+
+    # Enrich running tasks with live elapsed running duration from Slurm
+    running_jobids = [
+        str(t["jobid"]) for task_list in cycles_tasks.values() for t in task_list
+        if t.get("state") == "RUNNING" and t.get("jobid")
+    ]
+    if running_jobids:
+        live_durations = query_slurm_running_durations(running_jobids)
+        if live_durations:
+            for task_list in cycles_tasks.values():
+                for t in task_list:
+                    if t.get("state") == "RUNNING" and str(t.get("jobid")) in live_durations:
+                        t["duration"] = live_durations[str(t["jobid"])]
 
     result: List[Dict[str, Any]] = []
     for cdate in selected_cycles:
