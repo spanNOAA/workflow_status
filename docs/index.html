@@ -453,7 +453,10 @@
     </template>
 
     <script>
-        // --- Configuration ---
+        (() => {
+            'use strict';
+
+            // --- Configuration ---
         const REPO = (() => {
             const host = window.location.hostname;
             const pathParts = window.location.pathname.split('/').filter(Boolean);
@@ -476,20 +479,17 @@
             return Boolean(currentAuthUser && currentAuthUser.isAdminVerified && (currentAuthUser.username || '').toLowerCase().trim() === u);
         }
 
-        // Authenticated user session (defaults strictly to empty Guest unless explicitly identified)
-        // Authenticated user session (derived strictly from active browser session, zero token persistence)
+        // Option A: Pure In-Memory Authentication Guard
+        // Zero persistence in sessionStorage / localStorage / cookies.
+        // Authentication state is stored strictly in-memory within this closure scope.
+        // Any page reload (F5) or closing the tab resets authentication state immediately.
         let currentAuthUser = {
-            username: (() => {
-                const s = sessionStorage.getItem('noaa_gsl_user');
-                return (s && s.trim()) ? s.trim() : '';
-            })(),
-            isAdminVerified: (() => {
-                return sessionStorage.getItem('noaa_gsl_admin') === 'true';
-            })()
+            username: '',
+            isAdminVerified: false
         };
 
         function isSessionAuthenticated() {
-            return Boolean(sessionStorage.getItem('noaa_gsl_user'));
+            return Boolean(currentAuthUser && currentAuthUser.username && currentAuthUser.username.trim());
         }
 
         function show403View(detailMsg = '') {
@@ -517,13 +517,17 @@
         }
 
         function clearSession() {
-            sessionStorage.removeItem('noaa_gsl_user');
-            sessionStorage.removeItem('noaa_gsl_admin');
-            localStorage.removeItem('github_token');
-            localStorage.removeItem('admin_token');
-            localStorage.removeItem('noaa_sso_verified');
-            localStorage.removeItem('noaa_auth_token');
-            localStorage.removeItem('admin_verified');
+            currentAuthUser.username = '';
+            currentAuthUser.isAdminVerified = false;
+            try {
+                sessionStorage.removeItem('noaa_gsl_user');
+                sessionStorage.removeItem('noaa_gsl_admin');
+                localStorage.removeItem('github_token');
+                localStorage.removeItem('admin_token');
+                localStorage.removeItem('noaa_sso_verified');
+                localStorage.removeItem('noaa_auth_token');
+                localStorage.removeItem('admin_verified');
+            } catch (e) {}
             location.reload();
         }
 
@@ -610,22 +614,20 @@
         }
 
         function unlockDashboard(user, isAdmin) {
-            // Save ONLY public login username and admin status in current browser session (Zero credentials saved!)
-            sessionStorage.setItem('noaa_gsl_user', user);
-            if (isAdmin) {
-                sessionStorage.setItem('noaa_gsl_admin', 'true');
-            } else {
+            // Option A: Save identity strictly in memory (Zero storage persistence!)
+            currentAuthUser.username = (user || '').trim();
+            currentAuthUser.isAdminVerified = Boolean(isAdmin);
+
+            // Clean up any residual storage keys from legacy sessions
+            try {
+                sessionStorage.removeItem('noaa_gsl_user');
                 sessionStorage.removeItem('noaa_gsl_admin');
-            }
-
-            currentAuthUser.username = user;
-            currentAuthUser.isAdminVerified = isAdmin;
-
-            // Purge any residual tokens or cached credentials from localStorage
-            localStorage.removeItem('github_token');
-            localStorage.removeItem('admin_token');
-            localStorage.removeItem('noaa_sso_verified');
-            localStorage.removeItem('noaa_auth_token');
+                localStorage.removeItem('github_token');
+                localStorage.removeItem('admin_token');
+                localStorage.removeItem('noaa_sso_verified');
+                localStorage.removeItem('noaa_auth_token');
+                localStorage.removeItem('admin_verified');
+            } catch (e) {}
 
             showDashboardView();
             initDashboard();
@@ -1983,6 +1985,7 @@
 
             container.appendChild(clone);
         }
+        })();
     </script>
 </body>
 </html>
