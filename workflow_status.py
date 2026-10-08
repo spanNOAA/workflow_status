@@ -40,7 +40,7 @@ REPO_ROOT = Path(os.path.abspath(__file__)).parent
 CYCLE_RE = re.compile(r"^\d{12}$")
 NOAA_EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@noaa\.gov$", re.IGNORECASE)
 EMAIL_RE = NOAA_EMAIL_RE
-_DYNAMIC_EXP_LOCK = threading.Lock()
+_DYNAMIC_EXP_LOCK = threading.RLock()
 
 ALLOWED_SCRATCH_PREFIXES = (
     "/scratch",
