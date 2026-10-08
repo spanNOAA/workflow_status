@@ -265,6 +265,9 @@
                 <p class="text-[11px] text-blue-700 dark:text-blue-300 leading-snug">
                     Opens GitHub with the required <code class="bg-blue-100 dark:bg-blue-900 px-1 py-0.5 rounded font-mono text-[10px]">read:org</code> scope pre-selected. Click <strong>Generate token</strong> at the bottom of the page, then paste it below.
                 </p>
+                <p class="text-[10px] text-amber-700 dark:text-amber-400 font-medium flex items-center gap-1">
+                    <span>⚡ Note: After generating, remember to click <strong>Configure SSO</strong> ➔ <strong>Authorize</strong> next to NOAA-GSL once.</span>
+                </p>
             </div>
 
             <div class="flex flex-col gap-1.5">
@@ -596,6 +599,7 @@
             let isGslActive = false;
             let activeOrgName = '';
             let ssoRequired = false;
+            let ssoOrgUrl = '';
 
             const targetOrgs = ['noaa-gsl', 'noaa-emc', 'noaa-gfdl', 'ufs-community', 'noaa-oar'];
 
@@ -622,9 +626,13 @@
                 for (const org of targetOrgs) {
                     try {
                         const mResp = await fetch(`https://api.github.com/user/memberships/orgs/${org}`, { headers });
-                        const ssoHdr = (mResp.headers.get('x-github-sso') || '').toLowerCase();
-                        if (ssoHdr && ssoHdr.includes('required')) {
+                        const rawSsoHdr = mResp.headers.get('x-github-sso') || '';
+                        if (rawSsoHdr.toLowerCase().includes('required')) {
                             ssoRequired = true;
+                            const mMatch = rawSsoHdr.match(/url=([^;\s]+)/i);
+                            if (mMatch && mMatch[1]) {
+                                ssoOrgUrl = mMatch[1];
+                            }
                         }
                         if (mResp.ok) {
                             const mData = await mResp.json();
@@ -651,15 +659,20 @@
 
             // Zero-Trust Rule: User MUST be an active member of NOAA organizations
             if (!isGslActive) {
-                let failReason = `403 Forbidden: @${login} is not recognized as an active member of authorized NOAA organizations (${targetOrgs.join(', ')}).`;
                 if (ssoRequired) {
-                    failReason = `403 Forbidden: Token requires SAML SSO authorization. Please visit https://github.com/settings/tokens, click 'Configure SSO' next to your token, and click 'Authorize' for NOAA organizations.`;
+                    return {
+                        success: false,
+                        isSsoRequired: true,
+                        ssoUrl: ssoOrgUrl || 'https://github.com/settings/tokens',
+                        user: login,
+                        reason: `SAML SSO Required: @${login} belongs to an organization requiring SAML SSO, but this token has not been authorized yet.`
+                    };
                 }
                 return {
                     success: false,
                     isForbidden: true,
                     user: login,
-                    reason: failReason
+                    reason: `403 Forbidden: @${login} is not recognized as an active member of authorized NOAA organizations (${targetOrgs.join(', ')}).`
                 };
             }
 
@@ -891,7 +904,10 @@
                 if (v403) v403.classList.add('hidden');
                 if (authModal) {
                     authModal.classList.remove('hidden');
-                    if (authErrorMsg) authErrorMsg.classList.add('hidden');
+                    if (authErrorMsg) {
+                        authErrorMsg.classList.add('hidden');
+                        authErrorMsg.innerHTML = '';
+                    }
                     if (patInput) {
                         patInput.value = '';
                         patInput.type = 'password';
@@ -928,24 +944,51 @@
 
                 try {
                     const result = await verifyNoaaAuth(pat);
-                    // Discard token immediately from input memory (Zero credentials persistence)
-                    if (patInput) patInput.value = '';
 
                     if (!result.success) {
-                        if (result.isForbidden) {
+                        if (result.isSsoRequired) {
+                            if (authErrorMsg) {
+                                authErrorMsg.innerHTML = `
+                                    <div class="flex flex-col gap-2 text-left">
+                                        <div class="font-semibold text-amber-800 dark:text-amber-200 flex items-center gap-1.5">
+                                            <svg class="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                            </svg>
+                                            <span>NOAA SAML SSO Authorization Required</span>
+                                        </div>
+                                        <p class="text-[11px] text-gray-700 dark:text-gray-300 leading-snug">
+                                            Token is valid for <strong>@${result.user}</strong>, but requires a one-time authorization to access NOAA organizations.
+                                        </p>
+                                        <a href="${result.ssoUrl || 'https://github.com/settings/tokens'}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors shadow-xs">
+                                            <span>Authorize Token for NOAA SSO ↗</span>
+                                        </a>
+                                        <p class="text-[10px] text-gray-500 dark:text-gray-400">
+                                            After completing authorization in the new tab, simply click <strong>Verify &amp; Unlock</strong> below.
+                                        </p>
+                                    </div>
+                                `;
+                                authErrorMsg.className = 'text-xs p-3 bg-amber-50 dark:bg-amber-950/40 rounded-lg border border-amber-200 dark:border-amber-800';
+                                authErrorMsg.classList.remove('hidden');
+                            }
+                        } else if (result.isForbidden) {
+                            if (patInput) patInput.value = '';
                             show403View(result.reason);
                         } else {
                             if (authErrorMsg) {
                                 authErrorMsg.textContent = result.reason;
+                                authErrorMsg.className = 'text-xs text-red-600 dark:text-red-400 font-medium p-2 bg-red-50 dark:bg-red-950/30 rounded border border-red-200 dark:border-red-800';
                                 authErrorMsg.classList.remove('hidden');
                             }
                         }
                     } else {
+                        // Discard token immediately from input memory
+                        if (patInput) patInput.value = '';
                         unlockDashboard(result.user, result.isAdmin);
                     }
                 } catch (err) {
                     if (authErrorMsg) {
                         authErrorMsg.textContent = `Verification error: ${err.message}`;
+                        authErrorMsg.className = 'text-xs text-red-600 dark:text-red-400 font-medium p-2 bg-red-50 dark:bg-red-950/30 rounded border border-red-200 dark:border-red-800';
                         authErrorMsg.classList.remove('hidden');
                     }
                 } finally {
