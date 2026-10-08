@@ -108,6 +108,23 @@
     <!-- Floating Tooltip (never clipped by table/container bounds) -->
     <div id="floating-tooltip" class="hidden fixed z-50 pointer-events-none bg-gray-900/95 dark:bg-gray-800/95 text-white border border-gray-700 dark:border-gray-600 rounded-lg shadow-xl p-3 text-xs backdrop-blur-sm w-max max-w-[96vw]"></div>
 
+    <!-- 404 Cloaked View (Anti-Reconnaissance: Appears completely non-existent to unauthenticated visitors) -->
+    <div id="view-404" class="fixed inset-0 z-50 bg-[#f1f1f1] text-[#24292f] flex flex-col items-center justify-center p-6 text-center select-none font-sans">
+        <div class="max-w-xl w-full flex flex-col items-center">
+            <h1 id="cloaked-404-title" class="text-7xl font-thin text-gray-800 tracking-tight mb-6 cursor-pointer select-none hover:text-gray-900 transition-colors" title="404 Not Found">404</h1>
+            <p class="text-xl font-bold text-gray-800 mb-3">There isn't a GitHub Pages site here.</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                If you're trying to publish one, read the
+                <a href="https://docs.github.com/pages" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">full documentation</a>
+                about how to set up <strong>GitHub Pages</strong> for your repository,
+                or contact <span id="cloaked-unlock-btn" class="text-blue-600 hover:underline cursor-pointer font-medium">GitHub Support</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Authenticated Dashboard View (Revealed strictly after NOAA Organization SAML SSO verification) -->
+    <div id="view-dashboard" class="hidden min-h-screen flex flex-col flex-grow">
+
     <!-- Header (Full Width) -->
     <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 w-full">
         <div class="w-full px-6 py-3.5 flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -208,6 +225,35 @@
             </a>
         </div>
     </footer>
+    </div> <!-- /#view-dashboard -->
+
+    <!-- NOAA SSO / Token Authentication Modal -->
+    <div id="modal-noaa-auth" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 max-w-md w-full p-6 flex flex-col gap-4 text-left">
+            <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-3">
+                <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <span>🛡️ NOAA Enterprise Verification</span>
+                </h3>
+                <button type="button" id="btn-close-auth" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-lg leading-none">&times;</button>
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">
+                Access to this HPC Workflow system is restricted strictly to active members of authorized NOAA organizations (<code class="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs font-mono">noaa-gsl</code>, <code class="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs font-mono">noaa-oar</code>) authenticated via SAML SSO.
+            </p>
+            <div class="flex flex-col gap-1.5">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-200">GitHub Personal Access Token (PAT)</label>
+                <input type="password" id="auth-pat-input" placeholder="ghp_xxxxxxxxxxxx" class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono focus:ring-2 focus:ring-emerald-500">
+                <p class="text-[11px] text-gray-500 dark:text-gray-400">Token requires <code class="font-mono text-xs">read:org</code> scope to verify NOAA Organization SAML SSO membership.</p>
+            </div>
+            <div id="auth-error-msg" class="hidden text-xs text-red-600 dark:text-red-400 font-medium p-2 bg-red-50 dark:bg-red-950/30 rounded border border-red-200 dark:border-red-800"></div>
+            <div class="flex items-center justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <button type="button" id="btn-cancel-auth" class="px-4 py-2 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-800">Cancel</button>
+                <button type="button" id="btn-submit-auth" class="px-4 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition-colors flex items-center gap-1.5">
+                    <span id="auth-spinner" class="hidden animate-spin text-sm">&#9696;</span>
+                    <span id="auth-submit-text">Verify &amp; Unlock</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Add Experiment Modal -->
     <div id="modal-add-exp" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
@@ -434,6 +480,129 @@
             })()
         };
 
+        function isSessionAuthenticated() {
+            return (
+                localStorage.getItem('noaa_sso_verified') === 'true' &&
+                Boolean(localStorage.getItem('current_user'))
+            );
+        }
+
+        function show404View() {
+            const v404 = document.getElementById('view-404');
+            const vDash = document.getElementById('view-dashboard');
+            if (v404) v404.classList.remove('hidden');
+            if (vDash) vDash.classList.add('hidden');
+            document.title = 'Page not found · GitHub Pages';
+        }
+
+        function showDashboardView() {
+            const v404 = document.getElementById('view-404');
+            const vDash = document.getElementById('view-dashboard');
+            if (v404) v404.classList.add('hidden');
+            if (vDash) vDash.classList.remove('hidden');
+            document.title = 'HPC Workflow Status';
+        }
+
+        function lockDashboard() {
+            localStorage.removeItem('noaa_sso_verified');
+            localStorage.removeItem('current_user');
+            localStorage.removeItem('admin_verified');
+            localStorage.removeItem('github_token');
+            location.reload();
+        }
+
+        async function verifyNoaaAuth(token) {
+            const cleanToken = (token || '').trim();
+            if (!cleanToken) {
+                return { success: false, reason: 'Please provide a valid GitHub Personal Access Token (PAT).' };
+            }
+
+            const headers = {
+                'Authorization': `Bearer ${cleanToken}`,
+                'Accept': 'application/vnd.github+json',
+                'User-Agent': 'NOAA-Workflow-Client'
+            };
+
+            // 1. Get user identity from GitHub API
+            let login = '';
+            try {
+                const uResp = await fetch('https://api.github.com/user', { headers });
+                if (!uResp.ok) {
+                    if (uResp.status === 401) {
+                        return { success: false, reason: 'Authentication failed: Invalid or expired GitHub token.' };
+                    }
+                    return { success: false, reason: `GitHub API error (${uResp.status}): Failed to retrieve user identity.` };
+                }
+                const uData = await uResp.json();
+                login = uData.login || '';
+            } catch (err) {
+                return { success: false, reason: `Network error connecting to GitHub: ${err.message}` };
+            }
+
+            if (!login) {
+                return { success: false, reason: 'Could not resolve GitHub username from token.' };
+            }
+
+            // 2. Verify active membership in NOAA GSL or NOAA OAR organization
+            let isOrgActive = false;
+            const targetOrgs = ['noaa-gsl', 'noaa-oar'];
+            for (const org of targetOrgs) {
+                try {
+                    const mResp = await fetch(`https://api.github.com/user/memberships/orgs/${org}`, { headers });
+                    if (mResp.ok) {
+                        const mData = await mResp.json();
+                        if (mData && mData.state === 'active') {
+                            isOrgActive = true;
+                            break;
+                        }
+                    }
+                } catch (e) {}
+
+                if (!isOrgActive) {
+                    try {
+                        const pubResp = await fetch(`https://api.github.com/orgs/${org}/members/${login}`, { headers });
+                        if (pubResp.status === 200 || pubResp.status === 204) {
+                            isOrgActive = true;
+                            break;
+                        }
+                    } catch (e) {}
+                }
+            }
+
+            // Zero-Trust Rule: User MUST be verified via NOAA SAML SSO organization
+            if (!isOrgActive) {
+                return {
+                    success: false,
+                    reason: `Security Rejection: @${login} is not an active, SAML SSO authenticated member of authorized NOAA organizations (${targetOrgs.join(', ')}).`
+                };
+            }
+
+            const repoOwner = (REPO.split('/')[0] || '').toLowerCase().trim();
+            const isAdmin = (login.toLowerCase() === repoOwner || ADMIN_USERS.some(a => a.toLowerCase() === login.toLowerCase()));
+
+            return {
+                success: true,
+                user: login,
+                isAdmin: isAdmin
+            };
+        }
+
+        function unlockDashboard(user, token, isAdmin) {
+            localStorage.setItem('noaa_sso_verified', 'true');
+            localStorage.setItem('current_user', user);
+            localStorage.setItem('admin_verified', isAdmin ? 'true' : 'false');
+            if (token) localStorage.setItem('github_token', token);
+
+            currentAuthUser.username = user;
+            currentAuthUser.isAdminVerified = isAdmin;
+
+            const modalAuth = document.getElementById('modal-noaa-auth');
+            if (modalAuth) modalAuth.classList.add('hidden');
+
+            showDashboardView();
+            initDashboard();
+        }
+
         // Default landing experiment is read from `default_exp` / `default: true` in `myexps.yml` (via <exp>.json).
         const DEFAULT_EXP = '';
         const REFRESH_INTERVAL = 120; // seconds
@@ -529,8 +698,13 @@
             tooltipEl.classList.add('hidden');
         }
 
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
+        // --- Initialization & 404 Cloaking Gatekeeper ---
+        let dashboardInitialized = false;
+
+        function initDashboard() {
+            if (dashboardInitialized) return;
+            dashboardInitialized = true;
+
             document.getElementById('github-link').href = `https://github.com/${REPO}`;
 
             // Role badge setup
@@ -539,79 +713,24 @@
                 if (checkIsAdmin(currentAuthUser.username)) {
                     roleBadge.textContent = `🛡️ Admin: @${currentAuthUser.username}`;
                     roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border border-purple-200 dark:border-purple-800 cursor-pointer hover:opacity-80 transition-opacity';
-                    roleBadge.title = 'Administrator session. Click to switch account or log out.';
-                    roleBadge.classList.remove('hidden');
-                } else if (currentAuthUser.username) {
-                    roleBadge.textContent = `@${currentAuthUser.username}`;
-                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity';
-                    roleBadge.title = 'Identified user. Click to switch account or log out.';
+                    roleBadge.title = 'Authenticated NOAA Admin. Click to lock session or switch account.';
                     roleBadge.classList.remove('hidden');
                 } else {
-                    roleBadge.textContent = '👤 Guest (Click to identify)';
-                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-500 hover:text-gray-800 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity';
-                    roleBadge.title = 'Click to identify yourself with your GitHub username';
+                    roleBadge.textContent = `@${currentAuthUser.username}`;
+                    roleBadge.className = 'px-2 py-0.5 rounded text-xs font-mono font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700 cursor-pointer hover:opacity-80 transition-opacity';
+                    roleBadge.title = 'Authenticated NOAA Org Member. Click to lock session or switch account.';
                     roleBadge.classList.remove('hidden');
                 }
 
-                roleBadge.addEventListener('click', async () => {
-                    const current = currentAuthUser.username || '';
-                    const promptMsg = current ?
-                        `Current user: @${current}\nEnter your GitHub username to switch accounts, or leave empty to log out (become Guest):` :
-                        'Enter your GitHub username to identify yourself in this browser (or leave empty for Guest mode):';
-                    const input = prompt(promptMsg, current);
-                    if (input === null) return;
-
-                    const clean = input.trim().replace(/^@/, '');
-                    if (!clean) {
-                        localStorage.removeItem('current_user');
-                        localStorage.removeItem('admin_verified');
-                        localStorage.removeItem('admin_token');
-                        alert('Logged out. You are now browsing as Guest.');
-                        location.reload();
-                        return;
-                    }
-
-                    const repoOwner = (REPO.split('/')[0] || '').toLowerCase().trim();
-                    const isAdminCandidate = (clean.toLowerCase() === repoOwner || ADMIN_USERS.some(a => a.toLowerCase().trim() === clean.toLowerCase()));
-
-                    if (isAdminCandidate) {
-                        const tokenInput = prompt(
-                            `@${clean} is an Administrator account.\nTo unlock Admin management on this client, enter your GitHub Personal Access Token (PAT with read:user scope):\n(Leave blank to browse as regular viewer without Admin rights)`
-                        );
-                        if (tokenInput && tokenInput.trim()) {
-                            const pat = tokenInput.trim();
-                            try {
-                                const resp = await fetch('https://api.github.com/user', {
-                                    headers: { 'Authorization': `Bearer ${pat}` }
-                                });
-                                if (resp.ok) {
-                                    const ghUser = await resp.json();
-                                    if (ghUser.login && ghUser.login.toLowerCase() === clean.toLowerCase()) {
-                                        localStorage.setItem('current_user', clean);
-                                        localStorage.setItem('admin_verified', 'true');
-                                        localStorage.setItem('admin_token', pat);
-                                        alert(`Admin authentication successful! Logged in as @${clean}.`);
-                                        location.reload();
-                                        return;
-                                    }
-                                }
-                                alert(`Token verification failed: Token does not belong to @${clean}. Logged in as viewer without Admin privileges.`);
-                            } catch (e) {
-                                alert('Network error during token verification. Logged in as viewer without Admin privileges.');
-                            }
-                        } else {
-                            alert(`No token provided. Logged in as viewer @${clean} without Admin privileges.`);
-                        }
-                        localStorage.setItem('current_user', clean);
-                        localStorage.removeItem('admin_verified');
-                        localStorage.removeItem('admin_token');
-                        location.reload();
-                    } else {
-                        localStorage.setItem('current_user', clean);
-                        localStorage.removeItem('admin_verified');
-                        localStorage.removeItem('admin_token');
-                        alert(`Session updated: Logged in as @${clean}.`);
-                        location.reload();
+                roleBadge.addEventListener('click', () => {
+                    const ans = prompt(
+                        `Active NOAA Session: @${currentAuthUser.username}\n\nType 'lock' to lock dashboard (return to 404).\nType 'switch' to re-authenticate with another account.\nOr leave blank to cancel:`,
+                        ''
+                    );
+                    if (ans === null) return;
+                    const clean = ans.trim().toLowerCase();
+                    if (clean === 'lock' || clean === 'switch') {
+                        lockDashboard();
                     }
                 });
             }
@@ -655,6 +774,105 @@
             // Start timer & load data
             startTimer();
             loadData();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup 404 Unlock Modal Triggers
+            const unlockBtn = document.getElementById('cloaked-unlock-btn');
+            const unlockTitle = document.getElementById('cloaked-404-title');
+            const authModal = document.getElementById('modal-noaa-auth');
+            const closeAuthBtn = document.getElementById('btn-close-auth');
+            const cancelAuthBtn = document.getElementById('btn-cancel-auth');
+            const submitAuthBtn = document.getElementById('btn-submit-auth');
+            const patInput = document.getElementById('auth-pat-input');
+            const authErrorMsg = document.getElementById('auth-error-msg');
+            const authSpinner = document.getElementById('auth-spinner');
+            const authSubmitText = document.getElementById('auth-submit-text');
+
+            function openAuthModal() {
+                if (authModal) {
+                    authModal.classList.remove('hidden');
+                    if (authErrorMsg) authErrorMsg.classList.add('hidden');
+                    if (patInput) {
+                        patInput.value = '';
+                        setTimeout(() => patInput.focus(), 50);
+                    }
+                }
+            }
+
+            function closeAuthModal() {
+                if (authModal) authModal.classList.add('hidden');
+            }
+
+            if (unlockBtn) unlockBtn.addEventListener('click', openAuthModal);
+            if (unlockTitle) unlockTitle.addEventListener('click', openAuthModal);
+            if (closeAuthBtn) closeAuthBtn.addEventListener('click', closeAuthModal);
+            if (cancelAuthBtn) cancelAuthBtn.addEventListener('click', closeAuthModal);
+
+            // Secret keyboard shortcut: Ctrl+Shift+U or Cmd+Shift+U to trigger unlock
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'U' || e.key === 'u')) {
+                    e.preventDefault();
+                    openAuthModal();
+                }
+            });
+
+            async function handleAuthSubmit() {
+                const pat = (patInput ? patInput.value : '').trim();
+                if (!pat) {
+                    if (authErrorMsg) {
+                        authErrorMsg.textContent = 'Please enter your GitHub Personal Access Token (PAT).';
+                        authErrorMsg.classList.remove('hidden');
+                    }
+                    return;
+                }
+
+                if (authErrorMsg) authErrorMsg.classList.add('hidden');
+                if (authSpinner) authSpinner.classList.remove('hidden');
+                if (authSubmitText) authSubmitText.textContent = 'Verifying...';
+                if (submitAuthBtn) submitAuthBtn.disabled = true;
+
+                try {
+                    const result = await verifyNoaaAuth(pat);
+                    if (!result.success) {
+                        if (authErrorMsg) {
+                            authErrorMsg.textContent = result.reason;
+                            authErrorMsg.classList.remove('hidden');
+                        }
+                    } else {
+                        unlockDashboard(result.user, pat, result.isAdmin);
+                    }
+                } catch (err) {
+                    if (authErrorMsg) {
+                        authErrorMsg.textContent = `Verification error: ${err.message}`;
+                        authErrorMsg.classList.remove('hidden');
+                    }
+                } finally {
+                    if (authSpinner) authSpinner.classList.add('hidden');
+                    if (authSubmitText) authSubmitText.textContent = 'Verify & Unlock';
+                    if (submitAuthBtn) submitAuthBtn.disabled = false;
+                }
+            }
+
+            if (submitAuthBtn) submitAuthBtn.addEventListener('click', handleAuthSubmit);
+            if (patInput) {
+                patInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAuthSubmit();
+                    }
+                });
+            }
+
+            // Zero-Trust Cloaking Gatekeeper: If unauthenticated, show 404 and STOP completely
+            if (!isSessionAuthenticated()) {
+                show404View();
+                return;
+            }
+
+            // Session authenticated: Reveal dashboard and start monitoring
+            showDashboardView();
+            initDashboard();
         });
 
         // --- Modal & Experiment Management Handlers (100% Zero-Token Scheme A) ---
