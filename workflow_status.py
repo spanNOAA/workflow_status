@@ -417,6 +417,14 @@ def sync_pending_instructions(
         if not is_exp_config:
             continue
 
+        # Fast cluster filter from title: [exp-config] <cluster>/<name>
+        # If cluster in title is specified and does not match this machine, skip immediately!
+        title_cluster_match = re.search(r"^\[exp-config\]\s*([^/\s]+)/", title, re.IGNORECASE)
+        if title_cluster_match:
+            title_cluster = title_cluster_match.group(1).strip().lower()
+            if title_cluster != machine.lower():
+                continue
+
         repo_owner = repo_slug.split("/")[0] if "/" in repo_slug else ""
         is_repo_admin = bool(
             (repo_owner and author.lower() == repo_owner.lower())
