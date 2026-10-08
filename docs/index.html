@@ -1642,7 +1642,7 @@
 
                 let html = `<option value="all">All</option>`;
                 if (myUser) {
-                    html += `<option value="mine">Mine (@${currentAuthUser.username.replace(/^@/, '')})</option>`;
+                    html += `<option value="owner:${myUser}">@${currentAuthUser.username.replace(/^@/, '')}</option>`;
                 }
                 sortedOwners.forEach(o => {
                     if (myUser && o.toLowerCase() === myUser) return;
@@ -1654,12 +1654,15 @@
                 filterEl.innerHTML = html;
 
                 const validValues = ['all'];
-                if (myUser) validValues.push('mine');
+                if (myUser) {
+                    validValues.push('mine');
+                    validValues.push(`owner:${myUser}`);
+                }
                 sortedOwners.forEach(o => validValues.push(`owner:${o}`));
                 if (hasUnassigned) validValues.push('unassigned');
 
                 if (validValues.includes(prevVal)) {
-                    selectedOwnerFilter = prevVal;
+                    selectedOwnerFilter = (prevVal === 'mine') ? `owner:${myUser}` : prevVal;
                 } else {
                     selectedOwnerFilter = 'all';
                 }
