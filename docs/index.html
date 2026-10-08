@@ -1751,7 +1751,11 @@
             const text = clone.querySelector('.staleness-text');
             text.textContent = isNaN(diffMin) ? 'Unknown' : `${diffMin} min ago`;
 
-            if (isNaN(diffMin)) {
+            if (data.retro_completed_at) {
+                dot.classList.add('bg-emerald-500');
+                text.textContent = 'Completed';
+                text.classList.add('text-emerald-600', 'dark:text-emerald-400');
+            } else if (isNaN(diffMin)) {
                 dot.classList.add('bg-gray-400');
             } else if (diffMin < 15) {
                 dot.classList.add('bg-emerald-500');
@@ -1793,7 +1797,15 @@
                         </div>`;
                 }
                 if (data.retro_completed_at) {
-                    const daysLeft = data.retro_days_remaining !== undefined ? `${data.retro_days_remaining}d` : 'soon';
+                    let daysLeft = 'soon';
+                    try {
+                        const compDate = new Date(data.retro_completed_at);
+                        const elapsedSec = (Date.now() - compDate.getTime()) / 1000;
+                        const remDays = Math.max(0, (3.0 - (elapsedSec / 86400.0))).toFixed(1);
+                        daysLeft = `${remDays}d`;
+                    } catch (e) {
+                        if (data.retro_days_remaining !== undefined) daysLeft = `${data.retro_days_remaining}d`;
+                    }
                     alertsContainer.innerHTML += `
                         <div class="px-6 py-2.5 bg-indigo-50 dark:bg-indigo-950/40 border-b border-indigo-200 dark:border-indigo-800 flex items-start gap-2 text-sm text-indigo-900 dark:text-indigo-200">
                             <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-indigo-600 dark:text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>

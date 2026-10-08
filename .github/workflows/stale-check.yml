@@ -33,6 +33,12 @@ jobs:
                 continue
               fi
 
+              is_completed=$(echo "$content" | jq -r '.retro_completed_at // empty' 2>/dev/null)
+              if [[ -n "$is_completed" ]]; then
+                echo "::info::${branch}/${f} is a completed retrospective experiment (${is_completed}). Skipping staleness check."
+                continue
+              fi
+
               file_epoch=$(date -d "$updated" +%s 2>/dev/null || echo 0)
               age_min=$(( (now - file_epoch) / 60 ))
 

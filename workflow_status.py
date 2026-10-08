@@ -177,6 +177,31 @@ def save_processed_issues(machine: str, issue_ids: Set[int]) -> None:
         logging.debug("Could not save processed issues for %s: %s", machine, exc)
 
 
+def load_completed_retention(state_dir: Path) -> Dict[str, Any]:
+    """Load completed retrospective experiments retained for 3-day publishing."""
+    ret_file = state_dir / "completed_retention.json"
+    if ret_file.is_file():
+        try:
+            data = json.loads(ret_file.read_text(encoding="utf-8"))
+            if isinstance(data, dict):
+                return data
+        except Exception:
+            pass
+    return {}
+
+
+def save_completed_retention(state_dir: Path, data: Dict[str, Any]) -> None:
+    """Save completed retrospective experiments retention pool."""
+    try:
+        state_dir.mkdir(parents=True, exist_ok=True)
+        ret_file = state_dir / "completed_retention.json"
+        tmp_file = ret_file.with_suffix(".tmp")
+        tmp_file.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+        tmp_file.replace(ret_file)
+    except Exception as exc:
+        logging.warning("Failed to save completed retention: %s", exc)
+
+
 ALLOWED_ORGS = ("noaa-gsl", "noaa-oar")
 _MEMBER_CACHE: Dict[Tuple[str, str], Tuple[bool, float]] = {}
 CACHE_TTL_SEC = 3600
@@ -413,6 +438,11 @@ def sync_pending_instructions(
             continue
 
         if action == "delete":
+            ret_pool = load_completed_retention(target_state_dir)
+            if exp_name in ret_pool:
+                del ret_pool[exp_name]
+                save_completed_retention(target_state_dir, ret_pool)
+
             # Verify caller owns the experiment or is an authorized admin
             matching = [
                 e for e in current_exps
@@ -491,6 +521,11 @@ def sync_pending_instructions(
                 new_entry["recipients"] = [email_str.lower()]
 
             # Upsert entry
+            ret_pool = load_completed_retention(target_state_dir)
+            if exp_name in ret_pool:
+                del ret_pool[exp_name]
+                save_completed_retention(target_state_dir, ret_pool)
+
             current_exps = [e for e in current_exps if e.get("name") != exp_name]
             current_exps.append(new_entry)
             modified = True
@@ -1250,7 +1285,7 @@ def process_experiment(
     if default_exp:
         status["default_exp"] = default_exp
 
-    # Check retro completion and 3-day retention auto-pruning
+    # Check retro completion: decouple from active monitoring and freeze in retention pool
     if is_retro and is_retro_all_done(status):
         completed_at = state.get("retro_completed_at")
         if not completed_at:
@@ -1258,41 +1293,37 @@ def process_experiment(
             state["retro_completed_at"] = completed_at
             save_state(state_file, state)
             logging.info(
-                "Retro experiment '%s' on %s reached 100%% completion at %s. 3-day auto-prune timer started.",
+                "Retro experiment '%s' on %s reached 100%% completion at %s.",
                 exp_name, cluster, completed_at
             )
-        else:
-            try:
-                comp_dt = dt.datetime.fromisoformat(completed_at.replace("Z", "+00:00"))
-                elapsed_sec = (dt.datetime.now(dt.timezone.utc) - comp_dt).total_seconds()
-                days_remaining = max(0.0, round(3.0 - (elapsed_sec / 86400.0), 1))
-                status["retro_completed_at"] = completed_at
-                status["retro_days_remaining"] = days_remaining
+        status["retro_completed_at"] = completed_at
+        save_status_json(status_file, status)
 
-                if elapsed_sec >= 3 * 86400:  # 3 days elapsed
-                    logging.info(
-                        "Retro experiment '%s' completed >= 3 days ago (%s). Auto-pruning from monitoring queue.",
-                        exp_name, completed_at
-                    )
-                    # Prune from dynamic experiments
-                    with _DYNAMIC_EXP_LOCK:
-                        dyn_exps = load_dynamic_experiments(cluster)
-                        new_dyn = [e for e in dyn_exps if e.get("name") != exp_name]
-                        if len(new_dyn) < len(dyn_exps):
-                            save_dynamic_experiments(cluster, new_dyn)
+        # 1. Immediately decouple from dynamic monitoring queue so scron never runs rocotostat on it again
+        with _DYNAMIC_EXP_LOCK:
+            dyn_exps = load_dynamic_experiments(cluster)
+            new_dyn = [e for e in dyn_exps if e.get("name") != exp_name]
+            if len(new_dyn) < len(dyn_exps):
+                save_dynamic_experiments(cluster, new_dyn)
+                logging.info(
+                    "Retro experiment '%s' decoupled from active monitoring queue (dynamic config).",
+                    exp_name,
+                )
 
-                    # Unlink local status and state files
-                    try:
-                        if status_file.is_file():
-                            status_file.unlink()
-                        if state_file.is_file():
-                            state_file.unlink()
-                    except Exception as exc:
-                        logging.warning("Error unlinking files during auto-prune of %s: %s", exp_name, exc)
-
-                    return None
-            except Exception as exc:
-                logging.warning("Error evaluating retro_completed_at for %s: %s", exp_name, exc)
+        # 2. Add to completed retention pool (retained on GitHub for 3 days without repeated polling)
+        ret_pool = load_completed_retention(state_dir)
+        ret_pool[exp_name] = {
+            "name": exp_name,
+            "cluster": cluster,
+            "completed_at": completed_at,
+            "status_file": str(status_file),
+        }
+        save_completed_retention(state_dir, ret_pool)
+        logging.info(
+            "Retro experiment '%s' frozen in 3-day retention pool.",
+            exp_name,
+        )
+        return status_file
     else:
         if "retro_completed_at" in state and not is_retro_all_done(status):
             state.pop("retro_completed_at", None)
@@ -1465,13 +1496,63 @@ def main() -> int:
     # Ingest pending experiment configuration requests from NOAA org members
     sync_pending_instructions(machine, allowed_orgs, state_dir=state_dir)
 
+    # 1. Process frozen completed retention pool (3-day countdown and auto-purge)
+    ret_pool = load_completed_retention(state_dir)
+    retained_files: List[Path] = []
+    pool_modified = False
+    now_utc = dt.datetime.now(dt.timezone.utc)
+
+    for r_name, r_meta in list(ret_pool.items()):
+        comp_str = r_meta.get("completed_at", "")
+        s_file = Path(r_meta.get("status_file", state_dir / f"{r_name}.json"))
+        try:
+            comp_dt = dt.datetime.fromisoformat(comp_str.replace("Z", "+00:00"))
+            elapsed_sec = (now_utc - comp_dt).total_seconds()
+        except Exception:
+            elapsed_sec = 0
+
+        if elapsed_sec >= 3 * 86400:  # 3 days elapsed -> purge permanently!
+            logging.info(
+                "3-day retention expired for completed experiment '%s' (%s). Purging from local state and remote branch.",
+                r_name, comp_str,
+            )
+            del ret_pool[r_name]
+            pool_modified = True
+            try:
+                if s_file.is_file():
+                    s_file.unlink()
+                st_file = state_dir / f"{r_name}_{machine}_state.json"
+                if st_file.is_file():
+                    st_file.unlink()
+            except Exception as exc:
+                logging.warning("Error unlinking files for expired retention %s: %s", r_name, exc)
+        else:
+            if s_file.is_file():
+                retained_files.append(s_file)
+
+    if pool_modified:
+        save_completed_retention(state_dir, ret_pool)
+
+    # 2. Filter active experiments to monitor (skip any experiment in the frozen retention pool)
     static_experiments = raw_cfg.get("experiments", [])
     dynamic_experiments = load_dynamic_experiments(machine)
+    all_raw = list(static_experiments) + list(dynamic_experiments)
+    all_experiments = [e for e in all_raw if e.get("name") not in ret_pool]
 
-    all_experiments = list(static_experiments) + list(dynamic_experiments)
-    if not all_experiments:
-        logging.info("No experiments currently defined in %s or dynamic state. Updating status branch.", config_file)
+    if not all_experiments and not retained_files:
+        logging.info("No active experiments or retained completed experiments. Updating status branch.")
         git_push_status_branch(REPO_ROOT, [], status_branch, args.dry_run)
+        return 0
+
+    if not all_experiments and retained_files:
+        if pool_modified:
+            logging.info("Pushing updated status branch after retention expiry (%d retained remaining).", len(retained_files))
+            git_push_status_branch(REPO_ROOT, sorted(retained_files), status_branch, args.dry_run)
+        else:
+            logging.info(
+                "All %d experiment(s) completed and frozen in 3-day retention. No remote push needed.",
+                len(retained_files),
+            )
         return 0
 
     if len(all_experiments) > MAX_TOTAL_EXPERIMENTS:
@@ -1512,14 +1593,20 @@ def main() -> int:
             except Exception as exc:
                 logging.exception("Worker batch failed: %s", exc)
 
-    ok_count = len(updated_files)
-    if ok_count > 0:
-        git_push_status_branch(REPO_ROOT, sorted(updated_files), status_branch, args.dry_run)
+    final_publish_files = sorted(list(set(updated_files + retained_files)))
+    if final_publish_files:
+        git_push_status_branch(REPO_ROOT, final_publish_files, status_branch, args.dry_run)
     else:
         git_push_status_branch(REPO_ROOT, [], status_branch, args.dry_run)
 
-    logging.info("=== Monitor run completed (%d/%d experiments succeeded) ===", ok_count, len(all_experiments))
-    return 0 if ok_count > 0 else 1
+    ok_count = len(updated_files)
+    logging.info(
+        "=== Monitor run completed (%d/%d active experiments succeeded, %d retained) ===",
+        ok_count,
+        len(all_experiments),
+        len(retained_files),
+    )
+    return 0 if (ok_count > 0 or len(retained_files) > 0) else 1
 
 
 if __name__ == "__main__":
