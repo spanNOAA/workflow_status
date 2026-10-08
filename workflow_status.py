@@ -73,18 +73,19 @@ def extract_suite_key(expdir_str: str, suite_override: Optional[str] = None) -> 
 
     For standard RRFS/UFS workflows structured as:
       .../<suite_name>/exp/<member_name> or .../<suite_name>/exps/<member_name>
-    the suite grouping key is the normalized path up to <suite_name>.
-    Otherwise, if no /exp/ or /exps/ segment exists, the normalized expdir is returned.
+    the suite grouping key is normalized to `suite:<suite_name>`.
+    Otherwise, if no suite name can be inferred, the normalized path key is returned.
     """
-    if suite_override and str(suite_override).strip():
-        return f"suite:{str(suite_override).strip().lower()}"
+    suite_name = (str(suite_override).strip() if suite_override else "") or extract_suite_name(expdir_str)
+    if suite_name:
+        return f"suite:{suite_name.lower()}"
     if not expdir_str:
         return ""
     clean = os.path.normpath(str(expdir_str).strip().rstrip("/"))
     m = re.search(r"^(.*)/(?:exp|exps)(?:/.*)?$", clean, re.IGNORECASE)
     if m:
-        return m.group(1).rstrip("/").lower()
-    return clean.lower()
+        return f"path:{m.group(1).rstrip('/').lower()}"
+    return f"path:{clean.lower()}"
 
 
 def extract_suite_name(expdir_str: str, default_name: str = "") -> str:
@@ -1436,7 +1437,8 @@ def process_experiment(
                 exp_name, cluster, completed_at
             )
         status["retro_completed_at"] = completed_at
-        save_status_json(status_file, status)
+        write_status_json(status, status_file)
+        logging.info("Saved status JSON: %s", status_file)
 
         # 1. Immediately decouple from dynamic monitoring queue so scron never runs rocotostat on it again
         with _DYNAMIC_EXP_LOCK:

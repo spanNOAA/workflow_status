@@ -1036,19 +1036,6 @@
             return m > 0 ? `${h}h ${m}m` : `${h}h`;
         }
 
-        function extractSuiteKey(expdir, suiteName = '') {
-            if (suiteName && String(suiteName).trim()) {
-                return `suite:${String(suiteName).trim().toLowerCase()}`;
-            }
-            if (!expdir) return '';
-            const clean = String(expdir).trim().replace(/\/+$/, '');
-            const m = clean.match(/^(.*)\/(?:exp|exps)(?:\/.*)?$/i);
-            if (m && m[1]) {
-                return m[1].replace(/\/+$/, '').toLowerCase();
-            }
-            return clean.toLowerCase();
-        }
-
         function extractSuiteName(expdir, defaultName = '') {
             if (!expdir) return defaultName || '';
             const clean = String(expdir).trim().replace(/\/+$/, '');
@@ -1058,6 +1045,20 @@
                 return parts[parts.length - 1] || defaultName || '';
             }
             return defaultName || '';
+        }
+
+        function extractSuiteKey(expdir, suiteName = '') {
+            const sName = (suiteName && String(suiteName).trim()) || extractSuiteName(expdir);
+            if (sName) {
+                return `suite:${sName.toLowerCase()}`;
+            }
+            if (!expdir) return '';
+            const clean = String(expdir).trim().replace(/\/+$/, '');
+            const m = clean.match(/^(.*)\/(?:exp|exps)(?:\/.*)?$/i);
+            if (m && m[1]) {
+                return `path:${m[1].replace(/\/+$/, '').toLowerCase()}`;
+            }
+            return `path:${clean.toLowerCase()}`;
         }
 
         function updateModeRadios() {
@@ -1180,7 +1181,8 @@
                             }
                         });
 
-                        const newSuiteKey = extractSuiteKey(expdir);
+                        const newSuiteName = extractSuiteName(expdir);
+                        const newSuiteKey = extractSuiteKey(expdir, newSuiteName);
                         if (!userSuites.has(newSuiteKey) && userSuites.size >= 3) {
                             alert(`Quota limit reached: You already have 3 monitored experiment suites under @${currentAuthUser.username}. Member runs sharing a common suite directory (e.g. .../<suite>/exp/...) count as a single suite.`);
                             return;
