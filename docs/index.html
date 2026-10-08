@@ -592,42 +592,74 @@
                 return { success: false, reason: 'Could not resolve GitHub username from token.' };
             }
 
-            // 2. Verify active membership in NOAA Global Systems Laboratory (noaa-gsl) organization
+            // 2. Verify active membership in authorized NOAA organizations
             let isGslActive = false;
             let activeOrgName = '';
-            const targetOrgs = ['noaa-gsl', 'noaa-oar'];
-            for (const org of targetOrgs) {
-                try {
-                    const mResp = await fetch(`https://api.github.com/user/memberships/orgs/${org}`, { headers });
-                    if (mResp.ok) {
-                        const mData = await mResp.json();
-                        if (mData && mData.state === 'active') {
-                            isGslActive = true;
-                            activeOrgName = org;
-                            break;
+            let ssoRequired = false;
+
+            const targetOrgs = ['noaa-gsl', 'noaa-emc', 'noaa-gfdl', 'ufs-community', 'noaa-oar'];
+
+            // 2a. Query all user memberships at once (/user/memberships/orgs?state=all)
+            try {
+                const allMResp = await fetch('https://api.github.com/user/memberships/orgs?state=all', { headers });
+                if (allMResp.ok) {
+                    const allMData = await allMResp.json();
+                    if (Array.isArray(allMData)) {
+                        for (const m of allMData) {
+                            const oLogin = (m.organization && m.organization.login ? m.organization.login : '').toLowerCase().trim();
+                            if (targetOrgs.includes(oLogin) && m.state === 'active') {
+                                isGslActive = true;
+                                activeOrgName = m.organization.login;
+                                break;
+                            }
                         }
                     }
-                } catch (e) {}
+                }
+            } catch (e) {}
 
-                if (!isGslActive) {
+            // 2b. Direct probing for target NOAA organizations if not matched yet
+            if (!isGslActive) {
+                for (const org of targetOrgs) {
                     try {
-                        const pubResp = await fetch(`https://api.github.com/orgs/{org}/members/${login}`, { headers });
-                        if (pubResp.status === 200 || pubResp.status === 204) {
-                            isGslActive = true;
-                            activeOrgName = org;
-                            break;
+                        const mResp = await fetch(`https://api.github.com/user/memberships/orgs/${org}`, { headers });
+                        const ssoHdr = (mResp.headers.get('x-github-sso') || '').toLowerCase();
+                        if (ssoHdr && ssoHdr.includes('required')) {
+                            ssoRequired = true;
+                        }
+                        if (mResp.ok) {
+                            const mData = await mResp.json();
+                            if (mData && mData.state === 'active') {
+                                isGslActive = true;
+                                activeOrgName = org;
+                                break;
+                            }
                         }
                     } catch (e) {}
+
+                    if (!isGslActive) {
+                        try {
+                            const pubResp = await fetch(`https://api.github.com/orgs/${org}/members/${login}`, { headers });
+                            if (pubResp.status === 200 || pubResp.status === 204) {
+                                isGslActive = true;
+                                activeOrgName = org;
+                                break;
+                            }
+                        } catch (e) {}
+                    }
                 }
             }
 
-            // Zero-Trust Rule: User MUST be an active member of NOAA GSL
+            // Zero-Trust Rule: User MUST be an active member of NOAA organizations
             if (!isGslActive) {
+                let failReason = `403 Forbidden: @${login} is not recognized as an active member of authorized NOAA organizations (${targetOrgs.join(', ')}).`;
+                if (ssoRequired) {
+                    failReason = `403 Forbidden: Token requires SAML SSO authorization. Please visit https://github.com/settings/tokens, click 'Configure SSO' next to your token, and click 'Authorize' for NOAA organizations.`;
+                }
                 return {
                     success: false,
                     isForbidden: true,
                     user: login,
-                    reason: `403 Forbidden: @${login} is not an active member of the NOAA Global Systems Laboratory (noaa-gsl) organization.`
+                    reason: failReason
                 };
             }
 
