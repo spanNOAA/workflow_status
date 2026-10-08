@@ -346,7 +346,7 @@ def sync_pending_instructions(
         return
 
     repo_slug = get_repo_slug()
-    url = f"https://api.github.com/repos/{repo_slug}/issues?labels=exp-config&state=open"
+    url = f"https://api.github.com/repos/{repo_slug}/issues?labels=exp-config,{machine}&state=open"
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
