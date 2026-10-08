@@ -188,19 +188,35 @@
     </div>
 
     <!-- Main Workspace: Left Sidebar + Full-Width Content Area -->
-    <div class="flex-grow flex flex-col md:flex-row w-full min-h-0">
+    <div class="flex-grow flex flex-col md:flex-row w-full min-h-0 relative">
+
+        <!-- Floating Expand Sidebar Tab Button (shown when collapsed) -->
+        <button id="btn-expand-sidebar" type="button" class="hidden absolute left-0 top-3 z-30 bg-white dark:bg-gray-800 border border-l-0 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 px-3 py-2 rounded-r-xl shadow-lg flex items-center gap-2 text-xs font-semibold transition-all hover:pl-4 group cursor-pointer" title="Expand Sidebar">
+            <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+            </svg>
+            <span class="tracking-wide uppercase text-[11px]">Experiments</span>
+            <span id="collapsed-sidebar-count" class="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold">0</span>
+        </button>
 
         <!-- Left Sidebar: <machine>/<exp> List -->
-        <aside class="w-full md:w-80 lg:w-[340px] flex-shrink-0 bg-white dark:bg-gray-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 p-3.5 flex flex-col gap-3">
+        <aside id="sidebar-container" class="w-full md:w-80 lg:w-[340px] flex-shrink-0 bg-white dark:bg-gray-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 p-3.5 flex flex-col gap-3 transition-all">
             <div class="flex items-center justify-between px-1">
                 <div class="flex items-center gap-2">
                     <h2 class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Experiments</h2>
                     <span id="sidebar-count" class="text-xs font-mono px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">0</span>
                 </div>
-                <button id="add-exp-btn" type="button" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 py-1 rounded flex items-center gap-1 transition-colors shadow-sm font-medium" title="Configure New Experiment">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    <span>Add</span>
-                </button>
+                <div class="flex items-center gap-1.5">
+                    <button id="add-exp-btn" type="button" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 py-1 rounded flex items-center gap-1 transition-colors shadow-sm font-medium" title="Configure New Experiment">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        <span>Add</span>
+                    </button>
+                    <button id="btn-collapse-sidebar" type="button" class="p-1 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/60 rounded transition-colors" title="Collapse sidebar">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <nav id="sidebar-list" class="flex flex-col gap-2 overflow-y-auto scrollbar-custom">
                 <!-- Sidebar items injected here -->
@@ -874,6 +890,7 @@
 
             // Initialize Modal & Action Handlers
             initModalHandlers();
+            initSidebarToggle();
 
             // Start timer & load data
             startTimer();
@@ -1097,6 +1114,33 @@
             }
             const body = `### Automated Workflow Configuration Request\n**Action:** ${action}\n**Cluster:** ${cluster}\n**Experiment:** ${name}\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n`;
             return `https://github.com/${REPO}/issues/new?title=${encodeURIComponent(title)}&labels=${encodeURIComponent(labels)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function initSidebarToggle() {
+            const sidebar = document.getElementById('sidebar-container');
+            const collapseBtn = document.getElementById('btn-collapse-sidebar');
+            const expandBtn = document.getElementById('btn-expand-sidebar');
+
+            if (!sidebar || !collapseBtn || !expandBtn) return;
+
+            function setSidebarCollapsed(collapsed) {
+                if (collapsed) {
+                    sidebar.classList.add('hidden');
+                    expandBtn.classList.remove('hidden');
+                    localStorage.setItem('sidebar_collapsed', '1');
+                } else {
+                    sidebar.classList.remove('hidden');
+                    expandBtn.classList.add('hidden');
+                    localStorage.setItem('sidebar_collapsed', '0');
+                }
+            }
+
+            collapseBtn.addEventListener('click', () => setSidebarCollapsed(true));
+            expandBtn.addEventListener('click', () => setSidebarCollapsed(false));
+
+            if (localStorage.getItem('sidebar_collapsed') === '1') {
+                setSidebarCollapsed(true);
+            }
         }
 
         function initModalHandlers() {
@@ -1580,8 +1624,10 @@
         function renderSidebar() {
             const listEl = document.getElementById('sidebar-list');
             const countEl = document.getElementById('sidebar-count');
+            const collapsedCountEl = document.getElementById('collapsed-sidebar-count');
             const keys = Object.keys(currentStatusData);
             countEl.textContent = keys.length;
+            if (collapsedCountEl) collapsedCountEl.textContent = keys.length;
             listEl.innerHTML = '';
 
             if (keys.length === 0) {
