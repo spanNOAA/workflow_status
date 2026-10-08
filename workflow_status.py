@@ -346,7 +346,7 @@ def sync_pending_instructions(
         return
 
     repo_slug = get_repo_slug()
-    url = f"https://api.github.com/repos/{repo_slug}/issues?labels=exp-config,{machine}&state=open"
+    url = f"https://api.github.com/repos/{repo_slug}/issues?labels=exp-config&state=open"
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
@@ -378,14 +378,6 @@ def sync_pending_instructions(
         if not author or not issue_num or issue_num in processed_issues:
             continue
 
-        processed_issues.add(issue_num)
-
-        # 1. Mandatory Gate: Verify author membership in NOAA GSL / OAR organization via SAML SSO (Zero-Trust: No exemptions, even for admins)
-        if not verify_noaa_org_membership(author, token, allowed_orgs):
-            logging.warning("Rejecting request #%s from user '%s': SAML SSO verification failed for authorized NOAA organizations.", issue_num, author)
-            close_issue(repo_slug, issue_num, token, comment="Rejected: Author is not an active, SAML SSO authenticated member of authorized NOAA organizations.")
-            continue
-
         repo_owner = repo_slug.split("/")[0] if "/" in repo_slug else ""
         is_repo_admin = bool(
             (repo_owner and author.lower() == repo_owner.lower())
@@ -401,13 +393,23 @@ def sync_pending_instructions(
         except Exception as exc:
             logging.warning("Failed to parse JSON body for issue #%s: %s", issue_num, exc)
             close_issue(repo_slug, issue_num, token, comment=f"Rejected: Invalid payload format ({exc}).")
+            processed_issues.add(issue_num)
             continue
 
         action = str(payload.get("action", "add")).lower()
         exp_name = str(payload.get("name", "")).strip()
-        exp_cluster = str(payload.get("cluster", machine)).strip()
+        exp_cluster = str(payload.get("cluster", machine)).strip().lower()
 
-        if exp_cluster != machine or not exp_name:
+        # If this request is for a different cluster, leave it for that cluster's monitor
+        if exp_cluster != machine.lower() or not exp_name:
+            continue
+
+        processed_issues.add(issue_num)
+
+        # 1. Mandatory Gate: Verify author membership in NOAA GSL / OAR organization via SAML SSO (Zero-Trust: No exemptions, even for admins)
+        if not verify_noaa_org_membership(author, token, allowed_orgs):
+            logging.warning("Rejecting request #%s from user '%s': SAML SSO verification failed for authorized NOAA organizations.", issue_num, author)
+            close_issue(repo_slug, issue_num, token, comment="Rejected: Author is not an active, SAML SSO authenticated member of authorized NOAA organizations.")
             continue
 
         if action == "delete":
