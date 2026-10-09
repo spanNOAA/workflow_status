@@ -80,23 +80,36 @@ MACHINE=gaeac7 ./run.sh --dry-run
 Open your user scrontab (`scrontab -e`):
 
 ```bash
-# Example for Gaea c7:
-#SCRON --partition=cron_c7
-#SCRON --account=arfs-gsl
-#SCRON --time=00:10:00
-#SCRON --mem=8G
+# Example for Ursa (Fairmont):
+#SCRON --partition=u1-service
+#SCRON --account=wrfruc
+#SCRON --time=00:05:00
+#SCRON --nodes=1
+#SCRON --ntasks=1
+#SCRON --mem=4G
 #SCRON --dependency=singleton
-#SCRON --job-name=workflow_status
-#SCRON --output=/dev/null
-*/10 * * * * MACHINE=gaeac7 /path/to/workflow_status/run.sh
+#SCRON --job-name=wf_status_ursa
+#SCRON --output=/scratch3/BMC/wrfruc/span/workflow_status/.state/ursa/scron.log
+#SCRON --error=/scratch3/BMC/wrfruc/span/workflow_status/.state/ursa/scron.err
+*/2 * * * * MACHINE=ursa /scratch3/BMC/wrfruc/span/workflow_status/run.sh
 
-# Example for Hera / Ursa:
-#SCRON --time=00:10:00
-#SCRON --mem=8G
+# Example for Gaea c6 / c7 (Oak Ridge):
+#SCRON --partition=cron_c6
+#SCRON --account=arfs-gsl
+#SCRON --time=00:05:00
+#SCRON --mem=4G
 #SCRON --dependency=singleton
-#SCRON --job-name=workflow_status
-#SCRON --output=/dev/null
-*/10 * * * * MACHINE=hera /path/to/workflow_status/run.sh
+#SCRON --job-name=wf_status_gaeac6
+*/2 * * * * MACHINE=gaeac6 /gpfs/f6/wrfruc/scratch/Sijie.Pan/workflow_status/run.sh
+
+# Example for Hera:
+#SCRON --partition=service
+#SCRON --account=wrfruc
+#SCRON --time=00:05:00
+#SCRON --mem=4G
+#SCRON --dependency=singleton
+#SCRON --job-name=wf_status_hera
+*/2 * * * * MACHINE=hera /scratch3/BMC/wrfruc/span/workflow_status/run.sh
 ```
 
 ## Repository Structure
