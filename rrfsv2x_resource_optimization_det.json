@@ -1,0 +1,3199 @@
+{
+  "experiment": "rrfsv2x_resource_optimization_det",
+  "cluster": "gaeac6",
+  "workflow_type": "retrospective",
+  "retro": true,
+  "updated_at": "2026-10-10T20:08:17Z",
+  "cycles": [
+    {
+      "cdate": "202405060000",
+      "cycle_state": "Done",
+      "activated": "Oct 09 2026 22:14:30",
+      "deactivated": "Oct 09 2026 22:32:38",
+      "wall_time_min": 18.1,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222053385",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 305.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "222053386",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 302.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222053553",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 437.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "222053554",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 428.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061000",
+      "cycle_state": "Done",
+      "activated": "Oct 09 2026 22:14:30",
+      "deactivated": "Oct 10 2026 01:52:00",
+      "wall_time_min": 217.5,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222053387",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222053388",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 24.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222053389",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222053390",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222053842",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 11.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222053391",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222056068",
+          "exit_status": 0,
+          "tries": 5,
+          "duration": 1063.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222056623",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 24.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222056712",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222056713",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 627.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222056806",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222056971",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 662.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222057232",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 377.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222057480",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 218.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222057481",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 199.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222057482",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 196.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222057483",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 188.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222057484",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 185.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222057485",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 190.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222057486",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 188.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222057487",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 193.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222053457",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061100",
+      "cycle_state": "Done",
+      "activated": "Oct 09 2026 22:14:30",
+      "deactivated": "Oct 10 2026 02:31:15",
+      "wall_time_min": 256.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222053392",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222053393",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 24.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222053394",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222053395",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222053843",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 12.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222056844",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 24.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222056972",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 910.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222057356",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 29.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222057488",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 12.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222057489",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 646.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222057695",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222057864",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 668.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222058165",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 373.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222058449",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 217.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222058450",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 204.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222058451",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 200.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222058452",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 193.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222058453",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 190.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222058454",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 195.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222058455",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 193.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222058456",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 200.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222056973",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061200",
+      "cycle_state": "Done",
+      "activated": "Oct 09 2026 22:35:39",
+      "deactivated": "Oct 10 2026 11:13:01",
+      "wall_time_min": 757.4,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222053884",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 39.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222053885",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222053886",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222053887",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222053888",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 338.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "222053889",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 311.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222054147",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 425.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "222054148",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 415.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222054364",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222057735",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222057865",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 927.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222058415",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222058593",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 10.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "222058594",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13111.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222058660",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222060891",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6608.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222062805",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4026.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222062785",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7928.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222065057",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4085.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222066110",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5915.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222066111",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5618.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222066112",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5607.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222066115",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5516.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222066113",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5434.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222066114",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5483.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222066117",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5482.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222066118",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5593.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222057866",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 11.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061300",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 01:55:01",
+      "deactivated": "Oct 10 2026 03:46:50",
+      "wall_time_min": 111.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222057736",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222057737",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222057738",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222057739",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222057740",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222058724",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 22.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222058796",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 987.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222059200",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222059249",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 21.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222059250",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 649.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222059447",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222059539",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 646.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222059935",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 378.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222060128",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 224.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222060129",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 210.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222060130",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 207.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222060131",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 198.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222060132",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 190.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222060133",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 196.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222060134",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 191.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222060135",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 196.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222058804",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061400",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 02:34:16",
+      "deactivated": "Oct 10 2026 04:23:15",
+      "wall_time_min": 109.0,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222058661",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222058662",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222058663",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222058664",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 11.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222058665",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222059519",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222059540",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 892.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222060021",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 23.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222060071",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222060072",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 655.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222060198",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222060318",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 656.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222060571",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 404.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222060800",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 224.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222060801",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 210.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222060802",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 205.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222060803",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 198.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222060804",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 196.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222060805",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 197.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222060806",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 194.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222060807",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 199.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222059541",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061500",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 03:49:52",
+      "deactivated": "Oct 10 2026 06:18:34",
+      "wall_time_min": 148.7,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222060219",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222060220",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 25.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222060221",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222060222",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13.0
+        },
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222060223",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "222060319",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 52.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222060224",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        },
+        {
+          "name": "prep_ic_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222060412",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 67.0
+        },
+        {
+          "name": "jedivar_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222060449",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 518.0
+        },
+        {
+          "name": "nonvar_cldana_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222060704",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 12.0
+        },
+        {
+          "name": "pyDAmonitor_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222060774",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "fcst_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222060775",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 319.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222060225",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222060320",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 845.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222060703",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 62.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222060776",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "222060777",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2325.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222060938",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222061691",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2432.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222062371",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1323.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222062730",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 711.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222062732",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 674.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222062731",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 656.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222062733",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 636.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222062735",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 625.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222062737",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 635.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222062736",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 638.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222062734",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 647.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222060321",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061600",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 04:26:16",
+      "deactivated": "Oct 10 2026 05:33:01",
+      "wall_time_min": 66.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222061068",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 55.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222061069",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 47.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222061070",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 44.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222061074",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 25.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222061071",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "prep_ic_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222061072",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "jedivar_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222061100",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "nonvar_cldana_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222061430",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 41.0
+        },
+        {
+          "name": "pyDAmonitor_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222061515",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "fcst_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222061516",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 317.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222061073",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222061101",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222061431",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222061517",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222061518",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 641.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222061653",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222061772",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 783.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222062036",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 425.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222062156",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 233.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222062157",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 209.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222062158",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 207.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222062159",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 200.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222062160",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 205.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222062161",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 203.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222062162",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 200.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222062163",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 209.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222061102",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 10.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061700",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 05:36:04",
+      "deactivated": "Oct 10 2026 06:42:49",
+      "wall_time_min": 66.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222062242",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 92.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222062244",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 123.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222062243",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 54.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222062248",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 56.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222062246",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "prep_ic_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222062245",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "jedivar_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222062303",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 973.0
+        },
+        {
+          "name": "nonvar_cldana_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222062600",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "pyDAmonitor_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222062612",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        },
+        {
+          "name": "fcst_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222062613",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 316.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222062247",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 41.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222062304",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 981.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222062601",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 69.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222062615",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222062614",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 673.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222062738",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222062806",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 725.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222063240",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 450.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222063394",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 242.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222063396",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 230.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222063395",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 229.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222063397",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 203.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222063400",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 208.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222063398",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 208.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222063399",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 211.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222063401",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 202.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222062305",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061800",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 06:21:35",
+      "deactivated": "Oct 10 2026 08:56:23",
+      "wall_time_min": 154.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222063080",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 122.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222063081",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 97.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222063083",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 66.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222063082",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 67.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222063084",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 27.0
+        },
+        {
+          "name": "prep_ic_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063086",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 48.0
+        },
+        {
+          "name": "jedivar_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063148",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1038.0
+        },
+        {
+          "name": "nonvar_cldana_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063531",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 69.0
+        },
+        {
+          "name": "pyDAmonitor_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063563",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 40.0
+        },
+        {
+          "name": "fcst_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063565",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 397.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222063085",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 38.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222063149",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1031.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222063532",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 48.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222063564",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "222063566",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2316.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222063648",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 45.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222064260",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2763.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222064993",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1472.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222065316",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 720.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222065317",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 679.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222065318",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 666.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222065319",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 638.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222065320",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 633.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222065321",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 635.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222065323",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222065322",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 643.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222063150",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 49.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405061900",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 06:45:50",
+      "deactivated": "Oct 10 2026 08:10:49",
+      "wall_time_min": 85.0,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222063533",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 110.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222063534",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 59.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222063537",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 48.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222063535",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 56.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222063538",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32.0
+        },
+        {
+          "name": "prep_ic_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063676",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "jedivar_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222063715",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1210.0
+        },
+        {
+          "name": "nonvar_cldana_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222064132",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 58.0
+        },
+        {
+          "name": "pyDAmonitor_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222064201",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "fcst_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222064202",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 355.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222063677",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 25.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222063716",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1233.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222064133",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 39.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222064203",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 29.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222064204",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 707.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222064263",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 43.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222064374",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 879.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222064654",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 460.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222064793",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 227.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222064794",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 217.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222064795",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 218.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222064797",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 197.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222064799",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 210.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222064796",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222064798",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 213.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222064800",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222063717",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 45.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405062000",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 08:13:50",
+      "deactivated": "Oct 10 2026 09:23:44",
+      "wall_time_min": 69.9,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222064943",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 103.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222064945",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 163.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222064944",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 70.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222064949",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 55.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222064948",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 27.0
+        },
+        {
+          "name": "prep_ic_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222064946",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 77.0
+        },
+        {
+          "name": "jedivar_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222064994",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1234.0
+        },
+        {
+          "name": "nonvar_cldana_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222065225",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "pyDAmonitor_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222065278",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "fcst_spinup",
+          "state": "SUCCEEDED",
+          "jobid": "222065279",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 357.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222064947",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 80.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222064995",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1224.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222065226",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 39.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222065280",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222065281",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 697.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222065391",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222065440",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 827.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222065681",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 459.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222065827",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 238.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222065829",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 223.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222065828",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 222.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222065833",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 210.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222065830",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 211.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222065832",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 210.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222065831",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 208.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222065834",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 213.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222064996",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 51.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405062100",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 08:59:24",
+      "deactivated": "Oct 10 2026 11:25:08",
+      "wall_time_min": 145.7,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222065507",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 89.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222065508",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 53.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222065509",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 63.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222065511",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222065510",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222065512",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222065538",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1198.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222066004",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 65.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222066040",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "222066041",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2260.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222066116",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 43.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222066629",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2523.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222067220",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1338.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222067572",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 710.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222067573",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 668.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222067579",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 657.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222067575",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 628.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222067574",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 622.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222067576",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 633.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222067578",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 623.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222067577",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 636.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222065539",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 45.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405062200",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 09:26:45",
+      "deactivated": "Oct 10 2026 11:00:53",
+      "wall_time_min": 94.1,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222066042",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 74.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222066043",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222066046",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222066045",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222066044",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222066141",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222066421",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1125.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222066773",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 90.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222066843",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 41.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222066844",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 701.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222066915",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 50.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222066956",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 799.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222067166",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 439.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222067326",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 229.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222067327",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 220.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222067328",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 211.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222067329",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 202.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222067330",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 202.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222067331",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 204.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222067332",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 203.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222067333",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 226.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222066171",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405062300",
+      "cycle_state": "Done",
+      "activated": "Oct 10 2026 11:03:54",
+      "deactivated": "Oct 10 2026 12:19:42",
+      "wall_time_min": 75.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222067433",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 86.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222067434",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 47.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222067435",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 52.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222067436",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 38.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222067437",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222067438",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 43.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222067457",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1233.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222067839",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 64.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222067887",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 25.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "222067888",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 787.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222067973",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 56.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222068061",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 909.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222068286",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 420.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "SUCCEEDED",
+          "jobid": "222068434",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 242.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "SUCCEEDED",
+          "jobid": "222068433",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 230.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "SUCCEEDED",
+          "jobid": "222068435",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 224.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "SUCCEEDED",
+          "jobid": "222068439",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 215.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "SUCCEEDED",
+          "jobid": "222068436",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 211.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "SUCCEEDED",
+          "jobid": "222068437",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 213.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "SUCCEEDED",
+          "jobid": "222068438",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "SUCCEEDED",
+          "jobid": "222068440",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222067458",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        }
+      ]
+    },
+    {
+      "cdate": "202405070000",
+      "cycle_state": "Active",
+      "activated": "Oct 10 2026 11:16:03",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "222067659",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 85.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "222067660",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 110.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "222067661",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 59.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "222067662",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 45.0
+        },
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222067663",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 329.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "222067664",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 312.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222067769",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 476.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "222067770",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 467.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "222067889",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 12.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "222068008",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 49.0
+        },
+        {
+          "name": "jedivar",
+          "state": "SUCCEEDED",
+          "jobid": "222068063",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1217.0
+        },
+        {
+          "name": "nonvar_cldana",
+          "state": "SUCCEEDED",
+          "jobid": "222068313",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 55.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "222068372",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 43.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "222068373",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13136.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "222068506",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222069933",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7394.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "222072599",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4172.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222072174",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7320.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "222073831",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4031.0
+        },
+        {
+          "name": "graphics_full",
+          "state": "RUNNING",
+          "jobid": "222074621",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_NE",
+          "state": "RUNNING",
+          "jobid": "222074625",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_NC",
+          "state": "RUNNING",
+          "jobid": "222074622",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_NW",
+          "state": "RUNNING",
+          "jobid": "222074626",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_SE",
+          "state": "RUNNING",
+          "jobid": "222074623",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_SC",
+          "state": "RUNNING",
+          "jobid": "222074624",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_SW",
+          "state": "RUNNING",
+          "jobid": "222074628",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "graphics_EastCO",
+          "state": "RUNNING",
+          "jobid": "222074627",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 3440.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "222068062",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_cycles": 16,
+    "active_cycles": 1,
+    "done_cycles": 15,
+    "total_tasks": 378,
+    "succeeded": 370,
+    "running": 8,
+    "queued": 0,
+    "submitting": 0,
+    "waiting": 0,
+    "expired": 0,
+    "dead": 0,
+    "other": 0
+  },
+  "alerts": {
+    "dead_jobs": [],
+    "stall": false,
+    "stall_since": null,
+    "hung_jobs": []
+  },
+  "owner": "spanNOAA",
+  "suite": "RRFSv2X.generic_uv10m_res"
+}
