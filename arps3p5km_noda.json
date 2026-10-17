@@ -1,0 +1,5103 @@
+{
+  "experiment": "arps3p5km_noda",
+  "cluster": "gaeac7",
+  "workflow_type": "retrospective",
+  "retro": true,
+  "updated_at": "2026-10-17T21:58:07Z",
+  "cycles": [
+    {
+      "cdate": "202512181100",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 11:11:55",
+      "deactivated": "Oct 15 2026 11:51:04",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269147816",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269147817",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269147819",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 895.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269147832",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269147874",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 641.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269147973",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 419.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269147820",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181200",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 11:14:56",
+      "deactivated": "Oct 16 2026 01:33:50",
+      "wall_time_min": 858.9,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269147821",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 333.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269147822",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 865.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269147875",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1039.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269147876",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 998.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269147836",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269147975",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "269147983",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32904.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269147994",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149137",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9922.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149858",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6854.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269150311",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9730.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269150977",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6600.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269147840",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181300",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 11:51:04",
+      "deactivated": "Oct 15 2026 12:42:19",
+      "wall_time_min": 51.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269147995",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269147984",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148003",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 905.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148039",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148088",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148137",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 413.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148004",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181400",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 11:54:05",
+      "deactivated": "Oct 15 2026 12:54:22",
+      "wall_time_min": 60.3,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148042",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269147993",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148047",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 911.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148089",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148138",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 633.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148174",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 422.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148048",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181500",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 12:09:08",
+      "deactivated": "Oct 15 2026 14:21:41",
+      "wall_time_min": 132.6,
+      "tasks": [
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148040",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148043",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 96.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148049",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 29.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148041",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269148084",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3421.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148097",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148286",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2475.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148574",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1396.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148085",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181600",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 12:45:20",
+      "deactivated": "Oct 15 2026 13:27:29",
+      "wall_time_min": 42.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148175",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148176",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148177",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 904.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148242",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148248",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 643.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148287",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 410.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148178",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181700",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 12:57:22",
+      "deactivated": "Oct 15 2026 13:45:32",
+      "wall_time_min": 48.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148243",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148244",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148245",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 913.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148249",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148288",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148361",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 740.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148246",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181800",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 13:30:29",
+      "deactivated": "Oct 15 2026 15:34:02",
+      "wall_time_min": 123.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148362",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 54.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148363",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269148399",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3554.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148498",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148714",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2117.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148857",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1340.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148400",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 42.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512181900",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 13:48:33",
+      "deactivated": "Oct 15 2026 14:30:43",
+      "wall_time_min": 42.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148566",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148567",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148569",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 909.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148575",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 41.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148652",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 649.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148667",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 391.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148570",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512182000",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 14:24:41",
+      "deactivated": "Oct 15 2026 15:12:57",
+      "wall_time_min": 48.3,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148705",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148706",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148707",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 912.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148715",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148763",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 639.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148849",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 388.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148708",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512182100",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 14:33:43",
+      "deactivated": "Oct 15 2026 16:37:27",
+      "wall_time_min": 123.7,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148717",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148716",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269148721",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3385.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148764",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148929",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2104.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149127",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1354.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148722",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512182200",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 15:15:58",
+      "deactivated": "Oct 15 2026 15:58:08",
+      "wall_time_min": 42.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148859",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148860",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148894",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 911.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148919",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148930",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 639.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269148998",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 450.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148895",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512182300",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 15:37:02",
+      "deactivated": "Oct 15 2026 16:19:23",
+      "wall_time_min": 42.4,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269148931",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269148932",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269148953",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 910.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269148996",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 38.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149033",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 640.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149092",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 426.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269148954",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190000",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 16:01:07",
+      "deactivated": "Oct 16 2026 06:07:53",
+      "wall_time_min": 846.8,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269149065",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 347.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269149066",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 910.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269149130",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1033.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269149131",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1026.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149067",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149175",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "269149211",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32836.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149251",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150400",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9892.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151053",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6762.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269151488",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9833.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269152336",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5464.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149086",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 42.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190100",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 16:04:14",
+      "deactivated": "Oct 15 2026 17:31:38",
+      "wall_time_min": 87.4,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149255",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149176",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149258",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 894.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149293",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149328",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 638.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149370",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 429.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149259",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190200",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 16:22:24",
+      "deactivated": "Oct 15 2026 17:43:41",
+      "wall_time_min": 81.3,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149324",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149177",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149325",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 893.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149329",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149371",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 633.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149377",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 416.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149326",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190300",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 16:40:28",
+      "deactivated": "Oct 15 2026 18:46:56",
+      "wall_time_min": 126.5,
+      "tasks": [
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149212",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149244",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 97.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149245",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149213",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269149252",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3346.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149260",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149429",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2113.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149590",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1336.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149253",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190400",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 17:34:39",
+      "deactivated": "Oct 15 2026 18:13:47",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149378",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149379",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149381",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 885.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149428",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149467",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 638.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149553",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 412.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149382",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190500",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 17:46:41",
+      "deactivated": "Oct 15 2026 18:25:50",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149430",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149431",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149432",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 884.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149500",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149552",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149585",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 418.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149433",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190600",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 18:16:48",
+      "deactivated": "Oct 15 2026 20:17:17",
+      "wall_time_min": 120.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149586",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149587",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269149588",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3358.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149599",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149867",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2101.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149962",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1382.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149589",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190700",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 18:28:50",
+      "deactivated": "Oct 15 2026 19:08:02",
+      "wall_time_min": 39.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149606",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149607",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149642",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 885.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149649",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149688",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 646.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149700",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 421.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149643",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190800",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 18:49:57",
+      "deactivated": "Oct 15 2026 19:29:06",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149690",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149691",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149695",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 885.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149701",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149777",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149871",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 385.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149696",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512190900",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 19:11:02",
+      "deactivated": "Oct 15 2026 21:11:51",
+      "wall_time_min": 120.8,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149811",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149812",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269149859",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3367.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149872",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149974",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2107.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150138",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1397.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149860",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191000",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 19:32:07",
+      "deactivated": "Oct 15 2026 20:11:16",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269149874",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269149875",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269149878",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 889.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269149886",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149959",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 632.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269149967",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 395.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269149879",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191100",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 20:14:17",
+      "deactivated": "Oct 15 2026 20:53:25",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150017",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150018",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150051",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 885.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150116",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150131",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 639.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150137",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 420.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150052",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191200",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 20:20:18",
+      "deactivated": "Oct 16 2026 11:09:11",
+      "wall_time_min": 888.9,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269150114",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 348.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269150115",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 857.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269150133",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1006.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269150134",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1000.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150124",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150146",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "269150247",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32670.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150314",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151419",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9958.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152201",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6742.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269152607",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 11403.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269153395",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6788.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150130",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191300",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 20:32:20",
+      "deactivated": "Oct 15 2026 21:44:59",
+      "wall_time_min": 72.7,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150369",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150147",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150370",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 888.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150394",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150441",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150546",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 420.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150371",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191400",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 20:56:47",
+      "deactivated": "Oct 15 2026 21:57:01",
+      "wall_time_min": 60.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150401",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150248",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150436",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 899.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150475",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 39.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150547",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 633.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150573",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 399.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150437",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191500",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 21:14:52",
+      "deactivated": "Oct 15 2026 23:21:21",
+      "wall_time_min": 126.5,
+      "tasks": [
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150395",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150402",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 99.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150438",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150396",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269150442",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3409.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150512",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150690",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2092.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150811",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1353.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150445",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191600",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 21:47:59",
+      "deactivated": "Oct 15 2026 22:27:09",
+      "wall_time_min": 39.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150574",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150575",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150576",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 894.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150579",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150637",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 640.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150684",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 413.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150577",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191700",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 22:00:02",
+      "deactivated": "Oct 15 2026 22:39:11",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150618",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150619",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150620",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 887.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150673",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150685",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 635.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150706",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 399.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150621",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191800",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 22:30:09",
+      "deactivated": "Oct 16 2026 00:27:36",
+      "wall_time_min": 117.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150707",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150708",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269150710",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3329.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150724",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150930",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2100.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151087",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1237.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150711",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512191900",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 22:42:12",
+      "deactivated": "Oct 15 2026 23:21:21",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150759",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150758",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150797",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 889.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150807",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150844",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150877",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 406.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150798",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512192000",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 23:24:22",
+      "deactivated": "Oct 16 2026 00:03:31",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150923",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150924",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269150927",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 884.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150933",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269150978",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 636.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151049",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 394.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150928",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512192100",
+      "cycle_state": "Done",
+      "activated": "Oct 15 2026 23:24:22",
+      "deactivated": "Oct 16 2026 01:36:51",
+      "wall_time_min": 132.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269150937",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269150925",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269150974",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3298.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269150979",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151206",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2112.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151373",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1346.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269150975",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512192200",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 00:06:31",
+      "deactivated": "Oct 16 2026 00:45:40",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151088",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151089",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151122",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 891.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151133",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151137",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 640.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151207",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 367.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151123",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512192300",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 00:30:37",
+      "deactivated": "Oct 16 2026 01:09:45",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151192",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151193",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151196",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 882.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151217",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151256",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 639.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151271",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 445.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151197",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200000",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 00:48:40",
+      "deactivated": "Oct 16 2026 14:58:08",
+      "wall_time_min": 849.5,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269151257",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 338.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269151258",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 876.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269151337",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 994.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269151338",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 990.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151259",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151415",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "269151417",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32500.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151431",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152608",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9940.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153291",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6754.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269153671",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9759.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269154402",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6198.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151263",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200100",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 01:12:45",
+      "deactivated": "Oct 16 2026 02:19:01",
+      "wall_time_min": 66.3,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151467",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151416",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151472",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 874.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151489",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151501",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 634.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151546",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 421.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151473",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200200",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 01:36:51",
+      "deactivated": "Oct 16 2026 02:31:03",
+      "wall_time_min": 54.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151494",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151432",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151497",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 881.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151506",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151547",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 640.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151676",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 411.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151498",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200300",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 01:39:51",
+      "deactivated": "Oct 16 2026 03:46:24",
+      "wall_time_min": 126.5,
+      "tasks": [
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151468",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151474",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 97.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151487",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151469",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269151490",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3281.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151499",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 34.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151694",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2101.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151861",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1443.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151491",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200400",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 02:22:01",
+      "deactivated": "Oct 16 2026 03:01:12",
+      "wall_time_min": 39.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151677",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151678",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151679",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 865.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151681",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151689",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 635.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151733",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 403.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151680",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200500",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 02:34:04",
+      "deactivated": "Oct 16 2026 03:13:15",
+      "wall_time_min": 39.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151682",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151683",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151687",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 862.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151690",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151734",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 633.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151742",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 399.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151688",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200600",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 03:04:13",
+      "deactivated": "Oct 16 2026 05:04:39",
+      "wall_time_min": 120.4,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151743",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151744",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269151781",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3293.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151790",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152163",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2109.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152341",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1322.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151782",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200700",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 03:16:15",
+      "deactivated": "Oct 16 2026 03:55:24",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151792",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151793",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151795",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 869.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269151924",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151927",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269151937",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 416.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151796",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200800",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 03:49:22",
+      "deactivated": "Oct 16 2026 04:28:31",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269151938",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269151939",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269151941",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 872.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152012",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152184",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 635.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152202",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 398.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269151942",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512200900",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 03:58:24",
+      "deactivated": "Oct 16 2026 06:01:51",
+      "wall_time_min": 123.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152109",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152013",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269152164",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3289.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152187",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152362",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2105.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152533",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1307.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152165",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201000",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 04:31:32",
+      "deactivated": "Oct 16 2026 05:10:40",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152304",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152305",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152337",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 874.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152342",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152352",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 640.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152363",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 411.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152338",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201100",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 05:07:39",
+      "deactivated": "Oct 16 2026 05:46:47",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152435",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152436",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152440",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 881.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152451",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152463",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 641.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152534",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 407.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152441",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 5.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201200",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 05:13:40",
+      "deactivated": "Oct 16 2026 19:35:17",
+      "wall_time_min": 861.6,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269152446",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 348.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269152447",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 870.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269152467",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1031.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269152468",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1024.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152457",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 47.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152600",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "269152603",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32595.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152605",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153656",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9925.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269154397",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6744.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269154814",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9804.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269155350",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6740.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152459",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201300",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 05:49:48",
+      "deactivated": "Oct 16 2026 06:37:59",
+      "wall_time_min": 48.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152606",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152604",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152609",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 879.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152616",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 38.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152692",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 643.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152713",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 408.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152610",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201400",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 06:04:51",
+      "deactivated": "Oct 16 2026 06:50:01",
+      "wall_time_min": 45.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152617",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152615",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152621",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 883.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152699",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152714",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152847",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 406.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152622",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201500",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 06:10:52",
+      "deactivated": "Oct 16 2026 08:17:23",
+      "wall_time_min": 126.5,
+      "tasks": [
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152618",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152623",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 98.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152693",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 30.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152619",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269152700",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3286.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152711",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152964",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2117.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153125",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1362.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152701",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201600",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 06:40:59",
+      "deactivated": "Oct 16 2026 07:17:07",
+      "wall_time_min": 36.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152848",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152849",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152850",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 870.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152854",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 108.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152868",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 631.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152888",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 331.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152851",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201700",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 06:53:02",
+      "deactivated": "Oct 16 2026 07:32:10",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152855",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152856",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152866",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 871.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152877",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152889",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 639.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269152970",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 415.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152867",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201800",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 07:20:07",
+      "deactivated": "Oct 16 2026 09:20:37",
+      "wall_time_min": 120.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152968",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152969",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269152971",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3296.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269152977",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153150",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2106.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153357",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1305.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152972",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512201900",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 07:35:11",
+      "deactivated": "Oct 16 2026 08:20:25",
+      "wall_time_min": 45.2,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269152988",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269152989",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269152990",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 870.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153058",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153126",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1068.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153139",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 392.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269152991",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512202000",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 08:20:24",
+      "deactivated": "Oct 16 2026 08:59:32",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153151",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153152",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269153187",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 868.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153227",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153235",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153292",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 402.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153188",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512202100",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 08:23:25",
+      "deactivated": "Oct 16 2026 10:29:54",
+      "wall_time_min": 126.5,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153228",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153189",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269153232",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3297.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153243",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153476",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2096.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153633",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1240.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153233",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512202200",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 09:02:33",
+      "deactivated": "Oct 16 2026 09:41:42",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153388",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153389",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269153391",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 879.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153394",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153396",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 634.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153475",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 402.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153392",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512202300",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 09:23:38",
+      "deactivated": "Oct 16 2026 10:02:46",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153397",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153398",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269153403",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 877.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153477",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153483",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 637.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153500",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 393.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153404",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512210000",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 09:44:42",
+      "deactivated": "Oct 17 2026 00:00:21",
+      "wall_time_min": 855.6,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269153491",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 335.0
+        },
+        {
+          "name": "ungrib_lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269153492",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 863.0
+        },
+        {
+          "name": "lbc_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269153570",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1048.0
+        },
+        {
+          "name": "lbc_g02",
+          "state": "SUCCEEDED",
+          "jobid": "269153569",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1027.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153493",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153645",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6.0
+        },
+        {
+          "name": "fcst_xl",
+          "state": "SUCCEEDED",
+          "jobid": "269153655",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 32673.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153657",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269154815",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9914.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269155351",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6768.0
+        },
+        {
+          "name": "mpassit_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269155902",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9740.0
+        },
+        {
+          "name": "upp_g01",
+          "state": "SUCCEEDED",
+          "jobid": "269156475",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 6640.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153495",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512210100",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 10:05:47",
+      "deactivated": "Oct 16 2026 11:09:11",
+      "wall_time_min": 63.4,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153672",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 42.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153646",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269153673",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 875.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153742",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 40.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153893",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 634.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153956",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 408.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153674",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512210200",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 10:32:54",
+      "deactivated": "Oct 16 2026 11:21:13",
+      "wall_time_min": 48.3,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153836",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153675",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269153889",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 871.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269153918",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153957",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 635.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269153994",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 420.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269153890",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512210300",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 11:12:11",
+      "deactivated": "Oct 16 2026 13:21:41",
+      "wall_time_min": 129.5,
+      "tasks": [
+        {
+          "name": "ungrib_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269153995",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "ic",
+          "state": "SUCCEEDED",
+          "jobid": "269154032",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 98.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269154063",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153996",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "SUCCEEDED",
+          "jobid": "269154065",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3313.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269154077",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 36.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269154184",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2278.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269154318",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 1379.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269154066",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512210400",
+      "cycle_state": "Done",
+      "activated": "Oct 16 2026 11:12:11",
+      "deactivated": "Oct 16 2026 12:12:27",
+      "wall_time_min": 60.3,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269154078",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269153997",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "fcst",
+          "state": "SUCCEEDED",
+          "jobid": "269154086",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 873.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269154124",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 35.0
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269154163",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 638.0
+        },
+        {
+          "name": "upp_g00",
+          "state": "SUCCEEDED",
+          "jobid": "269154173",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 402.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269154087",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512210500",
+      "cycle_state": "Active",
+      "activated": "Oct 16 2026 11:24:16",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "DEAD",
+          "jobid": "269154125",
+          "exit_status": 255,
+          "tries": 1,
+          "duration": 1825.0
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269154068",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 12.0
+        },
+        {
+          "name": "fcst",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "upp_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    },
+    {
+      "cdate": "202512210600",
+      "cycle_state": "Active",
+      "activated": "Oct 16 2026 12:15:28",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269154183",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "upp_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    },
+    {
+      "cdate": "202512210700",
+      "cycle_state": "Active",
+      "activated": "Oct 16 2026 13:24:42",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269154410",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "fcst",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "upp_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    },
+    {
+      "cdate": "202512210800",
+      "cycle_state": "Active",
+      "activated": "Oct 16 2026 15:01:07",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269154825",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "upp_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    },
+    {
+      "cdate": "202512210900",
+      "cycle_state": "Active",
+      "activated": "Oct 16 2026 19:38:18",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269155938",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "fcst_l",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "upp_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    },
+    {
+      "cdate": "202512211000",
+      "cycle_state": "Active",
+      "activated": "Oct 17 2026 00:03:21",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc",
+          "state": "SUCCEEDED",
+          "jobid": "269156821",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "fcst",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "mpassit_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "upp_g00",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_cycles": 72,
+    "active_cycles": 6,
+    "done_cycles": 66,
+    "total_tasks": 552,
+    "succeeded": 516,
+    "running": 0,
+    "queued": 0,
+    "submitting": 0,
+    "waiting": 35,
+    "expired": 0,
+    "dead": 1,
+    "other": 0
+  },
+  "alerts": {
+    "dead_jobs": [
+      {
+        "cycle": "202512210500",
+        "task": "prep_ic",
+        "tries": 1,
+        "jobid": "269154125",
+        "exit_status": 255
+      }
+    ],
+    "stall": true,
+    "stall_since": 1792195684,
+    "hung_jobs": []
+  },
+  "owner": "spanNOAA",
+  "suite": "ar3p5km_noda"
+}
