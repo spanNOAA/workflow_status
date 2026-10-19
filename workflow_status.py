@@ -795,7 +795,7 @@ def parse_rocotostat(
                     filtered.append(cdate)
             except Exception:
                 filtered.append(cdate)
-        selected_cycles = filtered if filtered else cycle_order[-72:]
+        selected_cycles = filtered if filtered else (cycle_order[-lookback:] if lookback > 0 else cycle_order[-72:])
     elif lookback > 0:
         selected_cycles = cycle_order[-lookback:]
     else:
@@ -1408,8 +1408,11 @@ def process_experiment(
     )
     workflow_type = "retrospective" if is_retro else "realtime"
 
-    # Lookback: Retrospective monitors all cycles (lookback = 0); Realtime monitors past 3 days (realtime_hours = 72.0)
-    lookback = int(exp_cfg.get("lookback_cycles", 0 if is_retro else 72))
+    # Lookback: Retrospective monitors all cycles (lookback_cycles_retro = 0); Realtime monitors past 3 days (lookback_cycles_realtime = 72, realtime_hours = 72.0)
+    if is_retro:
+        lookback = int(exp_cfg.get("lookback_cycles_retro", 0))
+    else:
+        lookback = int(exp_cfg.get("lookback_cycles_realtime", exp_cfg.get("lookback_cycles", 72)))
     realtime_hours = None if is_retro else float(exp_cfg.get("realtime_hours", 72.0))
 
     recipients = parse_recipients(exp_cfg.get("recipients", []))

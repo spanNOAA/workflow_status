@@ -4,7 +4,8 @@
 # Local static overrides can optionally be placed in myexps.yml (git-ignored).
 
 common:
-  lookback_cycles: 72
+  lookback_cycles_retro: 0
+  lookback_cycles_realtime: 72
   recipients: []  # Optional: add your @noaa.gov email(s) for dead/stall job alerts
 
 experiments: []
