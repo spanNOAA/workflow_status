@@ -1,0 +1,7232 @@
+{
+  "experiment": "conus3km_winter_enkf",
+  "cluster": "gaeac7",
+  "workflow_type": "retrospective",
+  "retro": true,
+  "updated_at": "2026-10-31T20:38:05Z",
+  "cycles": [
+    {
+      "cdate": "202512160900",
+      "cycle_state": "Done",
+      "activated": "Oct 31 2026 13:37:28",
+      "deactivated": "Oct 31 2026 13:46:30",
+      "wall_time_min": 9.0,
+      "tasks": [
+        {
+          "name": "ungrib_lbc_g01_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173724",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173725",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 220.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173726",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173727",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 219.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173728",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 211.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173729",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 218.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173730",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173731",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 219.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173732",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 212.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173733",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 219.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173734",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 214.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173735",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 219.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173736",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 215.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173737",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 220.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173738",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 214.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173739",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 220.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173740",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 215.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173741",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 221.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173742",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 215.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173743",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 221.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173744",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 216.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173745",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 221.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173746",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 216.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173747",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 221.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173748",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 216.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173749",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 219.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173750",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 215.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173751",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 112.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173752",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 109.0
+        },
+        {
+          "name": "ungrib_lbc_g01_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173753",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 112.0
+        },
+        {
+          "name": "lbc_g01_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173780",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 135.0
+        },
+        {
+          "name": "lbc_g02_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173781",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 123.0
+        },
+        {
+          "name": "lbc_g01_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173782",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 132.0
+        },
+        {
+          "name": "lbc_g02_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173783",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 118.0
+        },
+        {
+          "name": "lbc_g01_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173784",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173785",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 121.0
+        },
+        {
+          "name": "lbc_g01_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173786",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173787",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 120.0
+        },
+        {
+          "name": "lbc_g01_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173788",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173789",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 121.0
+        },
+        {
+          "name": "lbc_g01_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173790",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173791",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 119.0
+        },
+        {
+          "name": "lbc_g01_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173792",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173793",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 120.0
+        },
+        {
+          "name": "lbc_g01_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173794",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173795",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g01_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173796",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173797",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 119.0
+        },
+        {
+          "name": "lbc_g01_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173798",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173799",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 122.0
+        },
+        {
+          "name": "lbc_g01_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173800",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173801",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 122.0
+        },
+        {
+          "name": "lbc_g01_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173802",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173803",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 119.0
+        },
+        {
+          "name": "lbc_g01_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173804",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173805",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 119.0
+        },
+        {
+          "name": "lbc_g01_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173806",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 133.0
+        },
+        {
+          "name": "lbc_g02_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173807",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 118.0
+        },
+        {
+          "name": "lbc_g01_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173808",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 131.0
+        },
+        {
+          "name": "lbc_g02_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173809",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 127.0
+        },
+        {
+          "name": "lbc_g01_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173810",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g02_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173811",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 129.0
+        },
+        {
+          "name": "lbc_g01_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173812",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g02_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173813",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 127.0
+        },
+        {
+          "name": "lbc_g01_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173814",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 131.0
+        },
+        {
+          "name": "lbc_g02_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173815",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 127.0
+        },
+        {
+          "name": "lbc_g01_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173816",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 131.0
+        },
+        {
+          "name": "lbc_g02_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173817",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 129.0
+        },
+        {
+          "name": "lbc_g01_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173818",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 132.0
+        },
+        {
+          "name": "lbc_g02_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173819",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g01_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173820",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g02_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173821",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 127.0
+        },
+        {
+          "name": "lbc_g01_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173822",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 131.0
+        },
+        {
+          "name": "lbc_g02_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173823",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 129.0
+        },
+        {
+          "name": "lbc_g01_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173824",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g02_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173825",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 129.0
+        },
+        {
+          "name": "lbc_g01_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173826",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 132.0
+        },
+        {
+          "name": "lbc_g02_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173827",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 128.0
+        },
+        {
+          "name": "lbc_g01_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173828",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g02_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173829",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 127.0
+        },
+        {
+          "name": "lbc_g01_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173830",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 131.0
+        },
+        {
+          "name": "lbc_g02_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173831",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 127.0
+        },
+        {
+          "name": "lbc_g01_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173832",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 130.0
+        },
+        {
+          "name": "lbc_g02_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173833",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 128.0
+        },
+        {
+          "name": "lbc_g01_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173765",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 113.0
+        },
+        {
+          "name": "lbc_g02_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173766",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 106.0
+        },
+        {
+          "name": "lbc_g01_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173767",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 112.0
+        },
+        {
+          "name": "lbc_g02_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173768",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 110.0
+        },
+        {
+          "name": "lbc_g01_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173769",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 113.0
+        },
+        {
+          "name": "lbc_g02_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173770",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 109.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161000",
+      "cycle_state": "Done",
+      "activated": "Oct 31 2026 13:37:28",
+      "deactivated": "Oct 31 2026 14:16:36",
+      "wall_time_min": 39.1,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269173754",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269173755",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269173756",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269173757",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269173758",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 81.0
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173839",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173840",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173841",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173842",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173843",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173844",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173845",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173846",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173847",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173848",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173849",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173850",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173851",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173852",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173853",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173854",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173855",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173856",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173857",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173858",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173859",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173860",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173861",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173862",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173863",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173864",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173865",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173834",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173835",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173836",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "getkf",
+          "state": "SUCCEEDED",
+          "jobid": "269173771",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 435.0
+        },
+        {
+          "name": "getkf_post",
+          "state": "SUCCEEDED",
+          "jobid": "269173896",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 467.0
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173897",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173898",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173899",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173900",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173901",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173902",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173903",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173904",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173905",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173906",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173907",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173908",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173909",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173910",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173911",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173912",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173913",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173914",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173915",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173916",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173917",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173918",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173919",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173920",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173921",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173922",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173923",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173924",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173925",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173926",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "269173927",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 25.0
+        },
+        {
+          "name": "fcst_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173964",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 847.0
+        },
+        {
+          "name": "fcst_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173965",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173966",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 838.0
+        },
+        {
+          "name": "fcst_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173967",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 847.0
+        },
+        {
+          "name": "fcst_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173968",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 836.0
+        },
+        {
+          "name": "fcst_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173969",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 835.0
+        },
+        {
+          "name": "fcst_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173970",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 833.0
+        },
+        {
+          "name": "fcst_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173971",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 841.0
+        },
+        {
+          "name": "fcst_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173972",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 834.0
+        },
+        {
+          "name": "fcst_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173973",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 842.0
+        },
+        {
+          "name": "fcst_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173974",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 842.0
+        },
+        {
+          "name": "fcst_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173975",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 843.0
+        },
+        {
+          "name": "fcst_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173976",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 837.0
+        },
+        {
+          "name": "fcst_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173977",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 840.0
+        },
+        {
+          "name": "fcst_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173978",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 840.0
+        },
+        {
+          "name": "fcst_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173979",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 842.0
+        },
+        {
+          "name": "fcst_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173980",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 839.0
+        },
+        {
+          "name": "fcst_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173981",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 840.0
+        },
+        {
+          "name": "fcst_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173982",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 843.0
+        },
+        {
+          "name": "fcst_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173983",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 832.0
+        },
+        {
+          "name": "fcst_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173984",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 844.0
+        },
+        {
+          "name": "fcst_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173985",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 839.0
+        },
+        {
+          "name": "fcst_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173986",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173987",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 841.0
+        },
+        {
+          "name": "fcst_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173988",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 841.0
+        },
+        {
+          "name": "fcst_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173989",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 837.0
+        },
+        {
+          "name": "fcst_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173990",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173991",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 840.0
+        },
+        {
+          "name": "fcst_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173992",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 839.0
+        },
+        {
+          "name": "fcst_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173993",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 842.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269174014",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 62.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269173772",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161100",
+      "cycle_state": "Done",
+      "activated": "Oct 31 2026 13:37:28",
+      "deactivated": "Oct 31 2026 15:10:47",
+      "wall_time_min": 93.3,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269173759",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269173760",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269173761",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269173762",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269174015",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 79.0
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173866",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173867",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173868",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173869",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173870",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173871",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173872",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173873",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173874",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173875",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173876",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173877",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173878",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173879",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173880",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173881",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173882",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173883",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173884",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173885",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173886",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173887",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173888",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173889",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173890",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173891",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173892",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173837",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173838",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173893",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "getkf",
+          "state": "SUCCEEDED",
+          "jobid": "269174017",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 421.0
+        },
+        {
+          "name": "getkf_post",
+          "state": "SUCCEEDED",
+          "jobid": "269174053",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 464.0
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174054",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174055",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174056",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174057",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174058",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174059",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174060",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174061",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174062",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174063",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174064",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174065",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174066",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174067",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174068",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174069",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174070",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174071",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174072",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174073",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174074",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174075",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174076",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174077",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174078",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174079",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174080",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174081",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174082",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174083",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "269174084",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 27.0
+        },
+        {
+          "name": "fcst_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174086",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174087",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174088",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 846.0
+        },
+        {
+          "name": "fcst_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174089",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174090",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174091",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 847.0
+        },
+        {
+          "name": "fcst_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174092",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 850.0
+        },
+        {
+          "name": "fcst_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174093",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174094",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174095",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174096",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 838.0
+        },
+        {
+          "name": "fcst_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174097",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174098",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 845.0
+        },
+        {
+          "name": "fcst_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174099",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174100",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 850.0
+        },
+        {
+          "name": "fcst_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174101",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 846.0
+        },
+        {
+          "name": "fcst_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174102",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174103",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174104",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 846.0
+        },
+        {
+          "name": "fcst_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174105",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 847.0
+        },
+        {
+          "name": "fcst_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174106",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174107",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174108",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174109",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 844.0
+        },
+        {
+          "name": "fcst_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174110",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174111",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 847.0
+        },
+        {
+          "name": "fcst_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174112",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174113",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174114",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 859.0
+        },
+        {
+          "name": "fcst_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174115",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 836.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269174127",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 71.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269174018",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 7.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161200",
+      "cycle_state": "Done",
+      "activated": "Oct 31 2026 13:49:31",
+      "deactivated": "Oct 31 2026 16:10:58",
+      "wall_time_min": 141.4,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269173928",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 26.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269173929",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269173930",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 28.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269173931",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269174128",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 78.0
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269173932",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269173933",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269173934",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269173935",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269173936",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269173937",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269173938",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269173939",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269173940",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269173941",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269173942",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269173943",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269173944",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269173945",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269173946",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269173947",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269173948",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269173949",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269173950",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269173951",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269173952",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269173953",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269173954",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269173955",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269173994",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269173995",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269173996",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269173997",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269173998",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269173999",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "getkf",
+          "state": "SUCCEEDED",
+          "jobid": "269174135",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 495.0
+        },
+        {
+          "name": "getkf_post",
+          "state": "SUCCEEDED",
+          "jobid": "269174173",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 518.0
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174174",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174175",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174176",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174177",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174178",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174179",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174180",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174181",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174182",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174183",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174184",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174185",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174186",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174187",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174188",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174189",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174190",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174191",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174192",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13.0
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174193",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174194",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174195",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174196",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174197",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174198",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174199",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174200",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174201",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174202",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 14.0
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174203",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "269174204",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 33.0
+        },
+        {
+          "name": "fcst_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174205",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174206",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174207",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 847.0
+        },
+        {
+          "name": "fcst_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174208",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174209",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174210",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 846.0
+        },
+        {
+          "name": "fcst_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174211",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174212",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 845.0
+        },
+        {
+          "name": "fcst_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174213",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174214",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174215",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 850.0
+        },
+        {
+          "name": "fcst_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174216",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174217",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174218",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174219",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174220",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174221",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174222",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174223",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174224",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 844.0
+        },
+        {
+          "name": "fcst_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174225",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 848.0
+        },
+        {
+          "name": "fcst_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174226",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174227",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174228",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174229",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174230",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 856.0
+        },
+        {
+          "name": "fcst_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174231",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 858.0
+        },
+        {
+          "name": "fcst_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174232",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174233",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174234",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 845.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269174270",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 60.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269174136",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 10.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161300",
+      "cycle_state": "Done",
+      "activated": "Oct 31 2026 14:19:36",
+      "deactivated": "Oct 31 2026 18:05:22",
+      "wall_time_min": 225.8,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269174019",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 20.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269174020",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174021",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 23.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174022",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269174304",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 86.0
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174023",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174024",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174025",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174026",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174027",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174028",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174029",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174030",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174031",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174032",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174033",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174034",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174035",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174036",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174037",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174038",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174039",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174040",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174041",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174042",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174043",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174044",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174045",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174046",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174047",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174048",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174049",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174050",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174051",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174052",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "getkf",
+          "state": "SUCCEEDED",
+          "jobid": "269174323",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 537.0
+        },
+        {
+          "name": "getkf_post",
+          "state": "SUCCEEDED",
+          "jobid": "269174373",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 588.0
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174374",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174375",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174376",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174377",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174378",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174379",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174380",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174381",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174382",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174383",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174384",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174385",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174386",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174387",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174388",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174389",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174390",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174391",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174392",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174393",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174394",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174395",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174396",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174397",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174398",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174399",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174400",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174401",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174402",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174403",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 18.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "269174404",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 39.0
+        },
+        {
+          "name": "fcst_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174405",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 857.0
+        },
+        {
+          "name": "fcst_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174406",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 862.0
+        },
+        {
+          "name": "fcst_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174407",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 861.0
+        },
+        {
+          "name": "fcst_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174408",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174409",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174410",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174411",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 856.0
+        },
+        {
+          "name": "fcst_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174412",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174413",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174414",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 866.0
+        },
+        {
+          "name": "fcst_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174415",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174416",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 850.0
+        },
+        {
+          "name": "fcst_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174417",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174418",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 849.0
+        },
+        {
+          "name": "fcst_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174419",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174420",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174421",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 857.0
+        },
+        {
+          "name": "fcst_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174422",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 860.0
+        },
+        {
+          "name": "fcst_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174423",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 856.0
+        },
+        {
+          "name": "fcst_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174424",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 860.0
+        },
+        {
+          "name": "fcst_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174425",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 856.0
+        },
+        {
+          "name": "fcst_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174426",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 860.0
+        },
+        {
+          "name": "fcst_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174428",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 859.0
+        },
+        {
+          "name": "fcst_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174429",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 859.0
+        },
+        {
+          "name": "fcst_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174430",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 859.0
+        },
+        {
+          "name": "fcst_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174431",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174432",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 861.0
+        },
+        {
+          "name": "fcst_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174433",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 861.0
+        },
+        {
+          "name": "fcst_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174434",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 864.0
+        },
+        {
+          "name": "fcst_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174435",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 865.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269174474",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 62.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269174324",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 12.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161400",
+      "cycle_state": "Done",
+      "activated": "Oct 31 2026 15:13:47",
+      "deactivated": "Oct 31 2026 19:44:44",
+      "wall_time_min": 270.9,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269174137",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269174138",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 13.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174139",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 22.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174140",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269174507",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 79.0
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174141",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174142",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174143",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174144",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174145",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174146",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174147",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174148",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174149",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174150",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174151",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174152",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174153",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174154",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174155",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174156",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174157",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174158",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174159",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174160",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174161",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174162",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174163",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174164",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174165",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174166",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174167",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174168",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174169",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174170",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "getkf",
+          "state": "SUCCEEDED",
+          "jobid": "269174538",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 473.0
+        },
+        {
+          "name": "getkf_post",
+          "state": "SUCCEEDED",
+          "jobid": "269174578",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 507.0
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174579",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174580",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174581",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174582",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174583",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174584",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174585",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174586",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174587",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174588",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174589",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174590",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174591",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174592",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174593",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 20.0
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174594",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 21.0
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174595",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174596",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174597",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174598",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174599",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174600",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174601",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174602",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174603",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174604",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174605",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174606",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174607",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174608",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "SUCCEEDED",
+          "jobid": "269174609",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 42.0
+        },
+        {
+          "name": "fcst_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174611",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174612",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 856.0
+        },
+        {
+          "name": "fcst_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174613",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174614",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174615",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174616",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 860.0
+        },
+        {
+          "name": "fcst_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174617",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174618",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174619",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174620",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174655",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174656",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174657",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174658",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 857.0
+        },
+        {
+          "name": "fcst_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174659",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 850.0
+        },
+        {
+          "name": "fcst_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174660",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174661",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 850.0
+        },
+        {
+          "name": "fcst_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174662",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 859.0
+        },
+        {
+          "name": "fcst_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174663",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174664",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 853.0
+        },
+        {
+          "name": "fcst_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174665",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 854.0
+        },
+        {
+          "name": "fcst_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174666",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174667",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 852.0
+        },
+        {
+          "name": "fcst_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174668",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 851.0
+        },
+        {
+          "name": "fcst_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174669",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 859.0
+        },
+        {
+          "name": "fcst_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174670",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 858.0
+        },
+        {
+          "name": "fcst_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174671",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 864.0
+        },
+        {
+          "name": "fcst_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174672",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 860.0
+        },
+        {
+          "name": "fcst_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174673",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 855.0
+        },
+        {
+          "name": "fcst_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174674",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 857.0
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "SUCCEEDED",
+          "jobid": "269174695",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 61.0
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269174539",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 10.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161500",
+      "cycle_state": "Active",
+      "activated": "Oct 31 2026 16:13:59",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269174325",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269174326",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 27.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174327",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 37.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174328",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 31.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "SUCCEEDED",
+          "jobid": "269174696",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 71.0
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174329",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 27.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174330",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 27.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174331",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174332",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174333",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174334",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174335",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174336",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174337",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174338",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174339",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174340",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174341",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174342",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174343",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174344",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174345",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174346",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174347",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174348",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174349",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174350",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174351",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174352",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174353",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174354",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174355",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174356",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174357",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174358",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "getkf",
+          "state": "RUNNING",
+          "jobid": "269174764",
+          "exit_status": null,
+          "tries": 0,
+          "duration": 0.0
+        },
+        {
+          "name": "getkf_post",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m001",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m002",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m003",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m004",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m005",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m006",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m007",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m008",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m009",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m010",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m011",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m012",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m013",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m014",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m015",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m016",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m017",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m018",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m019",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m020",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m021",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m022",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m023",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m024",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m025",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m026",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m027",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m028",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m029",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m030",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "SUCCEEDED",
+          "jobid": "269174763",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 10.0
+        }
+      ]
+    },
+    {
+      "cdate": "202512161600",
+      "cycle_state": "Active",
+      "activated": "Oct 31 2026 18:08:23",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269174540",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 17.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269174541",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 16.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174542",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 23.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174543",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 8.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174544",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174545",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174546",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174547",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 2.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174548",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174549",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174550",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174551",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174552",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174553",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174554",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174555",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174556",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174557",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174558",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174559",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174560",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174561",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174562",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174563",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174564",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174565",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174566",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174567",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174568",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174569",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174570",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174571",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174572",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174573",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "getkf",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "getkf_post",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m001",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m002",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m003",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m004",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m005",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m006",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m007",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m008",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m009",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m010",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m011",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m012",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m013",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m014",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m015",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m016",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m017",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m018",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m019",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m020",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m021",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m022",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m023",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m024",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m025",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m026",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m027",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m028",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m029",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m030",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    },
+    {
+      "cdate": "202512161700",
+      "cycle_state": "Active",
+      "activated": "Oct 31 2026 19:47:45",
+      "deactivated": null,
+      "wall_time_min": null,
+      "tasks": [
+        {
+          "name": "ioda_bufr",
+          "state": "SUCCEEDED",
+          "jobid": "269174697",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 19.0
+        },
+        {
+          "name": "ioda_mrms_refl",
+          "state": "SUCCEEDED",
+          "jobid": "269174698",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 15.0
+        },
+        {
+          "name": "nonvar_bufrobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174699",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 23.0
+        },
+        {
+          "name": "nonvar_reflobs",
+          "state": "SUCCEEDED",
+          "jobid": "269174700",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 9.0
+        },
+        {
+          "name": "prep_ic",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "prep_lbc_m001",
+          "state": "SUCCEEDED",
+          "jobid": "269174701",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m002",
+          "state": "SUCCEEDED",
+          "jobid": "269174702",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m003",
+          "state": "SUCCEEDED",
+          "jobid": "269174703",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m004",
+          "state": "SUCCEEDED",
+          "jobid": "269174704",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m005",
+          "state": "SUCCEEDED",
+          "jobid": "269174705",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m006",
+          "state": "SUCCEEDED",
+          "jobid": "269174706",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m007",
+          "state": "SUCCEEDED",
+          "jobid": "269174707",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m008",
+          "state": "SUCCEEDED",
+          "jobid": "269174708",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m009",
+          "state": "SUCCEEDED",
+          "jobid": "269174709",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m010",
+          "state": "SUCCEEDED",
+          "jobid": "269174710",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m011",
+          "state": "SUCCEEDED",
+          "jobid": "269174711",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m012",
+          "state": "SUCCEEDED",
+          "jobid": "269174712",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m013",
+          "state": "SUCCEEDED",
+          "jobid": "269174713",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m014",
+          "state": "SUCCEEDED",
+          "jobid": "269174714",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m015",
+          "state": "SUCCEEDED",
+          "jobid": "269174715",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m016",
+          "state": "SUCCEEDED",
+          "jobid": "269174716",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m017",
+          "state": "SUCCEEDED",
+          "jobid": "269174717",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m018",
+          "state": "SUCCEEDED",
+          "jobid": "269174718",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m019",
+          "state": "SUCCEEDED",
+          "jobid": "269174719",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m020",
+          "state": "SUCCEEDED",
+          "jobid": "269174720",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m021",
+          "state": "SUCCEEDED",
+          "jobid": "269174721",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m022",
+          "state": "SUCCEEDED",
+          "jobid": "269174722",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m023",
+          "state": "SUCCEEDED",
+          "jobid": "269174723",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m024",
+          "state": "SUCCEEDED",
+          "jobid": "269174724",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m025",
+          "state": "SUCCEEDED",
+          "jobid": "269174725",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "prep_lbc_m026",
+          "state": "SUCCEEDED",
+          "jobid": "269174726",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m027",
+          "state": "SUCCEEDED",
+          "jobid": "269174727",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m028",
+          "state": "SUCCEEDED",
+          "jobid": "269174728",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m029",
+          "state": "SUCCEEDED",
+          "jobid": "269174729",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 3.0
+        },
+        {
+          "name": "prep_lbc_m030",
+          "state": "SUCCEEDED",
+          "jobid": "269174730",
+          "exit_status": 0,
+          "tries": 1,
+          "duration": 4.0
+        },
+        {
+          "name": "getkf",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "getkf_post",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m001",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m002",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m003",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m004",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m005",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m006",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m007",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m008",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m009",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m010",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m011",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m012",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m013",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m014",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m015",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m016",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m017",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m018",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m019",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m020",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m021",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m022",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m023",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m024",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m025",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m026",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m027",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m028",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m029",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "nonvar_cldana_m030",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "pyDAmonitor",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m001",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m002",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m003",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m004",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m005",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m006",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m007",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m008",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m009",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m010",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m011",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m012",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m013",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m014",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m015",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m016",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m017",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m018",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m019",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m020",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m021",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m022",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m023",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m024",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m025",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m026",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m027",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m028",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m029",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "fcst_m030",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "save_for_next_f01",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        },
+        {
+          "name": "clean",
+          "state": "WAITING",
+          "jobid": null,
+          "exit_status": null,
+          "tries": null,
+          "duration": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_cycles": 9,
+    "active_cycles": 3,
+    "done_cycles": 6,
+    "total_tasks": 890,
+    "succeeded": 694,
+    "running": 1,
+    "queued": 0,
+    "submitting": 0,
+    "waiting": 195,
+    "expired": 0,
+    "dead": 0,
+    "other": 0
+  },
+  "alerts": {
+    "dead_jobs": [],
+    "stall": false,
+    "stall_since": null,
+    "hung_jobs": []
+  },
+  "owner": "spanNOAA",
+  "suite": "RRFSv2_conus3km_Dec16-26"
+}
