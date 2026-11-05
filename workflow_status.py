@@ -65,6 +65,11 @@ def validate_safe_expdir(expdir_str: str) -> Path:
             f"Security Violation: Experiment directory '{expdir_str}' resolves to '{resolved_str}', "
             f"which is outside authorized scratch/work filesystems: {ALLOWED_SCRATCH_PREFIXES}"
         )
+    if re.search(r"/(?:exp|exps)\.", resolved_str, re.IGNORECASE):
+        raise ValueError(
+            f"Malformed experiment directory '{expdir_str}': 'exp.' syntax is not permitted. "
+            f"Standard structure must strictly use 'exp/' (e.g. .../<suite_name>/exp/<member_name>)."
+        )
     return p
 
 
@@ -504,9 +509,13 @@ def sync_pending_instructions(
 
             # Enforce quota for this author based on distinct suites
             new_suite_key = extract_suite_key(str(safe_dir), payload.get("suite"))
+            other_user_exps = [
+                e for e in current_exps
+                if not (e.get("name") == exp_name and e.get("owner") == author)
+            ]
             existing_user_suites = {
                 extract_suite_key(e.get("expdir", ""), e.get("suite"))
-                for e in current_exps
+                for e in other_user_exps
                 if e.get("owner") == author
             }
             if new_suite_key not in existing_user_suites and len(existing_user_suites) >= MAX_USER_EXPERIMENTS:

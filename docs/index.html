@@ -1225,6 +1225,11 @@
                         return;
                     }
 
+                    if (/\/(?:exp|exps)\./i.test(expdir)) {
+                        alert("Validation Error: Invalid directory format. 'exp.' is not permitted; standard UFS/RRFS paths must strictly use 'exp/' (e.g. .../<suite>/exp/<member>).");
+                        return;
+                    }
+
                     // Strict NOAA Email validation: must exactly match @noaa.gov
                     if (email) {
                         if (!NOAA_EMAIL_REGEX.test(email)) {
@@ -1299,6 +1304,11 @@
 
                     if (!newPath) {
                         alert('Validation Error: Please enter the New Remote HPC Path.');
+                        return;
+                    }
+
+                    if (/\/(?:exp|exps)\./i.test(newPath)) {
+                        alert("Validation Error: Invalid directory format. 'exp.' is not permitted; standard UFS/RRFS paths must strictly use 'exp/' (e.g. .../<suite>/exp/<member>).");
                         return;
                     }
 
