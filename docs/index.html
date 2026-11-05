@@ -1855,13 +1855,9 @@
                 const modeBadge = `<span class="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded ${isRetro ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/50' : 'bg-cyan-100 text-cyan-700 dark:bg-cyan-950 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/50'}">${isRetro ? 'RETRO' : 'REALTIME'}</span>`;
 
                 const runningCount = Number(sum.running || 0);
-                const deadCount = Number(sum.dead || 0);
                 const runningBadge = runningCount > 0
                     ? `<span class="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-semibold">${runningCount} run</span>`
                     : `<span class="opacity-60">0 run</span>`;
-                const deadBadge = deadCount > 0
-                    ? `<span class="px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/60 text-red-700 dark:text-red-300 font-semibold">${deadCount} dead</span>`
-                    : '';
 
                 btn.innerHTML = `
                     <div class="flex items-center justify-between gap-1.5 w-full">
@@ -1882,7 +1878,6 @@
                         <div class="flex items-center gap-2 flex-shrink-0">
                             <span class="text-emerald-700 dark:text-emerald-400 font-medium">${sum.succeeded || 0} ok</span>
                             ${runningBadge}
-                            ${deadBadge}
                         </div>
                     </div>
                 `;
